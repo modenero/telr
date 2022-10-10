@@ -1,5 +1,5 @@
 const signTrade = async () => {
-    console.log('Signing Telr transfer for Telr trade..')
+    // console.log('Signing Telr transfer for Telr trade..')
 
     const web3 = new Web3(ethereum)
 
@@ -32,13 +32,13 @@ const signTrade = async () => {
         nonce // nonce (unique integer)
     )
 
-    console.log('SIGNATURE HASH', sigHash)
+    // console.log('SIGNATURE HASH', sigHash)
 
     /* Sign signature hash. */
     const signature = await web3.eth.personal.sign(
         sigHash, ethereum.selectedAddress)
 
-    console.log('SIGNATURE', signature)
+    // console.log('SIGNATURE', signature)
 }
 
 export default signTrade

@@ -63,7 +63,7 @@ const deposit = async ({ rootGetters }, _token) => {
     const tokenAmount = Number(_token.amount) * 10**8
 
     const response = await contract.approveAndCall(exchangeContract, tokenAmount, '0x00')
-    console.log('DEPOSIT RESPONSE', response)
+    console.log('DEPOSIT RESPONSE', response) // eslint-disable-line
 
     /* Set asset source. */
     // const assetSource = {

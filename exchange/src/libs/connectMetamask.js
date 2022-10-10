@@ -1,5 +1,5 @@
 const connectMetamask = async () => {
-    console.log('Connecting Metamask..', ethereum)
+    // console.log('Connecting Metamask..', ethereum)
 
     const web3 = new Web3(ethereum)
 
@@ -31,13 +31,13 @@ const connectMetamask = async () => {
         nonce // nonce (unique integer)
     )
 
-    console.log('SIGNATURE HASH', sigHash)
+    // console.log('SIGNATURE HASH', sigHash)
 
     /* Sign signature hash. */
     const signature = await web3.eth.personal.sign(
         sigHash, ethereum.selectedAddress)
 
-    console.log('SIGNATURE', signature)
+    // console.log('SIGNATURE', signature)
 
     /* Build relay package. */
     const relayPkg = {
@@ -52,7 +52,7 @@ const connectMetamask = async () => {
         signature
     }
 
-    console.log('Relay Package', relayPkg)
+    // console.log('Relay Package', relayPkg)
 
     /* Set method. */
     const method = 'POST'
@@ -88,7 +88,7 @@ const connectMetamask = async () => {
     /* Retrieve response. */
     const content = await rawResponse.json()
 
-    console.log(content)
+    // console.log(content)
 
     return
 
@@ -104,12 +104,12 @@ const connectMetamask = async () => {
             }
         })
 
-    console.log('Address', ethereum.selectedAddress)
-    console.log('Network', ethereum.networkVersion)
+    // console.log('Address', ethereum.selectedAddress)
+    // console.log('Network', ethereum.networkVersion)
 
     // const web3 = new Web3(ethereum)
 
-    console.log('WEB BCH', web3.eth)
+    // console.log('WEB BCH', web3.eth)
 
     // let signed = await web3.eth.sign('Hi there!', ethereum.selectedAddress)
     // let signed = await web3.eth['personal'].sign('Hi there!', ethereum.selectedAddress)
@@ -153,7 +153,7 @@ const connectMetamask = async () => {
                 return console.error(result.error.message)
             }
 
-            console.log('RESULT', result)
+            // console.log('RESULT', result)
         })
     }
 }

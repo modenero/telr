@@ -6,7 +6,7 @@
 */
 // const getToken = (state, getters, rootState, rootGetters) => async (_tokenid) => {
 const getToken = () => async (_tokenid) => {
-    console.log('Retrieving token...', _tokenid)
+    // console.log('Retrieving token...', _tokenid)
 
     /* Initialize campaign. */
     // let campaign = null
@@ -29,6 +29,7 @@ const getToken = () => async (_tokenid) => {
 
     /* Return campaign. */
     return {
+        tokenid: _tokenid,
         title: 'Korean BBQ Token',
         symbol: 'KBBQ',
     }

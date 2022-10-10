@@ -17,12 +17,12 @@ const initOrderBook = async  () => {
             console.error('REQUEST ERROR:', _error)
         })
 
-    console.log('RESPONSE', response)
+    // console.log('RESPONSE', response)
 
     /* Retrieve contract address. */
     const contractAddress = await response.json()
 
-    console.log('Telr ANAME:', contractAddress)
+    // console.log('Telr ANAME:', contractAddress)
 
     /* Set from. */
     const from = this.address
@@ -57,7 +57,7 @@ const initOrderBook = async  () => {
         fromBlock: 5138400,
         toBlock: 'latest'
     }).then(_events => {
-        console.log('EVENTS', _events)
+        // console.log('EVENTS', _events)
 
         _events.forEach(_event => {
             /* Retrieve return values. */
@@ -68,12 +68,12 @@ const initOrderBook = async  () => {
             /* Retrieve market id. */
             const marketId = returnValues.marketId
 
-            console.log(`Market Id\n[ ${marketId} ]`)
+            // console.log(`Market Id\n[ ${marketId} ]`)
 
             /* Retrieve order id. */
             const orderId = returnValues.orderId
 
-            console.log(`Order Id\n[ ${orderId} ]`)
+            // console.log(`Order Id\n[ ${orderId} ]`)
 
             this.orders += `<br /><small>${orderId}</small>`
         })

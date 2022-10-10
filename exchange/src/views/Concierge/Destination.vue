@@ -101,7 +101,7 @@ export default {
     },
     watch: {
         address: function (_address) {
-            console.log('CHANGED ADDRESS', _address)
+            // console.log('CHANGED ADDRESS', _address)
 
             let parts
             let tokenid
@@ -128,7 +128,7 @@ export default {
                     break
                 }
             }
-            console.log('CHANGED TOKENID', tokenid)
+            // console.log('CHANGED TOKENID', tokenid)
         },
 
     },

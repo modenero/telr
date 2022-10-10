@@ -1,5 +1,5 @@
 const initTelr = async () => {
-    console.log('Starting Telr initialization..')
+    console.info('Starting Telr initialization..') // eslint-disable-line no-console
 
     /* Set data id. */
     // NOTE: keccak256(`aname.zerocache`)
@@ -19,7 +19,7 @@ const initTelr = async () => {
     /* Request aname. */
     const aname = await response.json()
 
-    console.log('Telr ANAME RESPONSE:', aname)
+    // console.log('Telr ANAME RESPONSE:', aname)
 
     /* Validate aname. */
     if (typeof aname !== 'undefined') {

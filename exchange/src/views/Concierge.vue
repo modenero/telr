@@ -91,11 +91,11 @@ export default {
 
             this.aniChooser = 'delay-300 -translate-x-1/4 opacity-100'
 
-            console.log('REQUEST', this.request)
+            // console.log('REQUEST', this.request)
         },
 
         setBase() {
-            console.log('REQUEST (setBase)', this.request)
+            // console.log('REQUEST (setBase)', this.request)
 
             this.aniChooser = 'delay-200 -translate-x-full opacity-0'
 
@@ -138,10 +138,10 @@ export default {
             if (response && response.body) {
                 /* Set body. */
                 const body = response.body
-                console.log('BODY', body)
+                // console.log('BODY', body)
 
                 if (body && body.changelly) {
-                    console.log('DETECTED CHANGELLY RESPONSE', body.changelly)
+                    // console.log('DETECTED CHANGELLY RESPONSE', body.changelly)
 
                     /* Set response. */
                     this.response = body.changelly
@@ -149,7 +149,8 @@ export default {
 
                 /* Validate errors. */
                 if (body.err && body.err.message) {
-                    console.error('EXCHANGE ERROR:', body.err.message)
+                    console.error('Exchange error:', body.err.message) // eslint-disable-line no-console
+
                     this.err = body.err
                 }
 
@@ -178,7 +179,7 @@ export default {
         // console.log('RESPONSE', response);
 
         if (response.body) {
-            console.log('BODY', response.body)
+            // console.log('BODY', response.body)
 
             this.txs = response.body
         }

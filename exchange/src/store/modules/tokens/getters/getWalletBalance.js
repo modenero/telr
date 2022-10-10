@@ -5,7 +5,7 @@ import { ethers } from 'ethers'
 * Get Campaign
 */
 const getBalance = (state, getters, rootState, rootGetters) => async (_tokenid, _account) => {
-    console.log('Retrieving balance...', _tokenid, _account)
+    // console.log('Retrieving balance...', _tokenid, _account)
 
     /* Connect to MetaMask. */
     await window.ethereum.enable()
@@ -28,11 +28,11 @@ const getBalance = (state, getters, rootState, rootGetters) => async (_tokenid, 
 
     /* Retrieve decimals. */
     const decimals = await contract.decimals()
-    console.log('TOKEN DECIMALS', decimals)
+    // console.log('TOKEN DECIMALS', decimals)
 
     /* Retrieve name. */
     const balance = await contract.balanceOf(_account)
-    console.log('ACCOUNT BALANCE', balance)
+    // console.log('ACCOUNT BALANCE', balance)
 
     /* Return campaign. */
     return {

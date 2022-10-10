@@ -4,7 +4,7 @@ const initEthereum = async () => {
 
         try {
             // Request account access if needed
-            console.log('window.ethereum')
+            // console.log('window.ethereum')
 
             ethereum.enable()
         } catch (error) {
@@ -13,7 +13,7 @@ const initEthereum = async () => {
     } else if (window.web3) { // Legacy dapp browsers...
         window.web3 = new Web3(web3.currentProvider)
 
-        console.log('window.currentProvider')
+        // console.log('window.currentProvider')
         // Acccounts always exposed
     } else { // Non-dapp browsers...
         alert('Non-Ethereum browser detected.\nYou should consider trying MetaMask!')
@@ -28,7 +28,7 @@ const initEthereum = async () => {
             /* Set address. */
             const defaultAddress = accounts[0]
 
-            console.log('Default address', defaultAddress)
+            // console.log('Default address', defaultAddress)
 
             this.profileAddress = defaultAddress
         }
