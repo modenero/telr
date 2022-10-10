@@ -313,20 +313,20 @@ export default {
         ]),
 
         connectBadger() {
-            console.log('TODO: connect Badger')
+            // console.log('TODO: connect Badger')
         },
 
         connectMetamask() {
-            console.log('TODO: connect MetaMask')
+            // console.log('TODO: connect MetaMask')
         },
 
     },
     created: async function () {
-        console.log('PROFILE ADDRESS', this.getProfileAddress)
+        // console.log('PROFILE ADDRESS', this.getProfileAddress)
 
         /* Retrieve current token. */
         this.token = await this.getToken('0x505A442B3E3E9AEDF06D54572a295F8D64f8F582')
-        console.log('CURRENT TOKEN', this.token)
+        // console.log('CURRENT TOKEN', this.token)
 
     },
     mounted: function () {

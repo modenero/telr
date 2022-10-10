@@ -192,18 +192,18 @@ export default {
         ]),
 
         buyOrder() {
-            console.log('Ready to buy')
+            // console.log('Ready to buy')
         },
 
         sellOrder() {
-            console.log('Ready to sell')
+            // console.log('Ready to sell')
         },
 
     },
     created: async function () {
         /* Retrieve current token. */
         this.token = await this.getToken('0x505A442B3E3E9AEDF06D54572a295F8D64f8F582')
-        console.log('CURRENT TOKEN', this.token)
+        // console.log('CURRENT TOKEN', this.token)
 
         this.expirationTime = 60
         this.expirationMeasure = 'minutes'

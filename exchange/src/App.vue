@@ -57,13 +57,13 @@ export default {
 
     },
     created: async function () {
-        console.log('PARAMS', this.$route.params)
-        console.log('QUERY', this.$route.query)
-        console.log('HASH', this.$route.hash)
+        // console.log('PARAMS', this.$route.params)
+        // console.log('QUERY', this.$route.query)
+        // console.log('HASH', this.$route.hash)
 
         /* Set owner slug. */
-        const pathMatch = this.$route.params.pathMatch
-        console.log('PATH MATCH', pathMatch)
+        // const pathMatch = this.$route.params.pathMatch
+        // console.log('PATH MATCH', pathMatch)
 
         /* Initialize application. */
         // this.init()

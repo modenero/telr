@@ -286,7 +286,7 @@ export default {
         },
 
         withdraw() {
-            console.log('Ready to withdraw')
+            // console.log('Ready to withdraw')
 
         },
 
@@ -294,11 +294,11 @@ export default {
     created: async function () {
         /* Retrieve current token. */
         this.token = await this.getToken('0x505A442B3E3E9AEDF06D54572a295F8D64f8F582')
-        console.log('CURRENT TOKEN', this.token)
+        // console.log('CURRENT TOKEN', this.token)
 
         /* Retrieve account balance. */
         this.tokenBalance = await this.getWalletBalance('0x505A442B3E3E9AEDF06D54572a295F8D64f8F582', '0x830ad555fCe0547782E14d67d22002082916e660')
-        console.log('BALANCE', this.tokenBalance)
+        // console.log('BALANCE', this.tokenBalance)
 
         /* Retrieve exchange balance. */
         // this.exchangeBalance = await this.getExchangeBalance('0x505A442B3E3E9AEDF06D54572a295F8D64f8F582', '0x830ad555fCe0547782E14d67d22002082916e660')
