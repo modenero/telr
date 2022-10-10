@@ -1,0 +1,5 @@
+# Deploy Media
+
+## Tokens
+
+scp -r tokens telr:/var/www/assets/tokens/

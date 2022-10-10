@@ -1,5 +1,5 @@
-# TELR Token
+# $TELR Token
 
 ### https://telr.cash
 
-Governance token of the TELR network.
+Governance token for Telr's suite of Concierge services.
