@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang=en> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang=en> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang=en> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang=en>
+<head>
+    <meta charset=utf-8>
+    <meta http-equiv=X-UA-Compatible content="IE=edge"/>
+    <meta name=author content="DSAThemes"/>
+    <meta name=description content="Can Your BATM Do Cash?"/>
+    <meta name=keywords content="bitcoin atm, batm, crypto, stablecoin, usdt, usdc, dai">
+    <meta name=viewport content="width=device-width, initial-scale=1.0"/>
+
+    <title>BATM.Cash — Can Your BATM Do Cash?</title>
+
+    <link rel="shortcut icon" href="images/favicon.png" type=image/x-icon>
+    <link rel=icon href="images/favicon.png" type=image/x-icon>
+
+    <link rel=apple-touch-icon sizes=152x152 href="images/apple-touch-icon-152x152.png">
+    <link rel=apple-touch-icon sizes=120x120 href="images/apple-touch-icon-120x120.png">
+    <link rel=apple-touch-icon sizes=76x76 href="images/apple-touch-icon-76x76.png">
+    <link rel=apple-touch-icon href="images/apple-touch-icon.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel=stylesheet>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:300,400,500,700,900" rel=stylesheet>
+
+    <link href="css/bootstrap.min.css" rel=stylesheet>
+    <link href="css/fontawesome.min.css" rel=stylesheet>
+    <link href="css/flaticon.css" rel=stylesheet>
+    <link href="css/magnific-popup.css" rel=stylesheet>
+    <link href="css/owl.carousel.min.css" rel=stylesheet>
+    <link href="css/owl.theme.default.min.css" rel=stylesheet>
+    <link href="css/slick.css" rel=stylesheet>
+    <link href="css/slick-theme.css" rel=stylesheet>
+    <link href="css/animate.css" rel=stylesheet>
+    <link href="css/spinner.css" rel=stylesheet>
+    <link href="css/style.css" rel=stylesheet>
+    <link href="css/responsive.css" rel=stylesheet>
+
+    <!-- Osana (GDPR) Compliance -->
+    <script src="https://cmp.osano.com/16A17HRkKQCZaY8V/4e6278c8-afb2-4a18-baea-0e4c83d2d42a/osano.js"></script>
+</head>
+
+<body>
+
+<div id=loader-wrapper>
+    <div id=loader>
+        <div class=cssload-spinner></div>
+    </div>
+</div>
+
+<div id=app class=page>
+    <header id=header class=header>
+        <nav class="navbar fixed-top navbar-expand-md hover-menu navbar-light bg-tra black-scroll">
+            <div class=container>
+                <a href="demo-8.html#hero-8" class="navbar-brand logo-black"><img src="images/logo.png" width=120 height=30 alt=header-logo></a>
+                <a href="demo-8.html#hero-8" class="navbar-brand logo-white"><img src="images/logo-white.png" width=120 height=30 alt=header-logo></a>
+                <button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarContent aria-controls=navbarContent aria-expanded=false aria-label="Toggle navigation">
+                    <span class=navbar-bar-icon><i class="fas fa-bars"></i></span>
+                </button>
+                <div id=navbarContent class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <!-- spacer -->
+                    </ul>
+
+                    <span class="navbar-text white-color">
+                        <a href="javascript://" class="btn btn-black black-tra-hover" @click="openDemo">Try A LIVE Demo</a>
+                    </span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section id=hero-8 class="hero-section division">
+        <div class=container>
+            <div class="row d-flex align-items-center">
+                <div class="col-md-7 col-xl-6">
+                    <div class="hero-txt mb-40 wow fadeInUp" data-wow-delay=0.3s>
+                        <h3 class=h3-xl v-html="greeting"><!-- greeting --></h3>
+
+                        <p class=p-md>
+                            <strong>Stablecoin transactions (eg. <strong>Tether<span class="text-danger">⇢</span>BTC</strong> or <strong>USDC<span class="text-danger">⇢</span>BCH</strong>) are quickly becoming the NEW BATM industry standard.</strong>
+                            <br />
+                            <br />&nbsp;&nbsp;&nbsp;&nbsp;<strong>✓ NO MORE <strong><span class="text-danger">"HOT"</span></strong> WALLET <strong>VOLATILITY</strong></strong>
+                            <br />&nbsp;&nbsp;&nbsp;&nbsp;<strong>✓ NO MORE DELAYS OVER <strong><span class="text-danger">"HOT"</span></strong> WALLET <strong>LIQUIDITY</strong></strong>
+                            <br />&nbsp;&nbsp;&nbsp;&nbsp;<strong>✓ AND NO MORE CUSTOMER <strong>SUPPORT</strong> CALLS</strong>
+                            <h3>EVER AGAIN, REALLY!!</h3>
+                        </p>
+
+                        <hr />
+
+                        <form>
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="form-group">
+                                        <label for="phoneNum"><h5>Your Mobile (SMS) Number</h5></label>
+                                        <input type="phone" class="form-control form-control-lg" v-model="phoneNum" placeholder="+1 404 555-1337" aria-describedby="phoneHelp">
+                                        <small id="phoneHelp" class="form-text text-muted">We'll never share your phone # with anyone else.</small>
+                                    </div>
+
+                                    <button class="btn btn-lg btn-black black-tra-hover" @click="sendDemo">Text Me A LIVE Demo</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+                <div class="col-md-5 col-xl-6">
+                    <div class="hero-8-img mb-40 wow fadeInRight" data-wow-duration=1.5s data-wow-delay=0.6s>
+                        <img class=img-fluid src="images/hero-8-img.png" alt=hero-image>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id=features-2 class="wide-60 features-section division">
+        <div class=container>
+            <div class=row>
+                <div class="col-lg-10 offset-lg-1 section-title">
+                    <h3 class=h3-lg>Offer Customers The Lowest Fees<br />... But Deliver Best-in-class Service</h3>
+
+                    <p class=p-md>
+                        We can't tell you how to run your business, but it doesn't hurt to maintain a <strong>steady bottom-line.</strong>
+                        BATM Cash allows you to remove the <strong>"profit-bleeding"</strong> from Bitcoin's volatility as a factor in your rate calculations.
+                    </p>
+                </div>
+            </div>
+            <div class=row>
+                <div class="col-md-6 col-lg-4">
+                    <div class="fbox-2 wow fadeInUp" data-wow-delay=0.3s>
+                        <img class=img-70 src="images/icons/tap.png" alt=feature-icon />
+                        <div class=fbox-2-txt>
+                            <h5 class=h5-sm>Stablecoin "HOT" Wallet</h5>
+                            <p>
+                                Stop watching the BTC ticker price and start focusing on growing your BATM business.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="fbox-2 wow fadeInUp" data-wow-delay=0.5s>
+                        <img class=img-70 src="images/icons/dollar.png" alt=feature-icon />
+                        <div class=fbox-2-txt>
+                            <h5 class=h5-sm>Supporting 100+ Cryptos</h5>
+                            <p>
+                                Give your customers the largest selection of coins available from ANY terminal device.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="fbox-2 wow fadeInUp" data-wow-delay=0.7s>
+                        <img class=img-70 src="images/icons/settings-1.png" alt=feature-icon />
+                        <div class=fbox-2-txt>
+                            <h5 class=h5-sm>Buit-On-Blockchain</h5>
+                            <p>
+                                Our network is built on the same indestructable infrastracture that secures Bitcoin and Ethereum.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="fbox-2 wow fadeInUp" data-wow-delay=0.3s>
+                        <img class=img-70 src="images/icons/fingerprint-1.png" alt=feature-icon />
+                        <div class=fbox-2-txt>
+                            <h5 class=h5-sm>Trustless Security</h5>
+                            <p>
+                                Your data is safe!
+                                You hold ALL encryption and signing keys, making our system completely Trustless.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="fbox-2 wow fadeInUp" data-wow-delay=0.5s>
+                        <img class=img-70 src="images/icons/credit-card.png" alt=feature-icon />
+                        <div class=fbox-2-txt>
+                            <h5 class=h5-sm>No Upfront Costs</h5>
+                            <p>
+                                We have an extremely simple billing system, that ONLY charges for usage, making it 100% awesome!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="fbox-2 wow fadeInUp" data-wow-delay=0.7s>
+                        <img class=img-70 src="images/icons/add.png" alt=feature-icon />
+                        <div class=fbox-2-txt>
+                            <h5 class=h5-sm>Customize Your Brand</h5>
+                            <p>
+                                Our white-label framework is ideal for branding your own business image on top of our world-class services.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id=info-5 class="info-5-row pb-80 info-section">
+        <div class="pt-100 bg-inner bg-lightgrey division">
+            <div class=container>
+                <div class="row d-flex align-items-center">
+                    <div class=col-md-6>
+                        <div class="info-5-img pl-45 wow fadeInUp" data-wow-duration=1.5s data-wow-delay=0.8s>
+                            <img class=img-fluid src="images/image-06.png" alt=info-image>
+                        </div>
+                    </div>
+                    <div class=col-md-6>
+                        <div class="txt-block pc-45 mb-40 wow fadeInUp" data-wow-delay=0.3s>
+                            <span class="section-id id-color">Grow Your Customer Loyalty</span>
+
+                            <h3 class=h3-lg>Introducing Telr.App<br />Your BATM Concierge</h3>
+
+                            <ul class=txt-list>
+                                <li>
+                                    Offer your customers <strong><strong class="text-danger">real-time</strong> transaction tracking</strong> across <strong>over <strong class="text-danger">100+</strong> cryptocurrencies.</strong>
+                                    They will <strong>ALWAYS</strong> know where their money is.
+                                </li>
+
+                                <li>
+                                    You should focus on <strong>growing your business.</strong>
+                                    Let us handle your customer's support issues.
+                                    <strong>We're online <strong class="text-danger">24x7x365</strong></strong> with some of the industry's <strong><strong class="text-danger">MOST</strong> highly-trained professionals.</strong>
+                                </li>
+
+                                <li>
+                                    Easily automate your AML/KYC procedures before customers even get to your BATM to buy/sell crypto.
+                                </li>
+
+                                <li>If our team is unable to satisfy your customer's needs, we provide your designated representative with a full suite of support tools at their fingertips.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id=info-10 class="info-10-row wide-60 info-section division">
+        <div class=container>
+            <div class="row d-flex align-items-center">
+                <div class="col-md-6 col-xl-6">
+                    <div class="txt-block pc-45 mb-40">
+                        <div class="ibox-4 icon-xs wow fadeInUp" data-wow-delay=0.3s>
+                            <div class="fbox-4-title clearfix">
+                                <img class=img-40 src="images/icons/clock.png" alt=info-icon />
+                                <h5 class=h5-sm>Instant Cash Wallet Delivery!</h5>
+                            </div>
+                            <div style="margin-left: 5px">
+                                <p class="ml-5">
+                                    Our global partner network can deliver <strong><strong class="text-danger">over 100+ cryptos</strong></strong> <em>(from <strong>Augur</strong> thru <strong>Zcash</strong>)</em> from your <strong>stablecoin <strong class="text-danger">"hot"</strong> wallet</strong> in under 30 seconds.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="ibox-4 icon-xs mt-30 wow fadeInUp" data-wow-delay=0.5s>
+                            <div class="fbox-4-title clearfix">
+                                <img class=img-40 src="images/icons/settings-1.png" alt=info-icon />
+                                <h5 class=h5-sm>Telr AI Guardian (w/ optional 2FA)</h5>
+                            </div>
+                            <div style="margin-left: 5px">
+                                <p class="ml-5">
+                                    <strong>Our <strong>Artificial Intelligent</strong> Transaction Monitoring System</strong> will monitor ALL of your activity.
+                                    We will <strong><strong class="text-danger">block and alert</strong> <strong>YOU,</strong></strong> in the event that we detect anything abnormal.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="ibox-4 icon-xs mt-30 wow fadeInUp" data-wow-delay=0.7s>
+                            <div class="fbox-4-title clearfix">
+                                <img class=img-40 src="images/icons/internet.png" alt=info-icon />
+                                <h5 class=h5-sm>Multilingual Team of Professionals</h5>
+                            </div>
+                            <div style="margin-left: 5px">
+                                <p class="ml-5">
+                                    Our team of experienced <strong><strong>blockchain</strong> professionals</strong> spans across the globe.
+                                    We currently support <strong><strong class="text-danger">over 12+ languages</strong></strong> with more in the works.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="ibox-4 icon-xs mt-30 wow fadeInUp" data-wow-delay=0.9s>
+                            <div class="fbox-4-title clearfix">
+                                <img class=img-40 src="images/icons/faq.png" alt=info-icon />
+                                <h5 class=h5-sm>Rapid Customer Support</h5>
+                            </div>
+                            <div style="margin-left: 5px">
+                                <p class="ml-5">
+                                    We're here to help <strong><strong>YOU,</strong></strong> when you need it most!
+                                    Connect at your convenience, through <strong>multiple <strong class="text-danger">LIVE</strong> channels:</strong>
+                                    <strong>Matrix, Slack, Telegram, WeChat and WhatsApp.</strong>
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-6 col-xl-5 offset-xl-1">
+                    <div class="info-10-img text-center mb-40 wow fadeInRight" data-wow-duration=1.5s data-wow-delay=0.5s>
+                        <img class=img-fluid src="images/dashboard-1.png" alt=info-image>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id=info-8 class="info-8-row bg-map bg-dark bg-fixed pt-100 info-section division">
+        <div class="container white-color">
+            <div class=row>
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="txt-block text-center mb-50 wow fadeInUp" data-wow-delay=0.3s>
+                        <h3 class=h3-lg>Install Cash To Your GB BATM<br />in Just 3 Steps!</h3>
+
+                        <p class=p-md>
+                            <ul>
+                                <li>
+                                    <strong><strong style="font-size:1.4em;">1.</strong></strong>
+                                    Log in to your <strong><strong>Crypto Application Server (CAS)</strong></strong>
+                                </li>
+                                <li>
+                                    <strong><strong style="font-size:1.4em;">2.</strong></strong>
+                                    Select a <strong><strong>Currency (eg. BTC)</strong></strong> from <strong><strong>Crypto Settings</strong></strong> screen
+                                </li>
+                                <li>
+                                    <strong><strong style="font-size:1.4em;">3.</strong></strong>
+                                    Select <strong><strong class="text-warning">Telr.io Cash Wallet</strong></strong> and enter your <strong><strong>Security Parameters</strong></strong>
+                                </li>
+                            </ul>
+                        </p>
+
+                        <a href=https://www.youtube.com/embed/SZEflIVnhH8 class="video-popup1 btn btn-yellow tra-hover mt-20">
+                            Watch The <strong class="text-danger" style="font-size:1.4em;">2 Min</strong> Setup Video
+                        </a>
+                    </div>
+                </div>
+                <div class=col-md-12>
+                    <div class="img-block wow fadeInUp" data-wow-duration=1.5s data-wow-delay=0.8s>
+                        <img class=img-fluid src="images/mac-screen.png" alt=info-image>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id=languages-2 class="wide-60 languages-section division">
+        <div class=container>
+            <div class="row d-flex align-items-center">
+                <div class=col-md-6>
+                    <div class="txt-block pc-45 mb-40 wow fadeInUp" data-wow-delay=0.3s>
+                        <span class="section-id id-color">Highly-trained Multilingual Support</span>
+
+                        <h3 class=h3-md>Our Team Speaks Your Customer's Language</h3>
+
+                        <ul class=txt-list>
+                            <li>
+                                We ONLY hire the best-in-class support professionals to meet your customers MOST demanding needs.
+                            </li>
+
+                            <li>We currently support over 12+ languages.</li>
+
+                            <li>
+                                Take a break from resolving non-stop issues and allow our team to ease the burden of customer drama.
+                            </li>
+                        </ul>
+
+                        <a href="javascript://" class="btn btn-tra-grey black-hover mt-30">Want to help with translation?</a>
+                    </div>
+                </div>
+                <div class=col-md-6>
+                    <div class="img-block text-center pr-45 mb-40 wow fadeInUp" data-wow-duration=1.5s data-wow-delay=0.8s>
+                        <img class=img-fluid src="images/world-lang.png" alt=languages-image />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id=statistic-1 class="bg-scroll bg-map bg-dark wide-60 statistic-section division">
+        <div class="container white-color">
+            <div class=row>
+                <div class="col-lg-10 offset-lg-1 section-title">
+                    <h3 class=h3-lg>Most Liquid. Most Secure. Most Stable<br />"HOT" Wallet Provider EVER!</h3>
+                    <p class=p-md>
+                        You <strong><strong>ALWAYS</strong></strong> hold your own private keys, which are <strong><strong>NEVER</strong></strong> exposed.
+                        Plus, <strong><strong>Two-factor Authentication</strong></strong> gives you that extra protection you <del>want</del> <strong><strong>need.</strong></strong>
+                    </p>
+                </div>
+            </div>
+            <div class=row>
+                <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+                    <div class=row>
+                        <div class=col-sm-4>
+                            <div class="statistic-block wow fadeInUp" data-wow-duration=1s data-wow-delay=0.3s>
+                                <h5 class="statistic-number yellow-color">1.<span class=count-element>7</span></h5>
+                                <p class=txt-400>Exchanges Hacked On Average Each Month</p>
+                            </div>
+                        </div>
+                        <div class=col-sm-4>
+                            <div class="statistic-block wow fadeInUp" data-wow-duration=1s data-wow-delay=0.5s>
+                                <h5 class="statistic-number yellow-color"><span class=count-element>30</span>%</h5>
+                                <p class=txt-400>Total Customer Reserves Lost in 2016 Bitfinex Hack</p>
+                            </div>
+                        </div>
+                        <div class=col-sm-4>
+                            <div class="statistic-block wow fadeInUp" data-wow-duration=1s data-wow-delay=0.7s>
+                                <h5 class="statistic-number yellow-color">$<span class=count-element>12</span>.4B</h5>
+                                <p class=txt-400>Permanently Lost in Crypto Hacks Since 2013</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id=info-11 class="info-11-row wide-100 info-section division">
+        <div class=container>
+            <div class=container>
+                <div class=row>
+                    <div class="col-lg-10 offset-lg-1 section-title">
+                        <h3 class=h3-lg>Telr DeFi Suite Is Cross-Platform</h3>
+                        <p class=p-md>
+                            No matter where you or your customers decide to connect from, we've made sure we keep your business running smooth and your customers happy.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class=row>
+                <div class=col-md-12>
+                    <div class="info-11-img text-center">
+                        <img class=img-fluid src="images/cross-platform.png" alt=info-image>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id=download-1 class="bg-scroll bg-image bg-dark download-section division">
+        <div class="container white-color">
+            <div class=row>
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="download-txt text-center wow fadeInUp" data-wow-delay=0.3s>
+                        <h3 class=h3-xs>Seeing Is Believing!</h3>
+
+                        <p class=p-md>
+                            <strong><strong>Congratulations!</strong></strong> You've made it this far...
+                            <br />Continue with us on this journey to the promise land...
+                            <br />It takes <strong><strong>just 30 seconds</strong></strong> to request a <strong><strong>LIVE DEMO</strong></strong> of the <strong><strong>Telr Cash Wallet.</strong></strong>
+                        </p>
+
+                        <button class="btn btn-lg btn-white tra-hover" @click="openDemo">Click Here To Request A LIVE Demo</button>
+
+                        <!-- <div class=stores-badge>
+                            <a href="javascript://" class=store>
+                                <img class=appstore-white src="images/store_badges/appstore-tra-white.png" alt=appstore-logo>
+                            </a>
+
+                            <a href="javascript://" class=store>
+                                <img class=googleplay-white src="images/store_badges/googleplay-tra-white.png" alt=googleplay-logo>
+                            </a>
+
+                            <span class=os-version>* Available on iPhone, iPad and all Android devices from 5.5</span>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id=footer-1 class="wide-50 footer division">
+        <div class=container>
+            <div class=row>
+                <div class=col-xl-4>
+                    <div class="footer-info mb-40">
+                        <img src="images/footer-logo.png" width=160 height=40 alt=footer-logo>
+                        <p class=mt-20>
+                            <strong style="font-size:1.2em;"><strong class="text-info">Thank You!</strong> &nbsp;&nbsp; <strong class="text-warning">¡Gracias!</strong> &nbsp;&nbsp; <strong class="text-primary">Спасибо!</strong></strong>
+                            <br />We really appreciate you taking your valuable time to preview the <strong><strong>Telr Cash Wallet.</strong></strong>
+                            Please continue exploring the links on the right.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xl-2">
+                    <div class=footer-links>
+                        <ul class="foo-links clearfix">
+                            <li><p><a href="javascript://">How It Works?</a></p></li>
+                            <li><p><a href="javascript://">FAQs</a></p></li>
+                            <li><p><a href="javascript://">Installation Help</a></p></li>
+                            <li><p><a href="javascript://">Talk To Us!</a></p></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xl-2">
+                    <div class=footer-links>
+                        <ul class="foo-links clearfix">
+                            <li><p><a href="javascript://">Privacy Policy</a></p></li>
+                            <li><p><a href="javascript://">Terms of Service</a></p></li>
+                            <li><p><a href="javascript://">Contact Us</a></p></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xl-2">
+                    <div class=footer-links>
+                        <ul class="foo-links clearfix">
+                            <li><p><a href="javascript://"><i class="fab fa-reddit-alien"></i> Reddit</a></p></li>
+                            <li><p><a href="javascript://"><i class="fab fa-github-alt"></i> GitHub</a></p></li>
+                            <li><p><a href="javascript://"><i class="fab fa-medium-m"></i> Medium</a></p></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xl-2">
+                    <div class="text-center" style="width:200px; font-size:0.8em;">
+                        <strong class="text-secondary">Are you interested in <strong>partnering</strong> with -OR- <strong>joining</strong> our team?</strong>
+
+                        <button class="btn btn-black black-tra-hover mt-3"><i class="fab fa-slack fa-lg mr-1"></i> Join Our Slack</button>
+                    </div>
+
+                    <!-- <div class="footer-stores-badge text-right mb-40">
+                        <a href="javascript://" class=store>
+                            <img class=appstore-original src="images/store_badges/appstore.png" alt=appstore-logo />
+                        </a>
+                        <a href="javascript://" class=store>
+                            <img class=googleplay-original src="images/store_badges/googleplay.png" alt=googleplay-logo />
+                        </a>
+                    </div> -->
+                </div>
+            </div>
+            <div class=bottom-footer>
+                <div class=row>
+                    <div class=col-md-12>
+                        <div class=footer-copyright>
+                            <p class=p-sm>&copy; 2020 Modenero Corp. All Rights Reserved.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<!-- Request Live Demo (Modal) -->
+<div class="modal fade" id="requestDemoModal" tabindex="-1" role="dialog" aria-labelledby="requestDemoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="requestDemoModalLabel">{{heading}}</h5>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            Thank you for taking a moment to <strong>Try Out Our Live Demo.</strong>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <form>
+                                <div class="row">
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label for="phoneNum"><h5>Your Mobile (SMS) Number</h5></label>
+                                            <input type="phone" class="form-control form-control-lg" v-model="phoneNum" placeholder="+1 404 555-1337" aria-describedby="phoneHelp">
+                                            <small id="phoneHelp" class="form-text text-muted">We'll never share your phone # with anyone else.</small>
+                                        </div>
+
+                                        <button class="btn btn-lg btn-black black-tra-hover">Text Me A LIVE Demo</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-tra-black" data-dismiss="modal">
+                    Cancel Request
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+
+<script src="js/fontawesome.min.js"></script>
+<script src="js/modernizr.custom.js"></script>
+<script src="js/jquery.easing.js"></script>
+<script src="js/jquery.appear.js"></script>
+<script src="js/jquery.stellar.min.js"></script>
+<script src="js/jquery.scrollto.js"></script>
+<script src="js/imagesloaded.pkgd.min.js"></script>
+<script src="js/isotope.pkgd.min.js"></script>
+<script src="js/slick.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/contact-form.js"></script>
+<script src="js/quick-form.js"></script>
+<script src="js/comment-form.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/jquery.ajaxchimp.min.js"></script>
+<script src="js/wow.js"></script>
+
+<script src="js/main.js"></script>
+
+<script>new WOW().init();</script>
+
+<!-- [if lt IE 9]>
+<script src=js/html5shiv.js type=text/javascript></script>
+<script src=js/respond.min.js type=text/javascript></script>
+<![endif] -->
+
+</body>
+</html>

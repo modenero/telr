@@ -1,0 +1,18 @@
+User-agent: *
+
+Disallow: /cgi-bin/
+Disallow: /*.js$
+Disallow: /*.css$
+
+# Google Image
+User-agent: Googlebot-Image
+Disallow:
+Allow: /*
+
+# Google AdSense
+User-agent: Mediapartners-Google*
+Disallow:
+Allow: /*
+#Begin Attracta SEO Tools Sitemap. Do not remove
+sitemap: http://cdn.attracta.com/sitemap/5246667.xml.gz
+#End Attracta SEO Tools Sitemap. Do not remove
