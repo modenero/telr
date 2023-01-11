@@ -1,18 +1,24 @@
-.DS_Store
-build
-custom
-node_modules
-npm-debug.log
-.idea
-.vscode
-scripts/build-config-custom.js
-scripts/build-config-*.js
-kitchen-sink/vue/js/app.js
-kitchen-sink/react/js/app.js
-.github-access-token
-packages/*.zip
-packages/*.tar.gz
-templates/
-woff2/
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-NOTES
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

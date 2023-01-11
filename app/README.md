@@ -1,1 +1,3 @@
-# Telr.App — Your Crypto Concierge™
+# TΞLR Concierge
+
+### https://telr.app
