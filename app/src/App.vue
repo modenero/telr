@@ -9,7 +9,7 @@
                 TΞLR Concierge
             </h1>
 
-            <h3 class="text-2xl text-gray-700 font-medium italic">
+            <h3 class="text-xl text-gray-700 font-medium italic">
                 Under Construction...
             </h3>
         </section>
