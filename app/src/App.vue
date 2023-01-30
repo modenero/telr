@@ -1,4 +1,27 @@
 <script setup>
+/* Import modules. */
+import { ref } from 'vue'
+
+const location = window.location
+console.log('LOCATION', location)
+
+/* Initialize host. */
+const host = ref(location.host)
+
+/* Initialize hostname. */
+const hostname = ref(location.hostname)
+
+/* Initialize hash. */
+const hash = ref(location.hash)
+
+/* Initialize pathname. */
+const pathname = ref(location.pathname)
+
+/* Initialize search. */
+const search = ref(location.search)
+
+
+
 // import HelloWorld from './components/HelloWorld.vue'
 </script>
 
@@ -13,6 +36,26 @@
             <h3 class="text-base sm:text-xl text-gray-700 font-medium italic">
                 Under Construction...
             </h3>
+
+            <h5>
+                host: <strong>{{host}}</strong>
+            </h5>
+
+            <h5>
+                hostname: <strong>{{hostname}}</strong>
+            </h5>
+
+            <h5>
+                hash: <strong>{{hash}}</strong>
+            </h5>
+
+            <h5>
+                pathname: <strong>{{pathname}}</strong>
+            </h5>
+
+            <h5>
+                search: <strong>{{search}}</strong>
+            </h5>
         </section>
     </main>
 </template>
