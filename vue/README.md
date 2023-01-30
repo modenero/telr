@@ -1,3 +1,3 @@
-# Telr Vue
+# TΞLR Vue
 
-UI/UX for terminals powered by the Telr Network.
+UI/UX for terminals powered by the TΞLR Network.
