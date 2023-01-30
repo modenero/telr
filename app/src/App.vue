@@ -19,10 +19,6 @@ const pathname = ref(location.pathname)
 
 /* Initialize search. */
 const search = ref(location.search)
-
-
-
-// import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
