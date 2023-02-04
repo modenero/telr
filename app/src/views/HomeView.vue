@@ -3,7 +3,7 @@
 import { ref } from 'vue'
 
 const location = window.location
-console.log('LOCATION', location)
+// console.log('LOCATION', location)
 
 /* Initialize host. */
 const host = ref(location.host)
@@ -11,14 +11,14 @@ const host = ref(location.host)
 /* Initialize hostname. */
 const hostname = ref(location.hostname)
 
-/* Initialize hash. */
-const hash = ref(location.hash)
-
 /* Initialize pathname. */
 const pathname = ref(location.pathname)
 
 /* Initialize search. */
 const search = ref(location.search)
+
+/* Initialize hash. */
+const hash = ref(location.hash)
 </script>
 
 <template>
@@ -42,15 +42,15 @@ const search = ref(location.search)
             </h5>
 
             <h5>
-                hash: <strong>{{hash}}</strong>
-            </h5>
-
-            <h5>
                 pathname: <strong>{{pathname}}</strong>
             </h5>
 
             <h5>
                 search: <strong>{{search}}</strong>
+            </h5>
+
+            <h5>
+                hash: <strong>{{hash}}</strong>
             </h5>
         </section>
     </main>

@@ -1,6 +1,6 @@
 {
   "name": "telr-app",
-  "version": "23.1.30",
+  "version": "23.2.3",
   "private": true,
   "type": "module",
   "scripts": {
@@ -15,8 +15,7 @@
   "dependencies": {
     "pinia": "2.0.28",
     "vite": "4.0.0",
-    "vue": "3.2.45",
-    "vue-router": "4.1.6"
+    "vue": "3.2.45"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "4.0.0",
