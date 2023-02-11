@@ -17,6 +17,10 @@
                         </tr>
                     </table>
 
+                    <span class="text-3xl text-rose-500 font-medium">
+                        Tailwind CSS
+                    </span>
+
                     <MarketFeed />
                 </div>
             </div>
