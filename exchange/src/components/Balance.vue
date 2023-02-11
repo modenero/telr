@@ -190,9 +190,6 @@
 </template>
 
 <script>
-/* Initialize vuex. */
-import { mapActions, mapGetters } from 'vuex'
-
 /* Import modules. */
 import MobileDetect from 'mobile-detect'
 import numeral from 'numeral'
@@ -211,16 +208,6 @@ export default {
         }
     },
     computed: {
-        ...mapGetters([
-            //
-        ]),
-
-        // ...mapGetters('tokens', [
-        //     'getExchangeBalance',
-        //     // 'getWalletBalance',
-        //     'getToken',
-        // ]),
-
         tokenName() {
             if (!this.token) {
                 return null
@@ -265,17 +252,9 @@ export default {
 
     },
     methods: {
-        ...mapActions([
-            // 'deposit'
-        ]),
-
-        // ...mapActions('tokens', [
-        //     'deposit'
+        // ...mapActions('utils', [
+        //     'toast',
         // ]),
-
-        ...mapActions('utils', [
-            'toast',
-        ]),
 
         depositTokens() {
             if (typeof this.depositAmount === 'undefined' || this.depositAmount === 0 || this.depositAmount === null) {

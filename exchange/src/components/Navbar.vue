@@ -291,98 +291,84 @@
 </template>
 
 <script>
-/* Initialize vuex. */
-import { mapActions, mapGetters } from 'vuex'
-
 export default {
-    props: {
-        // msg: String
-    },
-    data: () => {
-        return {
-            token: null,
-        }
-    },
-    computed: {
-        ...mapGetters([
-            'getProfileAddress',
-        ]),
+    // data: () => {
+    //     return {
+    //         token: null,
+    //     }
+    // },
+    // computed: {
+    //     // ...mapGetters([
+    //     //     'getProfileAddress',
+    //     // ]),
 
-        // ...mapGetters('assets', [
-        //     'getToken'
-        // ]),
+    //     authenticated () {
+    //         return this.$store.state.profile.authenticated
+    //     },
 
-        authenticated () {
-            return this.$store.state.profile.authenticated
-        },
+    //     abbr () {
+    //         if (!this.$store.state.profile.address) {
+    //             return null
+    //         }
 
-        abbr () {
-            if (!this.$store.state.profile.address) {
-                return null
-            }
+    //         const address = this.$store.state.profile.address
 
-            const address = this.$store.state.profile.address
+    //         return address.slice(0, 8) + ' .. ' + address.slice(-8)
+    //     },
 
-            return address.slice(0, 8) + ' .. ' + address.slice(-8)
-        },
+    //     address () {
+    //         return this.$store.state.profile.address
+    //     },
 
-        address () {
-            return this.$store.state.profile.address
-        },
+    //     email () {
+    //         return this.$store.state.profile.email
+    //     },
 
-        email () {
-            return this.$store.state.profile.email
-        },
+    //     tokenName() {
+    //         if (!this.token) {
+    //             return null
+    //         }
 
-        tokenName() {
-            if (!this.token) {
-                return null
-            }
+    //         return this.token.title
+    //     },
 
-            return this.token.title
-        },
+    //     tokenSymbol() {
+    //         if (!this.token) {
+    //             return null
+    //         }
 
-        tokenSymbol() {
-            if (!this.token) {
-                return null
-            }
+    //         return this.token.symbol
+    //     },
 
-            return this.token.symbol
-        },
+    // },
+    // methods: {
+    //     // connectNexaverse() {
+    //     //     // console.log('TODO: connect Nexaverse')
+    //     // },
 
-    },
-    methods: {
-        ...mapActions([
-            //
-        ]),
+    //     connectMetamask() {
+    //         // console.log('TODO: connect MetaMask')
+    //     },
 
-        // connectNexaverse() {
-        //     // console.log('TODO: connect Nexaverse')
-        // },
+    //     signout () {
+    //         console.info('Signing out..') // eslint-disable-line no-console
 
-        connectMetamask() {
-            // console.log('TODO: connect MetaMask')
-        },
+    //         /* Request email auth. */
+    //         this.$store.dispatch('profile/signout')
+    //     }
 
-        signout () {
-            console.info('Signing out..') // eslint-disable-line no-console
+    // },
+    // created: async function () {
+    //     // console.log('PROFILE ADDRESS', this.getProfileAddress)
 
-            /* Request email auth. */
-            this.$store.dispatch('profile/signout')
-        }
+    //     /* Retrieve current token. */
+    //     // this.token = await this.getToken('0x505A442B3E3E9AEDF06D54572a295F8D64f8F582')
+    //     // console.log('CURRENT TOKEN', this.token)
 
-    },
-    created: async function () {
-        // console.log('PROFILE ADDRESS', this.getProfileAddress)
+    // },
+    // mounted: function () {
 
-        /* Retrieve current token. */
-        // this.token = await this.getToken('0x505A442B3E3E9AEDF06D54572a295F8D64f8F582')
-        // console.log('CURRENT TOKEN', this.token)
-
-    },
-    mounted: function () {
-
-    },
+    // },
 }
 </script>
 

@@ -121,9 +121,6 @@
 </template>
 
 <script>
-/* Initialize vuex. */
-import { mapActions, mapGetters } from 'vuex'
-
 /* Import components. */
 import Navbar from '@/components/Navbar.vue'
 
@@ -139,20 +136,12 @@ export default {
         }
     },
     computed: {
-        ...mapGetters({
-            //
-        }),
-
         authenticated () {
             return this.$store.state.profile.authenticated
         },
 
     },
     methods: {
-        ...mapActions({
-            //
-        }),
-
         async signIn () {
             if (!this.email) {
                 return alert('Please enter an email address')

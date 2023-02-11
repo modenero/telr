@@ -4,10 +4,10 @@
 /* Import modules (actions). */
 // import toast from './utils/actions/toast'
 
-import { Magic } from 'magic-sdk'
+// import { Magic } from 'magic-sdk'
 
 // const magic = new Magic(process.env.VUE_APP_MAGIC_API_KEY)
-const magic = new Magic('pk_live_CAF7378F498C1F81')
+// const magic = new Magic('pk_live_CAF7378F498C1F81')
 
 /* Import modules (mutations). */
 // ...
@@ -45,43 +45,44 @@ const getters = {
 
 /* Actions. */
 const actions = {
-    async signin ({ commit }, _auth) {
-        /* Request Magic login. */
-        await magic.auth.loginWithMagicLink(_auth)
-
-        /* Request metadata. */
-        const metadata = await magic.user.getMetadata()
-        // console.log('MAGIC (metadata):', metadata)
-
-        /* Request DID. */
-        const token = await magic.user.getIdToken()
-        // console.log('MAGIC (token):', token)
-
-        const endpoint = 'https://api.nexa.exchange/v1/magiclink/'
-        const response = await fetch(endpoint, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                did: token,
-            })
-        })
-
-        const content = await response.json()
-        console.log('Content', content) // eslint-disable-line no-console
-
-        /* Commit data. */
-        commit('SET_USER_DATA', {
-            metadata,
-            token
-        })
-    },
+    // async signin ({ commit }, _auth) {
+    //     console.log('AUTH', _auth)
+    //     /* Request Magic login. */
+    //     // await magic.auth.loginWithMagicLink(_auth)
+    //
+    //     /* Request metadata. */
+    //     // const metadata = await magic.user.getMetadata()
+    //     // console.log('MAGIC (metadata):', metadata)
+    //
+    //     /* Request DID. */
+    //     // const token = await magic.user.getIdToken()
+    //     // console.log('MAGIC (token):', token)
+    //
+    //     // const endpoint = 'https://api.nexa.exchange/v1/magiclink/'
+    //     // const response = await fetch(endpoint, {
+    //     //     method: 'POST',
+    //     //     headers: {
+    //     //         'Accept': 'application/json',
+    //     //         'Content-Type': 'application/json'
+    //     //     },
+    //     //     body: JSON.stringify({
+    //     //         did: token,
+    //     //     })
+    //     // })
+    //
+    //     // const content = await response.json()
+    //     // console.log('Content', content) // eslint-disable-line no-console
+    //
+    //     /* Commit data. */
+    //     // commit('SET_USER_DATA', {
+    //     //     metadata,
+    //     //     token
+    //     // })
+    // },
 
     async signout ({ commit }) {
         /* Request Magic logout. */
-        await magic.user.logout()
+        // await magic.user.logout()
 
         /* Commit data. */
         commit('CLEAR_USER_DATA')

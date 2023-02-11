@@ -13,9 +13,7 @@
                             <td>USDT</td>
                         </tr>
                         <tr>
-                            <td colspan="3" v-html="orders">
-                                <!-- placeholder for orders -->
-                            </td>
+                            <td colspan="3" v-html="orders"></td>
                         </tr>
                     </table>
 
@@ -28,12 +26,9 @@
 
 <script>
 /* Import components. */
-import MarketFeed from './MarketFeed'
+import MarketFeed from './MarketFeed.vue'
 
 export default {
-    components: {
-        MarketFeed,
-    },
     data: () => {
         return {
             orders: []

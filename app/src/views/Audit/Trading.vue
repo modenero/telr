@@ -30,7 +30,7 @@ const blank = ref(null)
                     <div class="text-sm leading-8 text-gray-500">
                         <span class="mr-0.5">
                             <a href="javascript://" class="font-medium text-gray-900">
-                                Compliance Agent
+                                Trading
                             </a>
 
                             added tags
@@ -43,7 +43,7 @@ const blank = ref(null)
                                 </span>
 
                                 <span class="ml-3.5 font-medium text-gray-900">
-                                    OFAC
+                                    Exbitron
                                 </span>
                             </a>
 
@@ -53,7 +53,17 @@ const blank = ref(null)
                                 </span>
 
                                 <span class="ml-3.5 font-medium text-gray-900">
-                                    FinCEN
+                                    Txbit
+                                </span>
+                            </a>
+
+                            <a href="javascript://" class="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5 text-sm">
+                                <span class="absolute flex flex-shrink-0 items-center justify-center">
+                                    <span class="h-1.5 w-1.5 rounded-full bg-rose-500" aria-hidden="true"></span>
+                                </span>
+
+                                <span class="ml-3.5 font-medium text-gray-900">
+                                    SafeTrade
                                 </span>
                             </a>
                         </span>
@@ -61,13 +71,6 @@ const blank = ref(null)
                         <p class="-mt-0.5 text-sm text-gray-500">
                             2 minutes ago
                         </p>
-
-                        <div class="mt-2 text-sm text-gray-700">
-                            <p>
-                                To comply with regulatory guidelines, we are required to validate every transaction that passes through our system.
-                                In the event of a flag being raised, additional documentation may be required to complete your request.
-                            </p>
-                        </div>
                     </div>
                 </div>
             </div>

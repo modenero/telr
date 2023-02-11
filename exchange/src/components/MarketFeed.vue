@@ -41,9 +41,6 @@
 </template>
 
 <script>
-/* Import moduels. */
-// import numeral from 'numeral'
-
 export default {
     props: {
         tradePair: String,

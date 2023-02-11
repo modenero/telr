@@ -233,12 +233,6 @@
 </template>
 
 <script>
-/* Initialize vuex. */
-import { mapActions, mapGetters } from 'vuex'
-
-/* Import modules. */
-// import numeral from 'numeral'
-
 export default {
     data: () => {
         return {
@@ -290,14 +284,6 @@ export default {
         // },
     },
     computed: {
-        ...mapGetters([
-            //
-        ]),
-
-        // ...mapGetters('tokens', [
-        //     'getToken'
-        // ]),
-
         tokenName() {
             if (!this.token) {
                 return null
@@ -332,9 +318,9 @@ export default {
 
     },
     methods: {
-        ...mapActions([
-            'createEthOrder'
-        ]),
+        // ...mapActions([
+        //     'createEthOrder'
+        // ]),
 
         buyOrder() {
             // console.log('Ready to buy')

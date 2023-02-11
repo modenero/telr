@@ -1,68 +1,23 @@
-# exchange
+# Welcome to the Telr Exchange Documenation
 
-This template should help get you started developing with Vue 3 in Vite.
+![Telr Exchange](https://telr.exchange/poster.jpg?1583883274)
 
-## Recommended IDE Setup
+Website: __https://telr.exchange__
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Documentation: __https://docs.telr.exchange__
 
-## Type Support for `.vue` Imports in TS
+Source: __https://github.com/modenero/telr.exchange__
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+---
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+__Telr Exchange aims to create a trustless, non-custodial token exchange with the goal of bridging users from other PoW blockchains to the Bitcoin Cash community.__
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+---
 
-## Customize configuration
+## Block Hack Global 2020
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+__http://portal.blockhack.ca/__
 
-## Project Setup
-
-```sh
-yarn
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-yarn dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-yarn build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-yarn test:unit
-```
-
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
-yarn test:e2e:dev
-```
-
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-yarn build
-yarn test:e2e
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-yarn lint
-```
+Our "official" prize address ↙️  
+__[bitcoincash:qpmmnlkg8yr57ct5ttrz2dq4p4rerg8c0q7hrghzzn](https://explorer.bitcoin.com/bch/address/bitcoincash:qpmmnlkg8yr57ct5ttrz2dq4p4rerg8c0q7hrghzzn)__  
+_(courtesy of Nito.Exchange)_

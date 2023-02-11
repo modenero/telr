@@ -161,9 +161,6 @@
 </template>
 
 <script>
-/* Initialize vuex. */
-import { mapActions, mapGetters } from 'vuex'
-
 /* Import modules. */
 import moment from 'moment'
 
@@ -177,14 +174,6 @@ export default {
         }
     },
     computed: {
-        ...mapGetters([
-            //
-        ]),
-
-        // ...mapGetters('tokens', [
-        //     // 'getToken'
-        // ]),
-
         today() {
             return moment().format('M/d')
         },
@@ -194,21 +183,5 @@ export default {
         },
 
     },
-    methods: {
-        ...mapActions([
-            // 'createEthOrder'
-        ]),
-
-    },
-    created: async function () {
-        //
-    },
-    mounted: function () {
-        //
-    },
 }
 </script>
-
-<style scoped>
-/*  */
-</style>
