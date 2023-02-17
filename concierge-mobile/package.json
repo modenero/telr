@@ -10,12 +10,13 @@
     "test": "jest"
   },
   "dependencies": {
+    "nativewind": "2.0.11",
     "react": "18.2.0",
     "react-native": "0.71.3"
   },
   "devDependencies": {
-    "@babel/core": "7.20.0",
-    "@babel/preset-env": "7.20.0",
+    "@babel/core": "7.20.12",
+    "@babel/preset-env": "7.20.2",
     "@babel/runtime": "7.20.0",
     "@react-native-community/eslint-config": "3.2.0",
     "@tsconfig/react-native": "2.0.2",
@@ -28,6 +29,7 @@
     "metro-react-native-babel-preset": "0.73.7",
     "prettier": "2.4.1",
     "react-test-renderer": "18.2.0",
+    "tailwindcss": "3.2.7",
     "typescript": "4.8.4"
   },
   "jest": {
