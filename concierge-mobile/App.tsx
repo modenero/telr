@@ -79,8 +79,10 @@ function App(): JSX.Element {
 
                 <Header />
 
-                <View className="flex-1 items-center justify-center bg-white">
-                    <Text className="text-3xl text-rose-500 font-medium">TΞLR Concierge</Text>
+                <View className="flex-1 h-48 items-center justify-center bg-gray-100 border-y-2 border-rose-500 dark:bg-gray-900">
+                    <Text className="text-3xl text-rose-700 dark:text-rose-200 font-medium">
+                        TΞLR Concierge
+                    </Text>
                 </View>
             </ScrollView>
         </SafeAreaView>
