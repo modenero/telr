@@ -32,6 +32,10 @@
 /* Import components. */
 import MarketFeed from './MarketFeed.vue'
 
+// import Bitcore from 'bitcore-lib-nexa'
+import { version } from 'bitcore-lib-nexa'
+// import * as HDPrivateKey from 'bitcore-lib-nexa/lib/hdprivatekey'
+
 export default {
     data: () => {
         return {
@@ -39,7 +43,9 @@ export default {
         }
     },
     created: function () {
-        //
+        // console.log('ORDER BOOK', Bitcore.Opcode.OP_EQUALVERIFY)
+        console.log('ORDER BOOK', version)
+        // console.log('ORDER BOOK', HDPrivateKey)
     },
     mounted: function () {
         //
