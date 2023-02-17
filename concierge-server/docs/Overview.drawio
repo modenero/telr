@@ -1,0 +1,45 @@
+<mxfile host="www.draw.io" modified="2019-12-02T01:51:10.316Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36" etag="aAH09TQF-9_IprzPkuUG" version="12.3.3" type="github" pages="1">
+  <diagram id="ehYdtjaICjUh1_pMpAxE" name="Page-1">
+    <mxGraphModel dx="1026" dy="491" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="E9ek0ImNC2pMV3F1fIgo-11" value="&lt;h1&gt;Telr Gatekeeper&lt;/h1&gt;&lt;p&gt;Easily secure your crypto in this Crypto Security Application (CSA).&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="15" y="10" width="255" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="mEG6Z2h-E2gLasxFZDg2-7" value="Pool" style="swimlane;html=1;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;startSize=20;horizontal=0;horizontalStack=1;" vertex="1" parent="1">
+          <mxGeometry x="15" y="157" width="820" height="480" as="geometry"/>
+        </mxCell>
+        <mxCell id="mEG6Z2h-E2gLasxFZDg2-18" value="Customer" style="swimlane;startSize=20;" vertex="1" parent="mEG6Z2h-E2gLasxFZDg2-7">
+          <mxGeometry x="20" width="200" height="480" as="geometry"/>
+        </mxCell>
+        <mxCell id="E9ek0ImNC2pMV3F1fIgo-1" value="BATM Customer" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="mEG6Z2h-E2gLasxFZDg2-18" vertex="1">
+          <mxGeometry x="35" y="43" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="mEG6Z2h-E2gLasxFZDg2-8" value="General Bytes CAS" style="swimlane;html=1;startSize=20;" vertex="1" parent="mEG6Z2h-E2gLasxFZDg2-7">
+          <mxGeometry x="220" width="200" height="480" as="geometry"/>
+        </mxCell>
+        <mxCell id="E9ek0ImNC2pMV3F1fIgo-2" value="GB CAS" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="mEG6Z2h-E2gLasxFZDg2-8" vertex="1">
+          <mxGeometry x="40" y="113" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="mEG6Z2h-E2gLasxFZDg2-9" value="Telr AI Server" style="swimlane;html=1;startSize=20;" vertex="1" parent="mEG6Z2h-E2gLasxFZDg2-7">
+          <mxGeometry x="420" width="200" height="480" as="geometry"/>
+        </mxCell>
+        <mxCell id="E9ek0ImNC2pMV3F1fIgo-4" value="Telr AI Server" style="rounded=0;whiteSpace=wrap;html=1;direction=west;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="mEG6Z2h-E2gLasxFZDg2-9" vertex="1">
+          <mxGeometry x="40" y="203" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="mEG6Z2h-E2gLasxFZDg2-10" value="Telr Gatekeeper" style="swimlane;html=1;startSize=20;" vertex="1" parent="mEG6Z2h-E2gLasxFZDg2-7">
+          <mxGeometry x="620" width="200" height="480" as="geometry">
+            <mxRectangle x="260" width="30" height="480" as="alternateBounds"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="E9ek0ImNC2pMV3F1fIgo-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="mEG6Z2h-E2gLasxFZDg2-7" source="E9ek0ImNC2pMV3F1fIgo-1" target="E9ek0ImNC2pMV3F1fIgo-2" edge="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="E9ek0ImNC2pMV3F1fIgo-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="mEG6Z2h-E2gLasxFZDg2-7" source="E9ek0ImNC2pMV3F1fIgo-2" target="E9ek0ImNC2pMV3F1fIgo-4" edge="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
