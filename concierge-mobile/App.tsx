@@ -83,7 +83,16 @@ function App(): JSX.Element {
                     <Text className="text-3xl text-rose-700 dark:text-rose-200 font-medium">
                         TΞLR Concierge
                     </Text>
+
+                    <Text className="text-xl text-rose-700 dark:text-rose-200 font-medium">
+                        Crypto @ Your Service
+                    </Text>
+
+                    <Text className="text-5xl">
+                        🛎️
+                    </Text>
                 </View>
+
             </ScrollView>
         </SafeAreaView>
     )
