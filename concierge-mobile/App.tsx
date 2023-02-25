@@ -7,9 +7,8 @@
 
 import React from 'react'
 
-import type {PropsWithChildren} from 'react'
-
 import {
+  Button,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -21,43 +20,35 @@ import {
 
 import {
   Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen'
 
-type SectionProps = PropsWithChildren<{
-    title: string;
-}>;
-
-function Section({children, title}: SectionProps): JSX.Element {
-    const isDarkMode = useColorScheme() === 'dark';
-
-    return (
-        <View style={styles.sectionContainer}>
-            <Text
-                style={[
-                    styles.sectionTitle,
-                    {
-                        color: isDarkMode ? Colors.white : Colors.black,
-                    },
-                ]}>
-                {title}
-            </Text>
-
-            <Text
-                style={[
-                    styles.sectionDescription,
-                    {
-                        color: isDarkMode ? Colors.light : Colors.dark,
-                    },
-                ]}>
-                {children}
-            </Text>
-        </View>
-    )
-}
+// function Section({children, title}: SectionProps): JSX.Element {
+//     const isDarkMode = useColorScheme() === 'dark';
+//
+//     return (
+//         <View style={styles.sectionContainer}>
+//             <Text
+//                 style={[
+//                     styles.sectionTitle,
+//                     {
+//                         color: isDarkMode ? Colors.white : Colors.black,
+//                     },
+//                 ]}>
+//                 {title}
+//             </Text>
+//
+//             <Text
+//                 style={[
+//                     styles.sectionDescription,
+//                     {
+//                         color: isDarkMode ? Colors.light : Colors.dark,
+//                     },
+//                 ]}>
+//                 {children}
+//             </Text>
+//         </View>
+//     )
+// }
 
 function App(): JSX.Element {
     const isDarkMode = useColorScheme() === 'dark';
@@ -67,7 +58,7 @@ function App(): JSX.Element {
     }
 
     return (
-        <SafeAreaView style={backgroundStyle}>
+        <SafeAreaView className="h-screen flex flex-col justify-between bg-rose-700">
             <StatusBar
                 barStyle={isDarkMode ? 'light-content' : 'dark-content'}
                 backgroundColor={backgroundStyle.backgroundColor}
@@ -75,9 +66,8 @@ function App(): JSX.Element {
 
             <ScrollView
                 contentInsetAdjustmentBehavior="automatic"
-                style={backgroundStyle}>
-
-                <Header />
+                className="flex-1"
+            >
 
                 <View className="flex-1 h-48 items-center justify-center bg-gray-100 border-y-2 border-rose-500 dark:bg-gray-900">
                     <Text className="text-3xl text-rose-700 dark:text-rose-200 font-medium">
@@ -85,7 +75,7 @@ function App(): JSX.Element {
                     </Text>
 
                     <Text className="text-xl text-rose-700 dark:text-rose-200 font-medium">
-                        Crypto @ Your Service
+                        Your Crypto @ Your Service
                     </Text>
 
                     <Text className="text-5xl">
@@ -94,27 +84,38 @@ function App(): JSX.Element {
                 </View>
 
             </ScrollView>
+
+            <View className="h-16 py-1 flex flex-row justify-around bg-rose-900 border-t-2 border-rose-200">
+                <View className="h-full px-1 flex justify-center bg-yellow-500 rounded-lg">
+                    <Text className="text-xl text-gray-100 font-medium">
+                        Wallet
+                    </Text>
+                </View>
+
+                <View className="h-full px-1 flex justify-center bg-yellow-500 rounded-lg">
+                    <Text className="text-xl text-gray-100 font-medium">
+                        Trade
+                    </Text>
+                </View>
+
+                <Button title="TΞLR" className="">
+                    TELR
+                </Button>
+
+                <View className="h-full px-1 flex justify-center bg-yellow-500 rounded-lg">
+                    <Text className="text-xl text-gray-100 font-medium">
+                        Explore
+                    </Text>
+                </View>
+
+                <View className="h-full px-1 flex justify-center bg-yellow-500">
+                    <Text className="text-xl text-gray-100 font-medium">
+                        More...
+                    </Text>
+                </View>
+            </View>
         </SafeAreaView>
     )
 }
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
-export default App;
+export default App
