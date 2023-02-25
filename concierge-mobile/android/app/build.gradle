@@ -93,13 +93,13 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.concierge"
+    namespace "app.telr"
     defaultConfig {
-        applicationId "com.concierge"
+        applicationId "app.telr"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 20230223
+        versionName "23.2.23"
     }
 
     splits {

@@ -1,4 +1,4 @@
-package com.concierge;
+package app.telr;
 
 import android.app.Application;
 import com.facebook.react.PackageList;
