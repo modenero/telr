@@ -5,10 +5,11 @@
  * @format
  */
 
-import React from 'react'
+import React, { useState } from 'react'
 
 import {
-  Button,
+  Alert,
+  Pressable,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -51,10 +52,24 @@ import {
 // }
 
 function App(): JSX.Element {
+    const [timesPressed, setTimesPressed] = useState(0)
+
+    let textLog = '';
+
+    if (timesPressed > 1) {
+        textLog = timesPressed + 'x onPress'
+    } else if (timesPressed > 0) {
+        textLog = 'onPress'
+    }
+
     const isDarkMode = useColorScheme() === 'dark';
 
     const backgroundStyle = {
         backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    }
+
+    const onPressFunction = () => {
+        Alert('show TELR menu')
     }
 
     return (
@@ -75,7 +90,7 @@ function App(): JSX.Element {
                     </Text>
 
                     <Text className="text-xl text-rose-700 dark:text-rose-200 font-medium">
-                        Your Crypto @ Your Service
+                        Crypto @ Your Service
                     </Text>
 
                     <Text className="text-5xl">
@@ -83,34 +98,46 @@ function App(): JSX.Element {
                     </Text>
                 </View>
 
+                <View className="p-10">
+                    <Text className="text-3xl text-rose-100 font-bold">
+                        {textLog}
+                    </Text>
+                </View>
             </ScrollView>
 
-            <View className="h-16 py-1 flex flex-row justify-around bg-rose-900 border-t-2 border-rose-200">
-                <View className="h-full px-1 flex justify-center bg-yellow-500 rounded-lg">
+            <View className="h-16 py-1 px-3 flex flex-row justify-around gap-x-5 bg-rose-900 border-t-2 border-rose-200">
+                <View className="h-full px-1 flex justify-center bg-yellow-500 border border-yellow-700 rounded-lg">
                     <Text className="text-xl text-gray-100 font-medium">
                         Wallet
                     </Text>
                 </View>
 
-                <View className="h-full px-1 flex justify-center bg-yellow-500 rounded-lg">
+                <View className="h-full px-1 flex justify-center bg-yellow-500 border border-yellow-700 rounded-lg">
                     <Text className="text-xl text-gray-100 font-medium">
-                        Trade
+                        Portfolio
                     </Text>
                 </View>
 
-                <Button title="TΞLR" className="">
-                    TELR
-                </Button>
+                <Pressable
+                    onPress={() => {
+                        setTimesPressed(current => current + 1)
+                    }}
+                    className="-mt-6 w-20 h-18 px-1 flex justify-center items-center bg-indigo-500 border-2 border-indigo-700 rounded-lg"
+                >
+                    <Text className="text-2xl text-gray-100 font-medium">
+                        TΞLR
+                    </Text>
+                </Pressable>
 
-                <View className="h-full px-1 flex justify-center bg-yellow-500 rounded-lg">
+                <View className="h-full px-1 flex justify-center bg-yellow-500 border border-yellow-700 rounded-lg">
                     <Text className="text-xl text-gray-100 font-medium">
                         Explore
                     </Text>
                 </View>
 
-                <View className="h-full px-1 flex justify-center bg-yellow-500">
+                <View className="h-full px-1 flex justify-center bg-yellow-500 border border-yellow-700 rounded-lg">
                     <Text className="text-xl text-gray-100 font-medium">
-                        More...
+                        Profile
                     </Text>
                 </View>
             </View>
