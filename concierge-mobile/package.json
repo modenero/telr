@@ -1,6 +1,6 @@
 {
   "name": "concierge-mobile",
-  "version": "23.2.17",
+  "version": "23.2.26",
   "license": "MIT",
   "scripts": {
     "android": "react-native run-android",
@@ -12,7 +12,8 @@
   "dependencies": {
     "nativewind": "2.0.11",
     "react": "18.2.0",
-    "react-native": "0.71.3"
+    "react-native": "0.71.3",
+    "react-native-svg": "13.8.0"
   },
   "devDependencies": {
     "@babel/core": "7.20.12",

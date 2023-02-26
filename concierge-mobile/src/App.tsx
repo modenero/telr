@@ -19,6 +19,8 @@ import {
   View,
 } from 'react-native'
 
+import QrCode from './assets/svg/QrCode'
+
 import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen'
@@ -101,16 +103,28 @@ function App(): JSX.Element {
                         </View>
                     </View>
 
-                    <Pressable
-                        onPress={() => {
-                            setTimesPressed(current => current + 1)
-                        }}
-                        className="w-10 h-10 flex justify-center items-center bg-gray-700 border-2 border-yellow-300 rounded-full"
-                    >
-                        <Text className="text-xl text-yellow-300 font-bold">
-                            ?
-                        </Text>
-                    </Pressable>
+                    <View className="flex flex-row gap-3">
+                        <Pressable
+                            onPress={() => {
+                                setTimesPressed(current => current + 1)
+                            }}
+                        >
+                            <QrCode
+                                className="w-10 h-10 text-yellow-700"
+                            />
+                        </Pressable>
+
+                        <Pressable
+                            onPress={() => {
+                                setTimesPressed(current => current + 1)
+                            }}
+                            className="w-10 h-10 flex justify-center items-center bg-gray-700 border-2 border-yellow-300 rounded-full"
+                        >
+                            <Text className="text-xl text-yellow-300 font-bold">
+                                ?
+                            </Text>
+                        </Pressable>
+                    </View>
                 </View>
 
                 <View className="flex-1 h-48 items-center justify-center bg-gray-100 border-y-2 border-rose-500 dark:bg-gray-900">
