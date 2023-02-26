@@ -1,30 +1,44 @@
-TELR Concierge delivers a unique & custom-tailored experience for each and every user. Enjoy a premium Crypto experience like you've never had before.
+TELR Concierge uses advanced AI to deliver a unique & custom-tailored experience for each and every user. Start enjoying a premium Crypto Experience (CX) like you've never had before.
 ---
 
-What is TΞLR?
+Why TΞLR?
 
-TBD...
+Our team has over 40+ years of collective experience delivering engaging solutions to millions of users.
+---
 
-What is concierge services does TΞLR offer?
+TΞLR Concierge Services
 
 Our network of partners offer a wealth of services ranging from Asset Management to Zero Knowledge Proofs and everything in-between, including:
-- Multi-signature wallets
-- NFT minting
-- Secure key backups
+• Multi-signature wallets
+• NFT minting
+• Secure key backups
+• and much more...
+---
 
-What assets does TΞLR support?
+TΞLR Supported Assets
 
-TELR already offers native support for the leading UTXO blockchains, including: Bitcoin (BTC), Bitcoin Cash (BCH) and Nexa (NEXA).
+TELR already offers native support for the leading UTXO blockchains, including:
+• Bitcoin (BTC)
+• Bitcoin Cash (BCH)
+• Nexa (NEXA)
 
-What assets will TΞLR support in the future?
+Our team is working hard to introduce the leading EVM blockchains, including:
+• Ethereum (ETH)
+• Polygon (MATIC)
+• Avalanche (AVAX)
 
-Our team is working hard to introduce the leading EVM blockchains, including: Ethereum (ETH), Polygon (MATIC) and Avalanche (AVAX).
+Active users can vote directly in our app for which Blockchain(s) you want added to our growing suite of Concierge services. The leading candidates include:
+• Kaspa (KAS)
+• Aptos (APT)
+• TBD
+---
 
-You can vote directly in our app for which blockchains you want added to our Concierge service:
-1. Kaspa (KAS)
-2. Aptos (APT)
-3. TBD
+TΞLR Security
 
-How does TΞLR make money?
+TELR is security-first! Your Keys. Your Coins. TELR is designed & maintained using the state-of-the-art in Crypto libraries, for maximum protection of your assets.
+
+--
+TΞLR Revenue Model
 
 We earn a share of the revenue from our many Crypto partners.
+---

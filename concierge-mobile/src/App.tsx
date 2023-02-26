@@ -84,6 +84,35 @@ function App(): JSX.Element {
                 className="flex-1"
             >
 
+                <View className="px-3 py-1 flex flex-row justify-between items-center bg-gray-100 border-y-2 border-rose-500 dark:bg-gray-900">
+                    <View className="">
+                        <Text className="text-xs text-gray-400 font-bold uppercase">
+                            Network
+                        </Text>
+
+                        <View className="flex flex-row">
+                            <Text className="text-2xl text-yellow-500 tracking-widest font-bold">
+                                Nexa
+                            </Text>
+
+                            <View className="w-5 h-7 rotate-180">
+                                <Text className="text-3xl text-gray-500 font-bold">^</Text>
+                            </View>
+                        </View>
+                    </View>
+
+                    <Pressable
+                        onPress={() => {
+                            setTimesPressed(current => current + 1)
+                        }}
+                        className="w-10 h-10 flex justify-center items-center bg-gray-700 border-2 border-yellow-300 rounded-full"
+                    >
+                        <Text className="text-xl text-yellow-300 font-bold">
+                            ?
+                        </Text>
+                    </Pressable>
+                </View>
+
                 <View className="flex-1 h-48 items-center justify-center bg-gray-100 border-y-2 border-rose-500 dark:bg-gray-900">
                     <Text className="text-3xl text-rose-700 dark:text-rose-200 font-medium">
                         TΞLR Concierge
