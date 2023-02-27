@@ -122,53 +122,6 @@ const TelrScreen = ({ navigation }) => {
     )
 }
 
-function BottomMenu() {
-    const navigation = useNavigation()
-
-    return (
-        <View className="h-16 py-1 px-3 flex flex-row justify-around gap-x-5 bg-rose-900 border-t-2 border-rose-200">
-            <Pressable
-                onPress={() => navigation.navigate('Wallet')}
-                className="h-full px-1 flex justify-center bg-yellow-500 border border-yellow-700 rounded-lg"
-            >
-                <Text className="text-xl text-gray-100 font-medium">
-                    Wallet
-                </Text>
-            </Pressable>
-
-            <Pressable
-                onPress={() => navigation.navigate('Portfolio')}
-                className="h-full px-1 flex justify-center bg-yellow-500 border border-yellow-700 rounded-lg"
-            >
-                <Text className="text-xl text-gray-100 font-medium">
-                    Portfolio
-                </Text>
-            </Pressable>
-
-            <Pressable
-                onPress={() => navigation.navigate('Telr')}
-                className="-mt-6 w-20 h-18 px-1 flex justify-center items-center bg-indigo-500 border-2 border-indigo-700 rounded-lg"
-            >
-                <Text className="text-2xl text-gray-100 font-medium">
-                    TΞLR
-                </Text>
-            </Pressable>
-
-            <View className="h-full px-1 flex justify-center bg-yellow-500 border border-yellow-700 rounded-lg">
-                <Text className="text-xl text-gray-100 font-medium">
-                    Explore
-                </Text>
-            </View>
-
-            <View className="h-full px-1 flex justify-center bg-yellow-500 border border-yellow-700 rounded-lg">
-                <Text className="text-xl text-gray-100 font-medium">
-                    Profile
-                </Text>
-            </View>
-        </View>
-    )
-}
-
 function WalletScreen({ navigation }) {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -234,59 +187,56 @@ const Tab = createBottomTabNavigator()
 
 function MyTabBar({ state, descriptors, navigation }) {
     return (
-        <View style={{ flexDirection: 'row' }}>
-            {state.routes.map((route, index) => {
-                const { options } = descriptors[route.key];
+        <View className="h-16 py-1 px-3 flex flex-row justify-around gap-x-5 bg-rose-900 border-t-2 border-rose-200">
+            <Pressable
+                onPress={() => navigation.navigate('Wallet')}
+                onLongPress={() => null}
+                className="h-full px-1 flex justify-center bg-yellow-500 border border-yellow-700 rounded-lg"
+            >
+                <Text className="text-xl text-gray-100 font-medium">
+                    Wallet
+                </Text>
+            </Pressable>
 
-                const label =
-                    options.tabBarLabel !== undefined
-                    ? options.tabBarLabel
-                    : options.title !== undefined
-                    ? options.title
-                    : route.name;
+            <Pressable
+                onPress={() => navigation.navigate('Portfolio')}
+                onLongPress={() => null}
+                className="h-full px-1 flex justify-center bg-yellow-500 border border-yellow-700 rounded-lg"
+            >
+                <Text className="text-xl text-gray-100 font-medium">
+                    Portfolio
+                </Text>
+            </Pressable>
 
-                const isFocused = state.index === index;
+            <Pressable
+                onPress={() => navigation.navigate('Telr')}
+                onLongPress={() => null}
+                className="-mt-6 w-20 h-18 px-1 flex justify-center items-center bg-indigo-500 border-2 border-indigo-700 rounded-lg"
+            >
+                <Text className="text-2xl text-gray-100 font-medium">
+                    TΞLR
+                </Text>
+            </Pressable>
 
-                const onPress = () => {
-                    const event = navigation.emit({
-                        type: 'tabPress',
-                        target: route.key,
-                        canPreventDefault: true,
-                    });
+            <Pressable
+                onPress={() => navigation.navigate('Explore')}
+                onLongPress={() => null}
+                className="h-full px-1 flex justify-center bg-yellow-500 border border-yellow-700 rounded-lg"
+            >
+                <Text className="text-xl text-gray-100 font-medium">
+                    Explore
+                </Text>
+            </Pressable>
 
-                    if (!isFocused && !event.defaultPrevented) {
-                        // The `merge: true` option makes sure that the params inside the tab screen are preserved
-                        navigation.navigate({ name: route.name, merge: true });
-                    }
-                };
-
-                const onLongPress = () => {
-                    navigation.emit({
-                        type: 'tabLongPress',
-                        target: route.key,
-                    });
-                };
-
-                return (
-                    <Pressable
-                        key={options.tabBarTestID}
-                        accessibilityRole="button"
-                        accessibilityState={isFocused ? { selected: true } : {}}
-                        accessibilityLabel={options.tabBarAccessibilityLabel}
-                        testID={options.tabBarTestID}
-                        onPress={onPress}
-                        onLongPress={onLongPress}
-                        className="-mt-6 w-20 h-18 px-1 flex justify-center items-center bg-indigo-500 border-2 border-indigo-700 rounded-lg"
-                    >
-                        <Text
-                            className="text-2xl text-gray-100 font-medium"
-                            style={{ color: isFocused ? '#673ab7' : '#222' }}
-                        >
-                            {label}
-                        </Text>
-                    </Pressable>
-                )
-            })}
+            <Pressable
+                onPress={() => navigation.navigate('Profile')}
+                onLongPress={() => null}
+                className="h-full px-1 flex justify-center bg-yellow-500 border border-yellow-700 rounded-lg"
+            >
+                <Text className="text-xl text-gray-100 font-medium">
+                    Profile
+                </Text>
+            </Pressable>
         </View>
     )
 }
