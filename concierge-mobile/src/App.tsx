@@ -189,12 +189,12 @@ function MyTabBar({ state, descriptors, navigation }) {
     return (
         <View className="h-16 py-1 px-3 flex flex-row justify-around gap-x-5 bg-rose-900 border-t-2 border-rose-200">
             <Pressable
-                onPress={() => navigation.navigate('Wallet')}
+                onPress={() => navigation.navigate('Explorer')}
                 onLongPress={() => null}
                 className="h-full px-1 flex justify-center bg-gray-700 border border-yellow-700 rounded-lg"
             >
                 <View className="px-2 text-xl text-gray-100 font-medium">
-                    <Ionicons name="wallet" size={32} color="lime" />
+                    <Ionicons name="globe" size={32} color="fuchsia" />
                 </View>
             </Pressable>
 
@@ -219,12 +219,12 @@ function MyTabBar({ state, descriptors, navigation }) {
             </Pressable>
 
             <Pressable
-                onPress={() => navigation.navigate('Explorer')}
+                onPress={() => navigation.navigate('Wallet')}
                 onLongPress={() => null}
                 className="h-full px-1 flex justify-center bg-gray-700 border border-yellow-700 rounded-lg"
             >
                 <View className="px-2 text-xl text-gray-100 font-medium">
-                    <Ionicons name="globe" size={32} color="fuchsia" />
+                    <Ionicons name="wallet" size={32} color="lime" />
                 </View>
             </Pressable>
 
