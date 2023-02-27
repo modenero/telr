@@ -191,21 +191,21 @@ function MyTabBar({ state, descriptors, navigation }) {
             <Pressable
                 onPress={() => navigation.navigate('Wallet')}
                 onLongPress={() => null}
-                className="h-full px-1 flex justify-center bg-yellow-500 border border-yellow-700 rounded-lg"
+                className="h-full px-1 flex justify-center bg-gray-700 border border-yellow-700 rounded-lg"
             >
-                <View className="text-xl text-gray-100 font-medium">
-                    <Ionicons name="wallet" size={30} color="tomato" />
+                <View className="px-2 text-xl text-gray-100 font-medium">
+                    <Ionicons name="wallet" size={32} color="lime" />
                 </View>
             </Pressable>
 
             <Pressable
                 onPress={() => navigation.navigate('Portfolio')}
                 onLongPress={() => null}
-                className="h-full px-1 flex justify-center bg-yellow-500 border border-yellow-700 rounded-lg"
+                className="h-full px-1 flex justify-center bg-gray-700 border border-yellow-700 rounded-lg"
             >
-                <Text className="text-xl text-gray-100 font-medium">
-                    Portfolio
-                </Text>
+                <View className="px-2 text-xl text-gray-100 font-medium">
+                    <Ionicons name="stats-chart" size={32} color="gold" />
+                </View>
             </Pressable>
 
             <Pressable
@@ -221,21 +221,21 @@ function MyTabBar({ state, descriptors, navigation }) {
             <Pressable
                 onPress={() => navigation.navigate('Explorer')}
                 onLongPress={() => null}
-                className="h-full px-1 flex justify-center bg-yellow-500 border border-yellow-700 rounded-lg"
+                className="h-full px-1 flex justify-center bg-gray-700 border border-yellow-700 rounded-lg"
             >
-                <Text className="text-xl text-gray-100 font-medium">
-                    Explorer
-                </Text>
+                <View className="px-2 text-xl text-gray-100 font-medium">
+                    <Ionicons name="globe" size={32} color="fuchsia" />
+                </View>
             </Pressable>
 
             <Pressable
                 onPress={() => navigation.navigate('Profile')}
                 onLongPress={() => null}
-                className="h-full px-1 flex justify-center bg-yellow-500 border border-yellow-700 rounded-lg"
+                className="h-full px-1 flex justify-center bg-gray-700 border border-yellow-700 rounded-lg"
             >
-                <Text className="text-xl text-gray-100 font-medium">
-                    Profile
-                </Text>
+                <View className="px-2 text-xl text-gray-100 font-medium">
+                    <Ionicons name="person" size={32} color="coral" />
+                </View>
             </Pressable>
         </View>
     )
