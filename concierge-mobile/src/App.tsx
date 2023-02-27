@@ -152,11 +152,11 @@ function PortfolioScreen({ navigation }) {
     )
 }
 
-function ExploreScreen({ navigation }) {
+function ExplorerScreen({ navigation }) {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <View>
-                <Text>Explore Screen</Text>
+                <Text>Explorer Screen</Text>
             </View>
 
             <Button
@@ -193,9 +193,9 @@ function MyTabBar({ state, descriptors, navigation }) {
                 onLongPress={() => null}
                 className="h-full px-1 flex justify-center bg-yellow-500 border border-yellow-700 rounded-lg"
             >
-                <Text className="text-xl text-gray-100 font-medium">
-                    Wallet
-                </Text>
+                <View className="text-xl text-gray-100 font-medium">
+                    <Ionicons name="wallet" size={30} color="tomato" />
+                </View>
             </Pressable>
 
             <Pressable
@@ -219,12 +219,12 @@ function MyTabBar({ state, descriptors, navigation }) {
             </Pressable>
 
             <Pressable
-                onPress={() => navigation.navigate('Explore')}
+                onPress={() => navigation.navigate('Explorer')}
                 onLongPress={() => null}
                 className="h-full px-1 flex justify-center bg-yellow-500 border border-yellow-700 rounded-lg"
             >
                 <Text className="text-xl text-gray-100 font-medium">
-                    Explore
+                    Explorer
                 </Text>
             </Pressable>
 
@@ -283,9 +283,9 @@ function App(): JSX.Element {
                     />
 
                     <Tab.Screen
-                        name="Explore"
-                        component={ExploreScreen}
-                        options={{ title: 'Explore' }}
+                        name="Explorer"
+                        component={ExplorerScreen}
+                        options={{ title: 'Explorer' }}
                     />
 
                     <Tab.Screen
