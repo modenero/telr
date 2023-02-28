@@ -16,7 +16,7 @@ const SpendScreen = ({ navigation }) => {
     return (
         <View className="h-full flex justify-center items-center bg-gray-900">
             <View>
-                <Text className="text-3xl text-gray-100 font-medium">
+                <Text className="text-3xl text-gray-300 font-medium">
                     Spend Your Crypto
                 </Text>
             </View>
