@@ -16,7 +16,9 @@ const GrowScreen = ({ navigation }) => {
     return (
         <View className="h-full flex justify-center items-center bg-gray-900">
             <View>
-                <Text className="text-3xl font-medium">Grow Your Crypto</Text>
+                <Text className="text-3xl text-gray-100 font-medium">
+                    Grow Your Crypto
+                </Text>
             </View>
 
             <Button

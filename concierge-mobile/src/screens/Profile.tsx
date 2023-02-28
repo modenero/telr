@@ -16,7 +16,9 @@ const ProfileScreen = ({ navigation }) => {
     return (
         <View className="h-full flex justify-center items-center bg-gray-900">
             <View>
-                <Text className="text-3xl font-medium">Your TELR Profile</Text>
+                <Text className="text-3xl text-gray-100 font-medium">
+                    Your TELR Profile
+                </Text>
             </View>
 
             <Button
