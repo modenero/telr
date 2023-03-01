@@ -18,7 +18,7 @@ const NavMenu = ({ state, descriptors, navigation }) => {
     style = 'h-16 py-1 px-3 flex flex-row justify-around gap-x-5 bg-rose-900 border-t-2 border-rose-200'
 
     // FIXME Corrects the bottom navigation on some devices/resolutions
-    if (false) {
+    if (true) {
         style += ' mb-5'
     }
 

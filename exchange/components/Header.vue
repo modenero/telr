@@ -19,17 +19,17 @@ const isShowingMobileMenu = ref(false)
             </div>
 
             <div class="hidden lg:flex lg:gap-x-12">
-                <a href="javascript://" class="text-sm font-semibold leading-6 text-gray-900">
-                    Product
-                </a>
+                <RouterLink to="/" class="text-sm font-semibold leading-6 text-gray-900">
+                    Exchange
+                </RouterLink>
 
-                <a href="javascript://" class="text-sm font-semibold leading-6 text-gray-900">
+                <RouterLink to="/" class="text-sm font-semibold leading-6 text-gray-900">
                     Features
-                </a>
+                </RouterLink>
 
-                <a href="javascript://" class="text-sm font-semibold leading-6 text-gray-900">
+                <RouterLink to="/" class="text-sm font-semibold leading-6 text-gray-900">
                     Marketplace
-                </a>
+                </RouterLink>
 
                 <RouterLink to="/about" class="text-sm font-semibold leading-6 text-gray-900">
                     About Us
@@ -42,7 +42,7 @@ const isShowingMobileMenu = ref(false)
                 </RouterLink>
 
                 <RouterLink to="/profile" class="rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                    Sign up
+                    My Profile
                 </RouterLink>
             </div>
 
