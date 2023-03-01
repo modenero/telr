@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <main class="h-screen overflow-hidden flex flex-col justify-between">
+    <main class="h-screen overflow-hidden flex flex-col justify-between bg-gradient-to-r from-indigo-900 to-gray-900">
         <Header class="border-b-2 border-gray-100 z-50" />
 
         <slot />

@@ -1,16 +1,34 @@
+<script setup>
+/* Import modules. */
+import { ref } from 'vue'
+
+// if (authenticated) {
+//     return this.$router.push('/')
+// }
+
+/* Initialize social medial logins. */
+let bannerUrl = ref(null)
+let enableSocials = ref(false)
+
+// bannerUrl.value = 'https://images.unsplash.com/photo-1542438927-433fdaaec56a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=389&q=80'
+bannerUrl.value = 'https://images.unsplash.com/photo-1438762398043-ac196c2fa1e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'
+// bannerUrl.value = 'https://images.unsplash.com/photo-1600408987023-15d4ec3a9499?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=398&q=80'
+
+</script>
+
 <template>
-    <main class="main-body my-5 flex gap-10 max-w-4xl mx-auto">
+    <main class="main-body flex-1 my-5 flex gap-10 max-w-4xl mx-auto">
         <div class="flex flex-1 flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
             <div class="mx-auto w-full max-w-sm lg:w-96">
                 <div>
-                    <img class="h-16 w-auto" :src="require('@/assets/logo.png')" alt="Nexa Rocks! Logo" />
+                    <img class="h-16 w-auto" src="~/assets/images/logo.png" alt="Telr Exchange Logo" />
 
                     <h2 class="mt-6 text-3xl font-bold tracking-tight text-gray-100">
                         Authorization Required
                     </h2>
 
                     <h2 class="mt-6 text-3xl font-bold tracking-tight text-rose-400">
-                        Please use the Ava's DAO Magic.Link
+                        Please scan the QR Code with your Wallet app
                     </h2>
 
                     <p class="hidden mt-2 text-sm text-gray-600">
@@ -95,7 +113,7 @@
                             </div>
 
                             <button
-                                @click="signIn()"
+                                @click="signIn"
                                 class="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-xl font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                             >
                                 Request Magic Link
@@ -117,54 +135,44 @@
 </template>
 
 <script>
-/* Import components. */
-import Navbar from '@/components/Navbar.vue'
+// /* Import components. */
+// import Navbar from '@/components/Navbar.vue'
 
-export default {
-    components: {
-        Navbar,
-    },
-    data: () => {
-        return {
-            bannerUrl: null,
-            email: null,
-            enableSocials: null
-        }
-    },
-    computed: {
-        authenticated () {
-            return this.$store.state.profile.authenticated
-        },
+// export default {
+//     components: {
+//         Navbar,
+//     },
+//     data: () => {
+//         return {
+//             bannerUrl: null,
+//             email: null,
+//             enableSocials: null
+//         }
+//     },
+//     computed: {
+//         authenticated () {
+//             return this.$store.state.profile.authenticated
+//         },
 
-    },
-    methods: {
-        async signIn () {
-            if (!this.email) {
-                return alert('Please enter an email address')
-            }
+//     },
+//     methods: {
+//         async signIn () {
+//             if (!this.email) {
+//                 return alert('Please enter an email address')
+//             }
 
-            /* Request email auth. */
-            await this.$store.dispatch('profile/signin', { email: this.email })
+//             /* Request email auth. */
+//             await this.$store.dispatch('profile/signin', { email: this.email })
 
-            if (this.authenticated) {
-                return this.$router.push('/')
-            }
-        }
-    },
-    created: function () {
-        if (this.authenticated) {
-            return this.$router.push('/')
-        }
-
-        /* Initialize social medial logins. */
-        this.enableSocials = false
-
-        // this.bannerUrl = 'https://images.unsplash.com/photo-1542438927-433fdaaec56a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=389&q=80'
-        this.bannerUrl = 'https://images.unsplash.com/photo-1438762398043-ac196c2fa1e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'
-        // this.bannerUrl = 'https://images.unsplash.com/photo-1600408987023-15d4ec3a9499?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=398&q=80'
-    },
-    mounted: function () {
-        //
-    },
-}
+//             if (this.authenticated) {
+//                 return this.$router.push('/')
+//             }
+//         }
+//     },
+//     created: function () {
+//     },
+//     mounted: function () {
+//         //
+//     },
+// }
 </script>

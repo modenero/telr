@@ -37,11 +37,11 @@ const isShowingMobileMenu = ref(false)
             </div>
 
             <div class="flex flex-1 items-center justify-end gap-x-6">
-                <RouterLink to="/auth" class="hidden lg:block lg:text-sm lg:font-semibold lg:leading-6 lg:text-gray-900">
-                    Log in
+                <RouterLink to="/markets" class="hidden lg:block lg:text-sm lg:font-semibold lg:leading-6 lg:text-gray-900">
+                    $13.37 USD
                 </RouterLink>
 
-                <RouterLink to="/admin" class="rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                <RouterLink to="/profile" class="rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                     Sign up
                 </RouterLink>
             </div>

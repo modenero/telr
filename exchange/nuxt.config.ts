@@ -16,9 +16,18 @@ export default defineNuxtConfig({
         },
     },
 
-    /* Application Modules */
+    /* Modules */
     modules: [
         /* Tailwind CSS */
-        '@nuxtjs/tailwindcss'
+        '@nuxtjs/tailwindcss',
+
+        /* Pinia */
+        '@pinia/nuxt',
+        '@pinia-plugin-persistedstate/nuxt',
     ],
+
+    /* Pinia Storage */
+    piniaPersistedstate: {
+        storage: 'localStorage', // NOTE: Default is cookies.
+    },
 })

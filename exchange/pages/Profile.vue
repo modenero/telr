@@ -5,7 +5,7 @@
 <template>
     <main class="main-body flex-1 p-3 max-w-5xl mx-auto">
         <h1 class="text-4xl font-medium">
-            Blank View
+            Profile Page
         </h1>
 
         <p class="mt-3">
