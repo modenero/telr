@@ -19,29 +19,29 @@ const isShowingMobileMenu = ref(false)
             </div>
 
             <div class="hidden lg:flex lg:gap-x-12">
-                <RouterLink to="/" class="text-sm font-semibold leading-6 text-gray-900">
+                <RouterLink to="/" class="text-lg font-semibold leading-6 text-gray-900">
                     Exchange
                 </RouterLink>
 
-                <RouterLink to="/" class="text-sm font-semibold leading-6 text-gray-900">
+                <!-- <RouterLink to="/" class="text-lg font-semibold leading-6 text-gray-900">
                     Features
+                </RouterLink> -->
+
+                <RouterLink to="/help" class="text-lg font-semibold leading-6 text-gray-900">
+                    Help
                 </RouterLink>
 
-                <RouterLink to="/" class="text-sm font-semibold leading-6 text-gray-900">
-                    Marketplace
-                </RouterLink>
-
-                <RouterLink to="/about" class="text-sm font-semibold leading-6 text-gray-900">
-                    About Us
-                </RouterLink>
+                <!-- <RouterLink to="/about" class="text-lg font-semibold leading-6 text-gray-900">
+                    About
+                </RouterLink> -->
             </div>
 
             <div class="flex flex-1 items-center justify-end gap-x-6">
-                <RouterLink to="/markets" class="hidden lg:block lg:text-sm lg:font-semibold lg:leading-6 lg:text-gray-900">
+                <RouterLink to="/markets" class="hidden lg:block lg:text-lg lg:font-semibold lg:leading-6 lg:text-gray-900">
                     $13.37 USD
                 </RouterLink>
 
-                <RouterLink to="/profile" class="rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                <RouterLink to="/profile" class="rounded-md bg-indigo-600 py-2 px-3 text-lg font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                     My Profile
                 </RouterLink>
             </div>
