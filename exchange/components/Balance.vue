@@ -1,229 +1,244 @@
+<script setup lang="ts">
+/* Import modules. */
+import { ref } from 'vue'
+
+const isShowingDeposit = ref(true)
+const isShowingWithdraw = ref(false)
+const isShowingStaking = ref(false)
+
+const token = ref({})
+const tokenBalance = ref(0)
+const exchangeBalance = ref(0)
+const depositAmount = ref(null)
+
+const tokenName = computed(() => {
+    if (!token.value) {
+        return 'n/a'
+    }
+
+    return token.value.title
+})
+
+const tokenSymbol = computed(() => {
+    if (!token.value) {
+        return 'n/a'
+    }
+
+    return token.value.symbol
+})
+
+/* Retrieve current token. */
+// token.value = await getToken('0x505A442B3E3E9AEDF06D54572a295F8D64f8F582')
+token.value.title = `Ava's DAO`
+token.value.symbol = 'AVAS'
+// console.log('CURRENT TOKEN', token.value)
+
+/* Retrieve account balance. */
+// this.tokenBalance = await this.getWalletBalance('0x505A442B3E3E9AEDF06D54572a295F8D64f8F582', '0x830ad555fCe0547782E14d67d22002082916e660')
+// console.log('BALANCE', this.tokenBalance)
+
+/* Retrieve exchange balance. */
+// this.exchangeBalance = await this.getExchangeBalance('0x505A442B3E3E9AEDF06D54572a295F8D64f8F582', '0x830ad555fCe0547782E14d67d22002082916e660')
+// console.log('BALANCE', this.exchangeBalance)
+</script>
+
 <template>
-    <div class="component">
-        <div class="component-header">
-            <span class="text-primary">Nexa</span> <span class="text-warning">Exchange</span> Balance
-        </div>
+    <main class="px-2 py-1 bg-gradient-to-b from-gray-900 to-gray-700 border-2 border-gray-500 rounded-lg">
+        <h2 class="flex text-base gap-1">
+            <span class="text-purple-400">Nexa</span>
+            <span class="text-yellow-400">Exchange</span>
+            <span class="text-gray-200">Balance</span>
+        </h2>
 
-        <div id="balance">
-            <div class="component-tabs nav-header">
-                <ul class="nav" role="tablist">
-                    <li class="nav-item">
-                        <a role="tab" data-toggle="tab" href="#deposit" class="active nav-link" aria-controls="deposit" aria-selected="true">
-                            Deposit
-                        </a>
-                    </li>
+        <div class="mt-2">
+            <ul class="flex justify-between text-sm text-gray-200 border-b border-gray-500" role="tablist">
+                <li class="">
+                    <a class="active" aria-controls="deposit" aria-selected="true">
+                        Deposit
+                    </a>
+                </li>
 
-                    <li class="nav-item">
-                        <a role="tab" data-toggle="tab" href="#withdraw" class="nav-link" aria-controls="withdraw" aria-selected="false">
-                            Withdraw
-                        </a>
-                    </li>
+                <li class="">
+                    <a class="" aria-controls="withdraw" aria-selected="false">
+                        Withdraw
+                    </a>
+                </li>
 
-                    <li class="nav-item">
-                        <a role="tab" data-toggle="tab" href="#staking" class="nav-link" aria-controls="staking" aria-selected="false">
-                            Staking/Pools
-                        </a>
-                    </li>
-                </ul>
-            </div>
+                <li class="">
+                    <a class="" aria-controls="staking" aria-selected="false">
+                        Staking/Pools
+                    </a>
+                </li>
+            </ul>
 
-            <div>
-                <div class="tab-content">
+            <section class="mt-3">
+                <div v-if="isShowingDeposit" role="tabpanel" class="">
+                    <div class="grid grid-cols-4">
+                        <span class="col-span-2 text-xs text-gray-400 border-b border-gray-400">
+                            Token name
+                        </span>
 
-                    <!-- DEPOSIT -->
-                    <div role="tabpanel" class="tab-pane fade show active" id="deposit">
-                        <table class="table table-borderless table-balances">
-                            <thead>
-                                <tr>
-                                    <th style="width:50%">Token name</th>
-                                    <th style="width:25%">Wallet</th>
-                                    <th style="width:25%">Exchange</th>
-                                </tr>
-                            </thead>
+                        <span class="text-xs text-gray-400 text-right border-b border-gray-400">
+                            Wallet
+                        </span>
 
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <a href="javascript://" class="nowrap">{{tokenName}}<span class="d-md-none"> ({{tokenSymbol}})</span></a>
-                                    </td>
+                        <span class="text-xs text-gray-400 text-right border-b border-gray-400">
+                            Exchange
+                        </span>
 
-                                    <td>
-                                        <span>{{tokenBalanceDisplay}}</span>
-                                    </td>
+                        <span class="mt-2 col-span-2 text-sm text-gray-200 truncate">
+                            {{tokenName}}
+                            <span class="text-xs text-gray-400">{{tokenSymbol}}</span>
+                        </span>
 
-                                    <td>
-                                        <span>{{exchangeBalanceDisplay}}</span>
-                                    </td>
-                                </tr>
+                        <span class="mt-2 text-sm text-gray-200 text-right">
+                            {{tokenBalanceDisplay}}
+                        </span>
 
-                                <tr class="">
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="number" class="form-control form-control-sm" id="cacheInBaseToken" placeholder="Amount" v-model="depositAmount">
-                                        </div>
-                                    </td>
-                                    <td colspan="2">
-                                        <button type="button" class="btn btn-info btn-sm btn-block" @click="depositTokens">
-                                            Deposit
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <span class="mt-2 text-sm text-gray-200 text-right">
+                            {{exchangeBalanceDisplay}}
+                        </span>
                     </div>
 
-                    <!-- WITHDRAW -->
-                    <div role="tabpanel" class="tab-pane fade" id="withdraw">
-                        <table class="table table-borderless table-balances">
-                            <thead>
-                                <tr>
-                                    <th style="width:50%">Token name</th>
-                                    <th style="width:25%" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="This is the balance in your personal Ethereum wallet, which you have connected to Nexa Exchange in the account dropdown (upper right).">Wallet</th>
-                                    <th style="width:25%" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="This is the balance you have deposited from your personal Ethereum wallet to the Nexa Exchange smart contract.">Exchange</th>
-                                </tr>
-                            </thead>
+                    <div class="mt-3 mb-1 grid grid-cols-2 gap-3">
+                        <input
+                            type="number"
+                            class="flex px-2 py-1 bg-gray-900 border border-gray-200 text-gray-200 text-sm rounded placeholder:text-gray-200"
+                            placeholder="Amount"
+                            v-model="depositAmount"
+                        />
 
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <a href="javascript://" class="nowrap">{{tokenName}}<span class="d-md-none"> ({{tokenSymbol}})</span></a>
-                                    </td>
-                                    <td>
-                                        <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">0.0000</span>
-                                    </td>
-                                    <td>
-                                        <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">0.0000</span>
-                                    </td>
-                                </tr>
-
-                                <!-- <tr class="balance-form"> -->
-                                <tr class="">
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="number" class="form-control form-control-sm" id="cacheInBaseToken" placeholder="Amount">
-                                        </div>
-                                    </td>
-                                    <td colspan="2">
-                                        <button type="button" class="btn btn-info btn-sm btn-block" @click="withdraw">
-                                            Withdraw
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <!-- STAKING -->
-                    <div role="tabpanel" class="tab-pane fade" id="staking">
-                        <table class="table table-borderless table-balances">
-                            <thead>
-                                <tr>
-                                    <th style="width:50%">Token name</th>
-                                    <th style="width:25%" data-toggle="tooltip" data-placement="bottom" title="">Wallet</th>
-                                    <th style="width:25%" data-toggle="tooltip" data-placement="bottom" title="">Exchange</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <a href="javascript://" class="nowrap">{{tokenName}}
-                                            <span class="d-md-none">
-                                                ({{tokenSymbol}})
-                                            </span>
-                                        </a>
-                                    </td>
-
-                                    <td>
-                                        <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">
-                                            0.0000
-                                        </span>
-                                    </td>
-
-                                    <td>
-                                        <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">
-                                            0.0000
-                                        </span>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td colspan="3">
-                                        <div class="form-row balance-inline-form">
-                                            <div class="col-sm-4 form-group">
-                                                <input
-                                                    type="number"
-                                                    class="form-control form-control-sm"
-                                                    id="validationDefault01"
-                                                    value=""
-                                                    placeholder="Amt"
-                                                >
-                                            </div>
-
-                                            <div class="col-sm-5 form-group">
-                                                <input
-                                                    type="text"
-                                                    class="form-control form-control-sm"
-                                                    id="validationDefault02"
-                                                    value=""
-                                                    placeholder="Addr"
-                                                >
-                                            </div>
-
-                                            <div class="col-sm-3">
-                                                <button class="btn btn-info btn-sm btn-block">
-                                                    Stake
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-
+                        <button
+                            class="py-1 bg-yellow-700 border border-gray-200 rounded"
+                            @click="depositTokens"
+                        >
+                            <span class="text-gray-50 text-sm">
+                                Deposit
+                            </span>
+                        </button>
                     </div>
                 </div>
 
-            </div>
+                <div v-if="isShowingWithdraw" role="tabpanel" class="tab-pane fade" id="withdraw">
+                    <table class="table table-borderless table-balances">
+                        <thead>
+                            <tr>
+                                <th style="width:50%">Token name</th>
+                                <th style="width:25%" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="This is the balance in your personal Ethereum wallet, which you have connected to Nexa Exchange in the account dropdown (upper right).">Wallet</th>
+                                <th style="width:25%" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="This is the balance you have deposited from your personal Ethereum wallet to the Nexa Exchange smart contract.">Exchange</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <a href="javascript://" class="nowrap">{{tokenName}}<span class="d-md-none"> ({{tokenSymbol}})</span></a>
+                                </td>
+                                <td>
+                                    <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">0.0000</span>
+                                </td>
+                                <td>
+                                    <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">0.0000</span>
+                                </td>
+                            </tr>
+
+                            <tr class="">
+                                <td>
+                                    <div class="form-group">
+                                        <input type="number" class="form-control form-control-sm" id="cacheInBaseToken" placeholder="Amount" />
+                                    </div>
+                                </td>
+
+                                <td colspan="2">
+                                    <button type="button" class="btn btn-info btn-sm btn-block" @click="withdraw">
+                                        Withdraw
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div v-if="isShowingStaking" role="tabpanel" class="tab-pane fade" id="staking">
+                    <table class="table table-borderless table-balances">
+                        <thead>
+                            <tr>
+                                <th style="width:50%">Token name</th>
+                                <th style="width:25%" data-toggle="tooltip" data-placement="bottom" title="">Wallet</th>
+                                <th style="width:25%" data-toggle="tooltip" data-placement="bottom" title="">Exchange</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <a href="javascript://" class="nowrap">{{tokenName}}
+                                        <span class="d-md-none">
+                                            ({{tokenSymbol}})
+                                        </span>
+                                    </a>
+                                </td>
+
+                                <td>
+                                    <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">
+                                        0.0000
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">
+                                        0.0000
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="3">
+                                    <div class="form-row balance-inline-form">
+                                        <div class="col-sm-4 form-group">
+                                            <input
+                                                type="number"
+                                                class="form-control form-control-sm"
+                                                id="validationDefault01"
+                                                value=""
+                                                placeholder="Amt"
+                                            >
+                                        </div>
+
+                                        <div class="col-sm-5 form-group">
+                                            <input
+                                                type="text"
+                                                class="form-control form-control-sm"
+                                                id="validationDefault02"
+                                                value=""
+                                                placeholder="Addr"
+                                            >
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                            <button class="btn btn-info btn-sm btn-block">
+                                                Stake
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </section>
         </div>
-    </div>
+    </main>
 </template>
 
-<script>
+<script lang="ts">
 /* Import modules. */
-import MobileDetect from 'mobile-detect'
 import numeral from 'numeral'
-// import Swal from 'sweetalert2'
 
 export default {
-    props: {
-        // msg: String
-    },
-    data: () => {
-        return {
-            token: null,
-            tokenBalance: null,
-            exchangeBalance: null,
-            depositAmount: null,
-        }
-    },
     computed: {
-        tokenName() {
-            if (!this.token) {
-                return null
-            }
-
-            return this.token.title
-        },
-
-        tokenSymbol() {
-            if (!this.token) {
-                return null
-            }
-
-            return this.token.symbol
-        },
-
         tokenBalanceDisplay() {
             if (!this.tokenBalance) {
                 return '0.0000'
@@ -278,14 +293,6 @@ export default {
             /* Deposit tokens. */
             // this.deposit(pkg) // KBBQ Token (Ropsten)
 
-            // const md = new MobileDetect(window.navigator.userAgent)
-            // return Swal.fire({
-            //     title: 'Device Info',
-            //     text: `Mobile: ${md.mobile()}`,
-            //     icon: 'info',
-            //     confirmButtonColor: '#3085d6',
-            //     confirmButtonText: 'Okay'
-            // })
         },
 
         withdraw() {
@@ -294,25 +301,5 @@ export default {
         },
 
     },
-    created: async function () {
-        /* Retrieve current token. */
-        // this.token = await this.getToken('0x505A442B3E3E9AEDF06D54572a295F8D64f8F582')
-        // console.log('CURRENT TOKEN', this.token)
-
-        /* Retrieve account balance. */
-        // this.tokenBalance = await this.getWalletBalance('0x505A442B3E3E9AEDF06D54572a295F8D64f8F582', '0x830ad555fCe0547782E14d67d22002082916e660')
-        // console.log('BALANCE', this.tokenBalance)
-
-        /* Retrieve exchange balance. */
-        // this.exchangeBalance = await this.getExchangeBalance('0x505A442B3E3E9AEDF06D54572a295F8D64f8F582', '0x830ad555fCe0547782E14d67d22002082916e660')
-        // console.log('BALANCE', this.exchangeBalance)
-    },
-    mounted: function () {
-        //
-    },
 }
 </script>
-
-<style scoped>
-/*  */
-</style>

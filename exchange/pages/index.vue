@@ -5,7 +5,7 @@
 <template>
     <main class="main-body flex gap-3 overflow-y-hidden">
         <div class="w-72 flex flex-col gap-3">
-            <Balance class="mx-1 my-1 flex-1 bg-gradient-to-r from-indigo-700 to-indigo-800 border-2 border-indigo-500 rounded-lg" />
+            <Balance class="mx-1 my-1 flex-1" />
             <Trade class="h-[100]" />
         </div>
 
