@@ -23,9 +23,9 @@ const isShowingMobileMenu = ref(false)
                     Exchange
                 </RouterLink>
 
-                <!-- <RouterLink to="/" class="text-lg font-semibold leading-6 text-gray-900">
-                    Features
-                </RouterLink> -->
+                <RouterLink to="/wallets" class="text-lg font-semibold leading-6 text-gray-900">
+                    Wallets
+                </RouterLink>
 
                 <RouterLink to="/help" class="text-lg font-semibold leading-6 text-gray-900">
                     Help

@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <main class="main-body flex-1 p-3 max-w-5xl mx-auto">
+    <main class="main-body flex-1 my-5 p-3 max-w-5xl mx-auto bg-gradient-to-r from-gray-100 to-gray-200 border-4 border-indigo-500 rounded-xl shadow-md">
         <h1 class="text-4xl font-medium">
             About Us
         </h1>

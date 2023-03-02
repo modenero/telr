@@ -5,7 +5,7 @@
 <template>
     <main class="main-body flex-1 my-5 p-3 max-w-5xl mx-auto bg-gradient-to-r from-gray-100 to-gray-200 border-4 border-indigo-500 rounded-xl shadow-md">
         <h1 class="text-4xl font-medium">
-            Blank View
+            Help &amp; Support
         </h1>
 
         <p class="mt-3">
