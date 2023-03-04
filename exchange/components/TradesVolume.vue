@@ -1,8 +1,22 @@
+<script setup>
+/* Import modules. */
+import moment from 'moment'
+
+const today = computed(() => {
+    return moment().format('M/d')
+})
+
+const yesterday = computed(() => {
+    return moment().subtract(1, 'days').format('M/d')
+})
+
+</script>
+
 <template>
-    <div class="component">
-        <div class="component-header text-warning">
+    <main class="my-2 px-2 py-1 bg-gradient-to-b from-gray-900 to-gray-700 border-2 border-gray-500 rounded-lg">
+        <h2 class="text-lg text-yellow-500 font-medium">
             Trades &amp; Volume
-        </div>
+        </h2>
 
         <div class="component-tabs nav-header">
             <ul class="nav" role="tablist">
@@ -157,31 +171,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 </template>
-
-<script>
-/* Import modules. */
-import moment from 'moment'
-
-export default {
-    props: {
-        // msg: String
-    },
-    data: () => {
-        return {
-            //
-        }
-    },
-    computed: {
-        today() {
-            return moment().format('M/d')
-        },
-
-        yesterday() {
-            return moment().subtract(1, 'days').format('M/d')
-        },
-
-    },
-}
-</script>

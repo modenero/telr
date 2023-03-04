@@ -1,6 +1,9 @@
 <template>
-    <div class="component">
-        <div class="component-header text-warning">Price Chart</div>
+    <main class="my-2 px-2 py-1 bg-gradient-to-b from-gray-900 to-gray-700 border-2 border-gray-500 rounded-lg">
+        <h2 class="text-lg text-yellow-500 font-medium">
+            Price Chart
+        </h2>
+
         <div id="chartPrice">
             <div class="chart-quote">
                 <div></div>
@@ -42,17 +45,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 </template>
-
-<script>
-export default {
-    props: {
-        // msg: String
-    }
-}
-</script>
-
-<style scoped>
-/*  */
-</style>
