@@ -1,54 +1,38 @@
-<template>
-    <div class="">
-        <div class="h-full component component-full">
-            <div class="component-header text-warning">Order Book</div>
+<script setup>
+/* Import modules. */
+import { ref } from 'vue'
 
-            <div id="orders">
-                <div id="orderBookScroll">
-                    <table class="table table-condensed table-borderless">
-                    <!-- <table class="table table-condensed table-borderless table-order-book"> -->
-                        <tr>
-                            <td>NEX</td>
-                            <td>NEX/USDT</td>
-                            <td>USDT</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3" v-html="orders"></td>
-                        </tr>
-                    </table>
-
-                    <span class="text-3xl text-rose-500 font-medium">
-                        Tailwind CSS
-                    </span>
-
-                    <MarketFeed />
-                </div>
-            </div>
-        </div>
-    </div>
-</template>
-
-<script>
-/* Import components. */
-import MarketFeed from './MarketFeed.vue'
-
-// import Bitcore from 'bitcore-lib-nexa'
-// import { version } from 'bitcore-lib-nexa'
-// import * as HDPrivateKey from 'bitcore-lib-nexa/lib/hdprivatekey'
-
-export default {
-    data: () => {
-        return {
-            orders: []
-        }
-    },
-    created: function () {
-        // console.log('ORDER BOOK', Bitcore.Opcode.OP_EQUALVERIFY)
-        // console.log('ORDER BOOK', version)
-        // console.log('ORDER BOOK', HDPrivateKey)
-    },
-    mounted: function () {
-        //
-    },
-}
+const orders = ref([])
 </script>
+
+<template>
+    <main class="my-2 px-2 py-1 bg-gradient-to-b from-gray-900 to-gray-700 border-2 border-gray-500 rounded-lg">
+        <h2 class="text-lg text-yellow-500 font-medium">
+            Order Book
+        </h2>
+
+        <header class="flex justify-between">
+            <div>
+                <h3 class="text-gray-100">
+                    NEX
+                </h3>
+            </div>
+
+            <div>
+                <h3 class="text-gray-100">
+                    NEX/USDT
+                </h3>
+            </div>
+
+            <div>
+                <h3 class="text-gray-100">
+                    USDT
+                </h3>
+            </div>
+        </header>
+
+        <OrderBookMarketFeed
+            trade-pair="NEX/AVAS"
+        />
+    </main>
+</template>
