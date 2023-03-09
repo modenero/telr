@@ -10,6 +10,8 @@ import {
   View,
 } from 'react-native'
 
+import GiftCard from '../components/GiftCard'
+
 const SpendScreen = ({ navigation }) => {
     const isDarkMode = useColorScheme() === 'dark';
 
@@ -21,10 +23,33 @@ const SpendScreen = ({ navigation }) => {
                 </Text>
             </View>
 
-            <Button
-                title="Go to Grow"
-                onPress={() => navigation.navigate('Grow')}
-            />
+            <View>
+                <Text className="text-3xl text-gray-300 font-medium">
+                    BUTTONS HERE
+                </Text>
+            </View>
+
+            <ScrollView className="px-3 w-full flex-1 flex-col">
+                <GiftCard
+                    name="Satoshi's Pub"
+                    balance="$50"
+                />
+
+                <GiftCard
+                    name="Amazon"
+                    balance="$100"
+                />
+
+                <GiftCard
+                    name="Cheescake Factory"
+                    balance="$25"
+                />
+
+                <GiftCard
+                    name="Nordstom Rack"
+                    balance="$200"
+                />
+            </ScrollView>
         </View>
     )
 }

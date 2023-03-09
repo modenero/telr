@@ -13,11 +13,17 @@ import {
 
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
+/* Define window dimensions. */
 const windowWidth = Dimensions.get('window').width
 const windowHeight = Dimensions.get('window').height
-console.log('width:', windowWidth)
-console.log('height:', windowHeight)
+console.info('Window w/h:', windowWidth, windowHeight)
 
+/**
+ * Navigation Menu
+ *
+ * A bottom navigation bar featuring a TELR service button,
+ * plus (4) customizable buttons.
+ */
 const NavMenu = ({ state, descriptors, navigation }) => {
     const [timesPressed, setTimesPressed] = useState(0)
 

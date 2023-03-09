@@ -1,5 +1,7 @@
+/* Import React. */
 import React, { useState } from 'react'
 
+/* Import components. */
 import {
   Button,
   Pressable,
@@ -10,6 +12,11 @@ import {
   View,
 } from 'react-native'
 
+/**
+ * Blank Screen
+ *
+ * Screen boilerplate.
+ */
 const BlankScreen = ({ navigation }) => {
     const [timesPressed, setTimesPressed] = useState(0)
 
