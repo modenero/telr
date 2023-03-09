@@ -2,6 +2,9 @@
  * @format
  */
 
+import Bugsnag from '@bugsnag/react-native'
+Bugsnag.start()
+
 import { AppRegistry } from 'react-native'
 
 import App from './src/App'
