@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 import {
   Button,
+  Dimensions,
   Pressable,
   ScrollView,
   StatusBar,
@@ -12,14 +13,26 @@ import {
 
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
+const windowWidth = Dimensions.get('window').width
+const windowHeight = Dimensions.get('window').height
+console.log('width:', windowWidth)
+console.log('height:', windowHeight)
+
 const NavMenu = ({ state, descriptors, navigation }) => {
+    const [timesPressed, setTimesPressed] = useState(0)
+
     let style
 
     style = 'h-16 py-1 px-3 flex flex-row justify-around gap-x-5 bg-rose-900 border-t-2 border-rose-200'
 
+
     // FIXME Corrects the bottom navigation on some devices/resolutions
-    if (true) {
+    switch(windowHeight) {
+    case 640:
         style += ' mb-5'
+        break
+    default:
+        // TBD
     }
 
     return (
