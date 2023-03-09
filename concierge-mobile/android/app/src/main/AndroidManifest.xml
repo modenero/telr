@@ -65,5 +65,6 @@
                 <data android:scheme="kaspa" />
             </intent-filter>
         </activity>
+        <meta-data android:name="com.bugsnag.android.API_KEY" android:value="2a08b1982a175eeb09b403a2791bbc1e" />
     </application>
 </manifest>
