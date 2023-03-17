@@ -9,6 +9,7 @@ import React, { useState } from 'react'
 
 import {
   Button,
+  Linking,
   Pressable,
   SafeAreaView,
   ScrollView,
@@ -19,6 +20,8 @@ import {
   useColorScheme,
   View,
 } from 'react-native'
+
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
@@ -38,11 +41,53 @@ import TelrScreen from './screens/Telr'
 const Stack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
 
+const PERSISTENCE_KEY = 'TELR_APP'
+
 function App(): JSX.Element {
     const isDarkMode = useColorScheme() === 'dark';
 
+    // const [isReady, setIsReady] = React.useState(false)
+    const [isReady, setIsReady] = React.useState(__DEV__ ? false : true)
+    const [initialState, setInitialState] = React.useState()
+
+    React.useEffect(() => {
+        const restoreState = async () => {
+            try {
+                const initialUrl = await Linking.getInitialURL()
+
+                if (initialUrl === null) {
+                    // Only restore state if there's no deep link
+                    const savedStateString = await AsyncStorage.getItem(PERSISTENCE_KEY)
+                    const state = savedStateString ? JSON.parse(savedStateString) : undefined
+
+                    if (state !== undefined) {
+                        setInitialState(state)
+                    }
+                }
+            } finally {
+                setIsReady(true)
+            }
+        }
+
+        if (!isReady) {
+            restoreState()
+        }
+    }, [isReady])
+
+    /* Block UI display until page is fully loaded. */
+    if (!isReady) {
+        // TODO Add an activity indicator while the page is loading...
+        // return <ActivityIndicator />
+        return null
+    }
+
     return (
-        <NavigationContainer>
+        <NavigationContainer
+            initialState={initialState}
+            onStateChange={(state) =>
+                AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
+            }
+        >
             <SafeAreaView className="h-screen flex flex-col justify-between bg-rose-700">
                 <StatusBar
                     barStyle={isDarkMode ? 'light-content' : 'dark-content'}

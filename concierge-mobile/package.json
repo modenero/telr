@@ -1,6 +1,6 @@
 {
   "name": "concierge-mobile",
-  "version": "23.3.9",
+  "version": "23.3.17",
   "license": "MIT",
   "scripts": {
     "android": "react-native run-android",
@@ -11,6 +11,10 @@
   },
   "dependencies": {
     "@bugsnag/react-native": "7.19.0",
+    "@ethersproject/hdnode": "5.7.0",
+    "@ethersproject/random": "5.7.0",
+    "@ethersproject/shims": "5.7.0",
+    "@react-native-async-storage/async-storage": "1.17.12",
     "@react-navigation/bottom-tabs": "6.5.7",
     "@react-navigation/native": "6.1.6",
     "@react-navigation/native-stack": "6.9.12",
