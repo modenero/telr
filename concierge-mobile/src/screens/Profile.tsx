@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 import {
   Button,
+  Dimensions,
   Pressable,
   ScrollView,
   StatusBar,
@@ -17,7 +18,11 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 
 import { decodeAddress } from 'nexajs'
 
-import QuickAccess from '../components/QuickAccess'
+import numeral from 'numeral'
+
+import scrypt from 'scrypt-js'
+
+import unicodeStringToTypedArray from '../libs/unicodeStringToTypedArray.js'
 
 const PERSISTENCE_KEY = 'TELR_PROFILE'
 
@@ -119,9 +124,10 @@ const ProfileScreen = ({ navigation }) => {
         /* Set CPU (memory) cost. */
         // NOTE: increasing this increases the overall difficulty.
         // TODO: Test params on mobile devices (scale back, if necessary).
-        const N = 16384 // 2^14 (original recommendation)
+// FIXME: Upgrade this value for (3x faster) iOS devices
+        // const N = 16384 // 2^14 (original recommendation)
         // const N = 32768 // 2^15 (safe recommendation)
-        // const N = 65536 // 2^16 (JS-native recommendation)
+        const N = 65536 // 2^16 (JS-native recommendation)
         // const N = 1048576 // 2^20 (optimal recommendation)
 
         /* Set block size. */
@@ -137,10 +143,6 @@ const ProfileScreen = ({ navigation }) => {
         /* Set derived key length (in bytes). */
         const dkLen = 32
 
-// console.log('STARTING SCRIPT');
-        /* Compute master seed. */
-        console.log('made it here!!');
-
         try {
             const masterSeed = await scrypt
                 .scrypt(password, salt, N, r, p, dkLen, (_status) => {
@@ -154,75 +156,57 @@ const ProfileScreen = ({ navigation }) => {
         } catch (err) {
             console.error(err)
         }
-// console.log('ENDING SCRIPT');
-
-        /* Update master seed. */
-        // this.updateMasterSeed(masterSeed)
-
-        /* Update email address. */
-        // this.updateEmail(this.email)
-
-        /* Set nickname. */
-        // const nickname = this.email.slice(0, this.email.indexOf('@'))
-
-        /* Update nickname. */
-        // this.updateNickname(nickname)
-
-        /* Initialize wallet. */
-        // this.initWallet()
-
-        /* Set (current receiving) address. */
-        // const address = this.getAddress
-        // console.log('ADDRESS', address)
-
-        /* Enable sign screen. */
-        // this.isSkipping = false
-
-        /* Enable sign in button. */
-        // this.canSignIn = true
-
-        /* Set target. */
-        // const target = this.getApiProvider + '/profiles'
-
-        // const msg = {
-        //     action: 'SIGNIN_EMAIL',
-        //     email: this.email,
-        // }
-
-        /* Calculate auth signature. */
-        // const signedMessage = this.getSignedMessage(JSON.stringify(msg))
-        // console.log('SIGNED MESSAGE', signedMessage)
-
-        // superagent
-        //     .post(target)
-        //     .send(signedMessage)
-        //     .end((err, res) => {
-        //         if (err) {
-        //             console.error(err) // eslint-disable-line no-console
-        //
-        //             /* Report error. */
-        //             return this.report(err)
-        //         }
-        //
-        //         console.info('Sign-in (response):', res) // eslint-disable-line no-console
-        //     })
-
-        return true
     }
 
 
     const ProfileMain = () => {
         return (
-            <Text className="text-4xl text-yellow-500 font-bold">main screen</Text>
+            <ScrollView>
+                <View className="w-full">
+
+                    <View className="w-full p-3 bg-gray-100">
+                        <Text className="text-3xl text-gray-700 font-medium">
+                            Welcome back Anon!
+                        </Text>
+
+                    </View>
+
+                </View>
+
+                <View className="mx-1 my-3 p-3 bg-gray-100 border-2 border-rose-700 rounded-xl">
+                    <Text className="text-base text-gray-400 font-medium uppercase">
+                        Mnemonic (Seed) Phrase
+                    </Text>
+
+                    <TextInput
+                        className="my-3 px-3 text-2xl text-indigo-900 font-medium leading-9 bg-indigo-300 border-2 border-indigo-500 rounded-xl"
+                        placeholder="Enter your mnemonic words here"
+                        inputMode={'text'}
+                        multiline={true}
+                        numberOfLines={4}
+                        autoCorrect={false}
+                        autoCapitalize={'none'}
+                        autoComplete={'off'}
+                        onChangeText={userInput => setMnemonic(userInput)}
+                        defaultValue={mnemonic}
+                    />
+
+                    <Pressable
+                        className="px-3 py-2 w-full bg-blue-600 border-2 border-blue-800 rounded-xl"
+                        onPress={saveMnemonic}
+                    >
+                        <Text className="text-3xl text-blue-50 font-medium">
+                            Save Mnemonic
+                        </Text>
+                    </Pressable>
+                </View>
+            </ScrollView>
         )
     }
 
     const ProfileSecurity = () => {
         return (
-            <Text className="text-4xl text-yellow-500 font-bold">security screen</Text>
-        )
-        return (
-            <>
+            <ScrollView>
                 <View className="py-10">
                     <Text className="py-3 text-xl font-medium">NexaJS Test: Address Decoding</Text>
                     <Text>{testAddr.slice(0,16) + ' ... ' + testAddr.slice(-16)}</Text>
@@ -243,7 +227,7 @@ const ProfileScreen = ({ navigation }) => {
                 <Text className="text-2xl font-bold text-yellow-400">
                     {scryptProgress}
                 </Text>
-            </>
+            </ScrollView>
         )
     }
 
@@ -286,12 +270,12 @@ const ProfileScreen = ({ navigation }) => {
             </View>
 
             <Tab.Navigator
-            initialRouteName="ProfileMain"
-      screenOptions={{
-        tabBarActiveTintColor: '#e91e63',
-        tabBarLabelStyle: { fontSize: 12 },
-        tabBarStyle: { backgroundColor: 'powderblue' },
-      }}>
+                className="w-full"
+                initialLayout={{
+                    width: Dimensions.get('window').width
+                }}
+                initialRouteName="ProfileMain"
+            >
                 <Tab.Screen name="ProfileMain" component={ProfileMain} />
                 <Tab.Screen name="ProfileSecurity" component={ProfileSecurity} />
             </Tab.Navigator>
