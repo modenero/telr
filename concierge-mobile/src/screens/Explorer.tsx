@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 import {
   Button,
@@ -14,11 +14,24 @@ import {
 import MapboxGL from '@rnmapbox/maps'
 MapboxGL.setAccessToken('pk.eyJ1IjoibW9kZW5lcm8iLCJhIjoiY2xmZGExenoxMDBzeDNxbThtNTlibWh0MiJ9.X-pBzRXifDeW1a6_wI8dZQ')
 
+/* Set Tile server. */
+// NOTE: setAccessToken requires setWellKnownTileServer for MapLibre
+MapboxGL.setWellKnownTileServer('Mapbox')
+
 const ExplorerScreen = ({ navigation }) => {
     const isDarkMode = useColorScheme() === 'dark'
 
     /* Disable (Mapbox) Telemetry. */
     MapboxGL.setTelemetryEnabled(false)
+
+    let _map = useRef(null)
+
+    const camera = useRef(null)
+
+    const defaultCamera = {
+        centerCoordinate: [46.6254765922189, 24.942461593578678],
+        zoomLevel: 8,
+      };
 
     const defaultStyle = {
         version: 8,
@@ -53,10 +66,22 @@ const ExplorerScreen = ({ navigation }) => {
 
     return (
         <MapboxGL.MapView
+            ref={_map}
             className="h-screen w-screen"
             style={styles.map}
             styleJSON={JSON.stringify(defaultStyle)}
-        />
+            zoomEnabled={true}
+            compassEnabled={true}
+            scaleBarEnabled={true}
+        >
+            <MapboxGL.Camera
+                ref={camera}
+                maxZoomLevel={20}
+                minZoomLevel={4}
+                zoomLevel={15}
+                centerCoordinate={[-84.3934053, 33.7767082]}
+            />
+        </MapboxGL.MapView>
     )
 }
 
