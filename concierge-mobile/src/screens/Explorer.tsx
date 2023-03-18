@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 
 import {
   Button,
+  PermissionsAndroid,
   Pressable,
   ScrollView,
   StatusBar,
@@ -12,9 +13,12 @@ import {
 } from 'react-native'
 
 import MapboxGL, { Logger } from '@rnmapbox/maps'
+import Geolocation from 'react-native-geolocation-service'
+
+/* Set access token. */
 MapboxGL.setAccessToken('pk.eyJ1IjoibW9kZW5lcm8iLCJhIjoiY2xmZGExenoxMDBzeDNxbThtNTlibWh0MiJ9.X-pBzRXifDeW1a6_wI8dZQ')
 
-/* Set Tile server. */
+/* Set tile server. */
 // NOTE: setAccessToken requires setWellKnownTileServer for MapLibre
 MapboxGL.setWellKnownTileServer(MapboxGL.TileServers.Mapbox)
 
@@ -40,9 +44,72 @@ const ExplorerScreen = ({ navigation }) => {
     /* Disable (Mapbox) Telemetry. */
     MapboxGL.setTelemetryEnabled(false)
 
+    /* Initialize map handler. */
     let _map = useRef(null)
 
+    /* Initialize camera handler. */
     const _camera = useRef(null)
+
+    /* Set starting position. */
+    // NOTE: Georgia Tech Square, Atlanta, GA USA
+    const DEFAULT_LOCATION = [ -84.3934053, 33.7767082 ]
+
+    /* Initialize holders. */
+    let latitude
+    let longitude
+
+    /**
+     * Geolocation Permission
+     */
+    const _getGeoPermission = () => {
+        /* Request Android permission. */
+        PermissionsAndroid.requestMultiple(
+            [
+                PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+                PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION
+            ],
+            {
+                title: 'Give Location Permission',
+                message: 'App needs location permission to find your position.'
+            }
+        ).then(granted => {
+            console.log('GRANTED', granted)
+
+            _handleUserLocation()
+
+        }).catch(err => {
+            console.warn('LOCATION ERROR:', err)
+        })
+    }
+
+    /**
+     * User Location
+     */
+    const _handleUserLocation = () => {
+        Geolocation.getCurrentPosition(_position => {
+            console.log('POSITION', JSON.stringify(_position, null, 4))
+
+            latitude = _position.coords.latitude
+            longitude = _position.coords.longitude
+
+            _camera.current.moveTo([ longitude, latitude ])
+            _camera.current.zoomTo(16)
+        },
+        (error) => {
+            // See error code charts below.
+            // GEOLOCATION ERROR 1 Location permission not granted.
+            console.log('GEOLOCATION ERROR', error.code, error.message)
+
+            if (error.code === 1) {
+                _getGeoPermission()
+            }
+        },
+        {
+            enableHighAccuracy: true,
+            timeout: 15000,
+            maximumAge: 10000
+        })
+    }
 
     return (
         <MapboxGL.MapView
@@ -50,15 +117,17 @@ const ExplorerScreen = ({ navigation }) => {
             className="h-screen w-screen"
             style={styles.map}
             zoomEnabled={true}
-            compassEnabled={true}
-            scaleBarEnabled={true}
+            compassEnabled={false}
+            pitchEnabled={false}
+            rotateEnabled={false}
+            onDidFinishLoadingMap={_handleUserLocation}
         >
             <MapboxGL.Camera
                 ref={_camera}
                 maxZoomLevel={20}
                 minZoomLevel={4}
                 zoomLevel={14}
-                centerCoordinate={[-84.3934053, 33.7767082]}
+                centerCoordinate={DEFAULT_LOCATION}
             />
         </MapboxGL.MapView>
     )

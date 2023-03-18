@@ -168,7 +168,7 @@ const ProfileScreen = ({ navigation }) => {
     }
 
 
-    const ProfileMain = () => {
+    const Settings = () => {
         return (
             <ScrollView>
                 <View className="w-full">
@@ -213,7 +213,7 @@ const ProfileScreen = ({ navigation }) => {
         )
     }
 
-    const ProfileSecurity = () => {
+    const Security = () => {
         return (
             <ScrollView>
                 <View className="py-10">
@@ -254,10 +254,23 @@ const ProfileScreen = ({ navigation }) => {
                 initialLayout={{
                     width: Dimensions.get('window').width
                 }}
-                initialRouteName="ProfileMain"
+                initialRouteName="Settings"
             >
-                <Tab.Screen name="ProfileMain" component={ProfileMain} />
-                <Tab.Screen name="ProfileSecurity" component={ProfileSecurity} />
+                <Tab.Screen
+                    name="Settings"
+                    component={Settings}
+                    options={{
+                        tabBarLabel: 'Settings',
+                    }}
+                />
+
+                <Tab.Screen
+                    name="Security"
+                    component={Security}
+                    options={{
+                        tabBarLabel: 'Security',
+                    }}
+                />
             </Tab.Navigator>
         </View>
     )
