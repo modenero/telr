@@ -17,6 +17,8 @@ import {
 /* Import assets. */
 import QrCode from '../assets/svg/QrCode'
 
+import QuickAccess from '../components/QuickAccess'
+
 const TelrScreen = ({ navigation }) => {
     const [timesPressed, setTimesPressed] = useState(0)
 
@@ -88,6 +90,28 @@ const TelrScreen = ({ navigation }) => {
                     🛎️
                 </Text>
             </View>
+
+            <ScrollView
+                className="my-3 px-3 w-full flex-1 flex-row"
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+                pagingEnabled={true}
+            >
+                <QuickAccess
+                    name="Cool #1"
+                    balance="BCH"
+                />
+
+                <QuickAccess
+                    name="Awesome #2"
+                    balance="NEXA"
+                />
+
+                <QuickAccess
+                    name="Nice #3"
+                    balance="NEXA"
+                />
+            </ScrollView>
 
             <View className="p-10">
                 <Text className="text-3xl text-rose-100 font-bold">
