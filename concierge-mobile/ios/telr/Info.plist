@@ -37,8 +37,10 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Used to secure your Wallet private keys.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Used to help with mapping assistance.</string>
+	<string>Used to locate nearby Merchants in the Explorer.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Ionicons.ttf</string>
