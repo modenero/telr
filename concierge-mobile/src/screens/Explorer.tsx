@@ -12,7 +12,7 @@ import {
 } from 'react-native'
 
 import MapboxGL from '@rnmapbox/maps'
-MapboxGL.setAccessToken('pk.eyJ1IjoibW9kZW5lcm8iLCJhIjoiY2xmZDVzYmtwMGRicDN6cnJ1ejQwbWZkYiJ9.0Hheyr15SfTnhGVRQI-a_A')
+MapboxGL.setAccessToken('pk.eyJ1IjoibW9kZW5lcm8iLCJhIjoiY2xmZGExenoxMDBzeDNxbThtNTlibWh0MiJ9.X-pBzRXifDeW1a6_wI8dZQ')
 
 const ExplorerScreen = ({ navigation }) => {
     const isDarkMode = useColorScheme() === 'dark'
