@@ -25,7 +25,8 @@ Logger.setLogCallback(log => {
     // expected warnings - see https://github.com/mapbox/mapbox-gl-native/issues/15341#issuecomment-522889062
     if (
         message.match('Request failed due to a permanent error: Canceled') ||
-        message.match('Request failed due to a permanent error: Socket Closed')
+        message.match('Request failed due to a permanent error: Socket Closed') ||
+        message.match('setAccessToken requires setWellKnownTileServer for MapLibre, see setWellKnownTileServer docs for implications')
     ) {
         return true
     }

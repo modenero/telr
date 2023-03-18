@@ -11,16 +11,21 @@ import {
     View,
 } from 'react-native'
 
+/* Set persistence key. */
+const PERSISTENCE_KEY = 'TELR_BLANK'
+
 /**
  * Blank Screen
  *
  * Screen boilerplate.
  */
 const BlankScreen = ({ navigation }) => {
-    const [timesPressed, setTimesPressed] = useState(0)
+    const [holder, setHolder] = useState(0)
 
+    /* Set dark mode. */
     const isDarkMode = useColorScheme() === 'dark'
 
+    /* Return UI. */
     return (
         <View className="h-full flex justify-center items-center bg-gray-900">
             <View>
@@ -38,4 +43,5 @@ const BlankScreen = ({ navigation }) => {
     )
 }
 
+/* Export module. */
 export default BlankScreen
