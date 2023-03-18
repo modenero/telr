@@ -95,6 +95,9 @@ function App(): JSX.Element {
                 />
 
                 <Tab.Navigator
+                    screenOptions={{
+                        headerShown: false,
+                    }}
                     initialRouteName="Telr"
                     tabBar={ props => <NavMenu {...props} /> }
                 >
