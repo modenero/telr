@@ -11,12 +11,27 @@ import {
   View,
 } from 'react-native'
 
-import MapboxGL from '@rnmapbox/maps'
+import MapboxGL, { Logger } from '@rnmapbox/maps'
 MapboxGL.setAccessToken('pk.eyJ1IjoibW9kZW5lcm8iLCJhIjoiY2xmZGExenoxMDBzeDNxbThtNTlibWh0MiJ9.X-pBzRXifDeW1a6_wI8dZQ')
 
 /* Set Tile server. */
 // NOTE: setAccessToken requires setWellKnownTileServer for MapLibre
-MapboxGL.setWellKnownTileServer('Mapbox')
+MapboxGL.setWellKnownTileServer(MapboxGL.TileServers.Mapbox)
+
+// edit logging messages
+Logger.setLogCallback(log => {
+    const { message } = log
+
+    // expected warnings - see https://github.com/mapbox/mapbox-gl-native/issues/15341#issuecomment-522889062
+    if (
+        message.match('Request failed due to a permanent error: Canceled') ||
+        message.match('Request failed due to a permanent error: Socket Closed')
+    ) {
+        return true
+    }
+
+    return false
+})
 
 const ExplorerScreen = ({ navigation }) => {
     const isDarkMode = useColorScheme() === 'dark'
@@ -26,56 +41,19 @@ const ExplorerScreen = ({ navigation }) => {
 
     let _map = useRef(null)
 
-    const camera = useRef(null)
-
-    const defaultCamera = {
-        centerCoordinate: [46.6254765922189, 24.942461593578678],
-        zoomLevel: 8,
-      };
-
-    const defaultStyle = {
-        version: 8,
-        name: 'Land',
-        sources: {
-            map: {
-                type: 'raster',
-                tiles: ['https://a.tile.openstreetmap.org/{z}/{x}/{y}.png'],
-                tileSize: 256,
-                minzoom: 1,
-                maxzoom: 19,
-            },
-        },
-        layers: [
-            {
-                id: 'background',
-                type: 'background',
-                paint: {
-                    'background-color': '#f2efea',
-                },
-            },
-            {
-                id: 'map',
-                type: 'raster',
-                source: 'map',
-                paint: {
-                    'raster-fade-duration': 100,
-                },
-            },
-        ],
-    }
+    const _camera = useRef(null)
 
     return (
         <MapboxGL.MapView
             ref={_map}
             className="h-screen w-screen"
             style={styles.map}
-            styleJSON={JSON.stringify(defaultStyle)}
             zoomEnabled={true}
             compassEnabled={true}
             scaleBarEnabled={true}
         >
             <MapboxGL.Camera
-                ref={camera}
+                ref={_camera}
                 maxZoomLevel={20}
                 minZoomLevel={4}
                 zoomLevel={14}
