@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 
 /* Import components. */
 import {
+    Dimensions,
     Pressable,
     ScrollView,
     StatusBar,

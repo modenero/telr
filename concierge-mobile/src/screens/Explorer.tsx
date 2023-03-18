@@ -1,16 +1,19 @@
 import React, { useRef, useState } from 'react'
 
 import {
-  Button,
-  PermissionsAndroid,
-  Pressable,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
+    Button,
+    Dimensions,
+    PermissionsAndroid,
+    Pressable,
+    ScrollView,
+    StatusBar,
+    StyleSheet,
+    Text,
+    useColorScheme,
+    View,
 } from 'react-native'
+
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 
 import MapboxGL, { Logger } from '@rnmapbox/maps'
 import Geolocation from 'react-native-geolocation-service'
@@ -38,6 +41,8 @@ Logger.setLogCallback(log => {
     return false
 })
 
+const Tab = createMaterialTopTabNavigator()
+
 const ExplorerScreen = ({ navigation }) => {
     const isDarkMode = useColorScheme() === 'dark'
 
@@ -53,6 +58,9 @@ const ExplorerScreen = ({ navigation }) => {
     /* Set starting position. */
     // NOTE: Georgia Tech Square, Atlanta, GA USA
     const DEFAULT_LOCATION = [ -84.3934053, 33.7767082 ]
+
+    /* Set default zoom level. */
+    const DEFAULT_ZOOM = 16
 
     /* Initialize holders. */
     let latitude
@@ -76,7 +84,6 @@ const ExplorerScreen = ({ navigation }) => {
             console.log('GRANTED', granted)
 
             _handleUserLocation()
-
         }).catch(err => {
             console.warn('LOCATION ERROR:', err)
         })
@@ -93,43 +100,86 @@ const ExplorerScreen = ({ navigation }) => {
             longitude = _position.coords.longitude
 
             _camera.current.moveTo([ longitude, latitude ])
-            _camera.current.zoomTo(16)
-        },
-        (error) => {
+            _camera.current.zoomTo(DEFAULT_ZOOM)
+        }, (error) => {
             // See error code charts below.
             // GEOLOCATION ERROR 1 Location permission not granted.
             console.log('GEOLOCATION ERROR', error.code, error.message)
 
+            /* Validate (permissions) error. */
             if (error.code === 1) {
                 _getGeoPermission()
+            } else {
+                /* Move to (default) location. */
+                _camera.current.moveTo(DEFAULT_LOCATION)
+
+                /* Set (default) zoom. */
+                _camera.current.zoomTo(DEFAULT_ZOOM)
             }
-        },
-        {
+        }, {
             enableHighAccuracy: true,
             timeout: 15000,
             maximumAge: 10000
         })
     }
 
+    const MapView = () => {
+        return (
+            <MapboxGL.MapView
+                ref={_map}
+                className="h-screen w-screen"
+                style={styles.map}
+                zoomEnabled={true}
+                compassEnabled={false}
+                pitchEnabled={false}
+                rotateEnabled={false}
+                onDidFinishLoadingMap={_handleUserLocation}
+            >
+                <MapboxGL.Camera
+                    ref={_camera}
+                    maxZoomLevel={20}
+                    minZoomLevel={4}
+                    zoomLevel={14}
+                    centerCoordinate={DEFAULT_LOCATION}
+                />
+            </MapboxGL.MapView>
+        )
+    }
+
+    const ListView = () => {
+        return (
+            <View>
+                <Text>List View</Text>
+            </View>
+        )
+    }
+
     return (
-        <MapboxGL.MapView
-            ref={_map}
-            className="h-screen w-screen"
-            style={styles.map}
-            zoomEnabled={true}
-            compassEnabled={false}
-            pitchEnabled={false}
-            rotateEnabled={false}
-            onDidFinishLoadingMap={_handleUserLocation}
-        >
-            <MapboxGL.Camera
-                ref={_camera}
-                maxZoomLevel={20}
-                minZoomLevel={4}
-                zoomLevel={14}
-                centerCoordinate={DEFAULT_LOCATION}
-            />
-        </MapboxGL.MapView>
+        <View className="h-full flex justify-between items-center bg-gray-900">
+            <Tab.Navigator
+                className="w-full"
+                initialLayout={{
+                    width: Dimensions.get('window').width
+                }}
+                initialRouteName="MapView"
+            >
+                <Tab.Screen
+                    name="MapView"
+                    component={MapView}
+                    options={{
+                        tabBarLabel: 'Map View',
+                    }}
+                />
+
+                <Tab.Screen
+                    name="ListView"
+                    component={ListView}
+                    options={{
+                        tabBarLabel: 'List View',
+                    }}
+                />
+            </Tab.Navigator>
+        </View>
     )
 }
 
