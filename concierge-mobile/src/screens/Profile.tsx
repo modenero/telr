@@ -240,35 +240,6 @@ const ProfileScreen = ({ navigation }) => {
 
     return (
         <View className="h-full flex justify-between items-center bg-gray-900">
-
-            <View className="h-20 my-3 px-3">
-                <ScrollView
-                    className="my-3 px-3"
-                    horizontal={true}
-                    showsHorizontalScrollIndicator={false}
-                    pagingEnabled={true}
-                    height={20}
-                >
-                    <QuickAccess
-                        name="Cool #1"
-                        balance="BCH"
-                        onPress={() => navigation.navigate('Grow')}
-                    />
-
-                    <QuickAccess
-                        name="Awesome #2"
-                        balance="NEXA"
-                        onPress={() => navigation.navigate('Grow')}
-                    />
-
-                    <QuickAccess
-                        name="Nice #3"
-                        balance="NEXA"
-                        onPress={() => navigation.navigate('Grow')}
-                    />
-                </ScrollView>
-            </View>
-
             <Tab.Navigator
                 className="w-full"
                 initialLayout={{
@@ -279,8 +250,6 @@ const ProfileScreen = ({ navigation }) => {
                 <Tab.Screen name="ProfileMain" component={ProfileMain} />
                 <Tab.Screen name="ProfileSecurity" component={ProfileSecurity} />
             </Tab.Navigator>
-
-            <Text className="text-4xl text-yellow-500 font-bold">more to come</Text>
         </View>
     )
 }
