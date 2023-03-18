@@ -22,6 +22,8 @@ import numeral from 'numeral'
 
 import scrypt from 'scrypt-js'
 
+import * as Keychain from 'react-native-keychain'
+
 import unicodeStringToTypedArray from '../libs/unicodeStringToTypedArray.js'
 
 const PERSISTENCE_KEY = 'TELR_PROFILE'
@@ -39,15 +41,18 @@ const ProfileScreen = ({ navigation }) => {
 
     const testAddr = 'nexa:nqtsq5g5qffexn067uqxkysltqq0uhrrr6fqy2geavzpy2fk'
 
-    const saveMnemonic = () => {
+    const saveMnemonic = async () => {
         console.log('Saving...', mnemonic)
 
         const newState = {
             ...state,
-            mnemonic,
+            // mnemonic,
         }
 
         AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(newState))
+
+        // Store the credentials
+        await Keychain.setGenericPassword('mnemonic', mnemonic)
     }
 
     React.useEffect(() => {
@@ -60,9 +65,14 @@ const ProfileScreen = ({ navigation }) => {
                 if (state !== undefined) {
                     setState(state)
 
-                    if (state.mnemonic) {
-                        setMnemonic(state.mnemonic)
-                    }
+                }
+
+                /* Request (secure) credentials. */
+                const credentials = await Keychain.getGenericPassword()
+
+                /* Validate (secure) credentials. */
+                if (credentials?.password) {
+                    setMnemonic(credentials.password)
                 }
             } finally {
                 setIsReady(true)
