@@ -78,7 +78,7 @@ const ExplorerScreen = ({ navigation }) => {
                 ref={camera}
                 maxZoomLevel={20}
                 minZoomLevel={4}
-                zoomLevel={15}
+                zoomLevel={14}
                 centerCoordinate={[-84.3934053, 33.7767082]}
             />
         </MapboxGL.MapView>
