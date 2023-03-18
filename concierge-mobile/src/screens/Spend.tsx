@@ -12,6 +12,8 @@ import {
 
 import GiftCard from '../components/GiftCard'
 
+import QuickAccess from '../components/QuickAccess'
+
 const SpendScreen = ({ navigation }) => {
     const isDarkMode = useColorScheme() === 'dark';
 
@@ -23,11 +25,32 @@ const SpendScreen = ({ navigation }) => {
                 </Text>
             </View>
 
-            <View>
-                <Button
-                    title="Go to Grow"
-                    onPress={() => navigation.navigate('Grow')}
-                />
+            <View className="h-20 my-3 px-3">
+                <ScrollView
+                    className="my-3 px-3"
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    pagingEnabled={true}
+                    height={20}
+                >
+                    <QuickAccess
+                        name="Cool #1"
+                        balance="BCH"
+                        onPress={() => navigation.navigate('Grow')}
+                    />
+
+                    <QuickAccess
+                        name="Awesome #2"
+                        balance="NEXA"
+                        onPress={() => navigation.navigate('Grow')}
+                    />
+
+                    <QuickAccess
+                        name="Nice #3"
+                        balance="NEXA"
+                        onPress={() => navigation.navigate('Grow')}
+                    />
+                </ScrollView>
             </View>
 
             <ScrollView className="px-3 w-full flex-1 flex-col">

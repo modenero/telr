@@ -12,6 +12,8 @@ import {
 
 import Platform from '../components/Platform'
 
+import QuickAccess from '../components/QuickAccess'
+
 const GrowScreen = ({ navigation }) => {
     const isDarkMode = useColorScheme() === 'dark';
 
@@ -23,14 +25,45 @@ const GrowScreen = ({ navigation }) => {
                 </Text>
             </View>
 
-            <View>
-                <Button
-                    title="Go to Spend"
-                    onPress={() => navigation.navigate('Spend')}
-                />
+            <View className="h-20 my-3 px-3">
+                <ScrollView
+                    className="my-3 px-3"
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    pagingEnabled={true}
+                    height={20}
+                >
+                    <QuickAccess
+                        name="Cool #1"
+                        balance="BCH"
+                        onPress={() => navigation.navigate('Spend')}
+                    />
+
+                    <QuickAccess
+                        name="Awesome #2"
+                        balance="NEXA"
+                        onPress={() => navigation.navigate('Spend')}
+                    />
+
+                    <QuickAccess
+                        name="Nice #3"
+                        balance="NEXA"
+                        onPress={() => navigation.navigate('Spend')}
+                    />
+                </ScrollView>
             </View>
 
-            <ScrollView className="px-3 w-full flex-1 flex-col">
+            <ScrollView className="h-full px-3 w-full flex-1 flex-col">
+                <Platform
+                    name="AnyHedge"
+                    balance="BCH"
+                />
+
+                <Platform
+                    name="Nexa Moon"
+                    balance="NEXA"
+                />
+
                 <Platform
                     name="AnyHedge"
                     balance="BCH"

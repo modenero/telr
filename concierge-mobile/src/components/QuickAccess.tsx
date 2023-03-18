@@ -23,8 +23,8 @@ type BlankProps = {
  */
 export default Blank = (props: BlankProps) => {
     return (
-        <View className="mx-3 h-20 px-3 flex justify-center items-center bg-rose-500 border-4 border-purple-500 rounded-xl">
-            <Text className="text-3xl text-purple-100 font-medium">
+        <View className="mx-3 h-full px-3 flex justify-center items-center bg-yellow-600 border-4 border-yellow-800 rounded-xl">
+            <Text className="text-2xl text-purple-100 font-medium">
                 {props.name} - {props.balance}
             </Text>
         </View>

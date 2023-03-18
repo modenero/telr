@@ -17,7 +17,7 @@ import {
 /* Import assets. */
 import QrCode from '../assets/svg/QrCode'
 
-import QuickAccess from '../components/QuickAccess'
+import Platform from '../components/Platform'
 
 const TelrScreen = ({ navigation }) => {
     const [timesPressed, setTimesPressed] = useState(0)
@@ -31,7 +31,7 @@ const TelrScreen = ({ navigation }) => {
     }
 
     return (
-        <ScrollView
+        <View
             contentInsetAdjustmentBehavior="automatic"
             className="flex-1 bg-rose-700"
         >
@@ -77,7 +77,7 @@ const TelrScreen = ({ navigation }) => {
                 </View>
             </View>
 
-            <View className="flex-1 h-48 items-center justify-center bg-gray-100 border-y-2 border-rose-500 dark:bg-gray-900">
+            <View className="flex-1 h-32 items-center justify-center bg-gray-100 border-y-2 border-rose-500 dark:bg-gray-900">
                 <Text className="text-3xl text-rose-700 dark:text-rose-200 font-medium">
                     TΞLR Concierge
                 </Text>
@@ -91,40 +91,51 @@ const TelrScreen = ({ navigation }) => {
                 </Text>
             </View>
 
+            <View className="flex-1 h-full bg-green-500">
             <ScrollView
-                className="my-3 px-3 w-full flex-1 flex-row"
-                horizontal={true}
+                className="my-3 px-3 w-full"
+                horizontal={false}
                 showsHorizontalScrollIndicator={false}
                 pagingEnabled={true}
             >
-                <QuickAccess
+                <Platform
                     name="Cool #1"
                     balance="BCH"
                 />
 
-                <QuickAccess
+                <Platform
                     name="Awesome #2"
                     balance="NEXA"
                 />
 
-                <QuickAccess
+                <Platform
+                    name="Nice #3"
+                    balance="NEXA"
+                />
+
+                <Platform
+                    name="Cool #1"
+                    balance="BCH"
+                />
+
+                <Platform
+                    name="Awesome #2"
+                    balance="NEXA"
+                />
+
+                <Platform
                     name="Nice #3"
                     balance="NEXA"
                 />
             </ScrollView>
-
-            <View className="p-10">
-                <Text className="text-3xl text-rose-100 font-bold">
-                    {textLog}
-                </Text>
             </View>
 
-            <Button
-                title="Go to Home"
-                onPress={() => navigation.navigate('Home')}
-            />
-
-        </ScrollView>
+            <View className="py-3">
+                <Text className="text-3xl text-rose-100 font-bold">
+                    TEXT LOG{textLog}
+                </Text>
+            </View>
+        </View>
     )
 }
 
