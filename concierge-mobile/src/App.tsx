@@ -5,6 +5,11 @@
  * @format
  */
 
+// NOTE: This library works as a polyfill for the global
+//       `crypto.getRandomValues`. Now you can use uuid or other libraries that
+//       assume `crypto.getRandomValues` is available
+import 'react-native-get-random-values'
+
 import React, { useState } from 'react'
 
 import {

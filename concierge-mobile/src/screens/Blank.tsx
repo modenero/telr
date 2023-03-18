@@ -3,13 +3,12 @@ import React, { useState } from 'react'
 
 /* Import components. */
 import {
-  Button,
-  Pressable,
-  ScrollView,
-  StatusBar,
-  Text,
-  useColorScheme,
-  View,
+    Pressable,
+    ScrollView,
+    StatusBar,
+    Text,
+    useColorScheme,
+    View,
 } from 'react-native'
 
 /**
@@ -30,10 +29,11 @@ const BlankScreen = ({ navigation }) => {
                 </Text>
             </View>
 
-            <Button
-                title="Go to TΞLR"
+            <Pressable
                 onPress={() => navigation.navigate('Telr')}
-            />
+            >
+                <Text>Go to TΞLR</Text>
+            </Pressable>
         </View>
     )
 }
