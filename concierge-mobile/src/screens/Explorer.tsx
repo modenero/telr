@@ -75,15 +75,16 @@ const ExplorerScreen = ({ navigation }) => {
             PermissionsAndroid.requestMultiple(
                 [
                     PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-                    PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION
+                    PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION,
                 ],
                 {
                     title: 'Give Location Permission',
-                    message: 'App needs location permission to find your position.'
+                    message: 'App needs location permission to find your position.',
                 }
             ).then(granted => {
                 console.log('GRANTED', granted)
 
+                /* Handle user location. */
                 _handleUserLocation()
             }).catch(err => {
                 console.warn('LOCATION ERROR:', err)
@@ -159,7 +160,7 @@ const ExplorerScreen = ({ navigation }) => {
     }
 
     return (
-        <View className="h-full flex justify-between items-center bg-gray-900">
+        <View className="h-full flex">
             <Tab.Navigator
                 className="w-full"
                 initialLayout={{

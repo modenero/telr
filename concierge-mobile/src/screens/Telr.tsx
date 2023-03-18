@@ -17,7 +17,9 @@ import {
 /* Import assets. */
 import QrCode from '../assets/svg/QrCode'
 
-import Platform from '../components/Platform'
+import Provider from '../components/Provider'
+
+import QuickAccess from '../components/QuickAccess'
 
 const TelrScreen = ({ navigation }) => {
     const [timesPressed, setTimesPressed] = useState(0)
@@ -35,6 +37,33 @@ const TelrScreen = ({ navigation }) => {
             contentInsetAdjustmentBehavior="automatic"
             className="flex-1 bg-rose-700"
         >
+            <View className="h-20 my-3 px-3">
+                <ScrollView
+                    className="my-3 px-3"
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    pagingEnabled={true}
+                    height={20}
+                >
+                    <QuickAccess
+                        name="Nexa"
+                        balance="NEXA"
+                        onPress={() => navigation.navigate('Spend')}
+                    />
+
+                    <QuickAccess
+                        name="Bitcoin Cash"
+                        balance="BCH"
+                        onPress={() => navigation.navigate('Spend')}
+                    />
+
+                    <QuickAccess
+                        name="Tron"
+                        balance="TRX"
+                        onPress={() => navigation.navigate('Spend')}
+                    />
+                </ScrollView>
+            </View>
 
             <View className="px-3 py-1 flex flex-row justify-between items-center bg-gray-100 border-y-2 border-rose-500 dark:bg-gray-900">
                 <View className="">
@@ -77,63 +106,43 @@ const TelrScreen = ({ navigation }) => {
                 </View>
             </View>
 
-            <View className="flex-1 h-32 items-center justify-center bg-gray-100 border-y-2 border-rose-500 dark:bg-gray-900">
-                <Text className="text-3xl text-rose-700 dark:text-rose-200 font-medium">
-                    TΞLR Concierge
-                </Text>
-
-                <Text className="text-xl text-rose-700 dark:text-rose-200 font-medium">
-                    Crypto @ Your Service
-                </Text>
-
-                <Text className="text-5xl">
-                    🛎️
-                </Text>
-            </View>
-
             <View className="flex-1 h-full bg-green-500">
-            <ScrollView
-                className="my-3 px-3 w-full"
-                horizontal={false}
-                showsHorizontalScrollIndicator={false}
-                pagingEnabled={true}
-            >
-                <Platform
-                    name="Cool #1"
-                    balance="BCH"
-                />
+                <ScrollView
+                    className="my-3 px-3 w-full"
+                    horizontal={false}
+                    showsHorizontalScrollIndicator={false}
+                    pagingEnabled={true}
+                >
+                    <Provider
+                        name="Cool #1"
+                        balance="BCH"
+                    />
 
-                <Platform
-                    name="Awesome #2"
-                    balance="NEXA"
-                />
+                    <Provider
+                        name="Awesome #2"
+                        balance="NEXA"
+                    />
 
-                <Platform
-                    name="Nice #3"
-                    balance="NEXA"
-                />
+                    <Provider
+                        name="Nice #3"
+                        balance="NEXA"
+                    />
 
-                <Platform
-                    name="Cool #1"
-                    balance="BCH"
-                />
+                    <Provider
+                        name="Cool #1"
+                        balance="BCH"
+                    />
 
-                <Platform
-                    name="Awesome #2"
-                    balance="NEXA"
-                />
+                    <Provider
+                        name="Awesome #2"
+                        balance="NEXA"
+                    />
 
-                <Platform
-                    name="Nice #3"
-                    balance="NEXA"
-                />
-            </ScrollView>
-            </View>
-
-            <View className="py-3">
-                <Text className="text-3xl text-rose-100 font-bold">
-                    TEXT LOG{textLog}
-                </Text>
+                    <Provider
+                        name="Nice #3"
+                        balance="NEXA"
+                    />
+                </ScrollView>
             </View>
         </View>
     )

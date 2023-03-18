@@ -1,79 +1,88 @@
 import React, { useState } from 'react'
 
 import {
-  Button,
-  Pressable,
-  ScrollView,
-  StatusBar,
-  Text,
-  useColorScheme,
-  View,
+    Dimensions,
+    Pressable,
+    ScrollView,
+    StatusBar,
+    Text,
+    useColorScheme,
+    View,
 } from 'react-native'
 
-import Platform from '../components/Platform'
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 
-import QuickAccess from '../components/QuickAccess'
+import Provider from '../components/Provider'
+
+const Tab = createMaterialTopTabNavigator()
 
 const GrowScreen = ({ navigation }) => {
     const isDarkMode = useColorScheme() === 'dark';
 
-    return (
-        <View className="h-full flex justify-center items-center bg-gray-900">
-            <View>
-                <Text className="text-3xl text-gray-300 font-medium">
-                    Grow Your Crypto
+    const Portfolio = () => {
+        return (
+            <View className="p-3">
+                <Text className="text-3xl font-medium">
+                    My Summary
                 </Text>
             </View>
+        )
+    }
 
-            <View className="h-20 my-3 px-3">
-                <ScrollView
-                    className="my-3 px-3"
-                    horizontal={true}
-                    showsHorizontalScrollIndicator={false}
-                    pagingEnabled={true}
-                    height={20}
-                >
-                    <QuickAccess
-                        name="Cool #1"
-                        balance="BCH"
-                        onPress={() => navigation.navigate('Spend')}
+    const Providers = () => {
+        return (
+            <View className="h-full">
+                <View className="mx-2 my-5 items-center bg-indigo-300 border-2 border-indigo-500 rounded-lg">
+                    <Text className="px-3 py-1 text-2xl text-indigo-900 font-medium uppercase">
+                        Staking
+                    </Text>
+                </View>
+
+                <ScrollView className="h-full px-2 w-full flex-1 flex-col">
+                    <Provider
+                        name="AnyHedge"
+                        assets="Bitcoin Cash (BCH)"
                     />
 
-                    <QuickAccess
-                        name="Awesome #2"
-                        balance="NEXA"
-                        onPress={() => navigation.navigate('Spend')}
+                    <Provider
+                        name="THORChain"
+                        assets="Multi-Chain"
                     />
 
-                    <QuickAccess
-                        name="Nice #3"
-                        balance="NEXA"
-                        onPress={() => navigation.navigate('Spend')}
+                    <Provider
+                        name="Maya"
+                        assets="Multi-Chain"
                     />
                 </ScrollView>
             </View>
+        )
+    }
 
-            <ScrollView className="h-full px-3 w-full flex-1 flex-col">
-                <Platform
-                    name="AnyHedge"
-                    balance="BCH"
+    return (
+        <View className="h-full flex">
+            <Tab.Navigator
+                className="w-full"
+                initialLayout={{
+                    width: Dimensions.get('window').width
+                }}
+                initialRouteName="Portfolio"
+            >
+                <Tab.Screen
+                    name="Portfolio"
+                    component={Portfolio}
+                    options={{
+                        tabBarLabel: 'My Portfolio',
+                    }}
                 />
 
-                <Platform
-                    name="Nexa Moon"
-                    balance="NEXA"
+                <Tab.Screen
+                    name="Providers"
+                    component={Providers}
+                    options={{
+                        tabBarLabel: 'Providers',
+                    }}
                 />
-
-                <Platform
-                    name="AnyHedge"
-                    balance="BCH"
-                />
-
-                <Platform
-                    name="Nexa Moon"
-                    balance="NEXA"
-                />
-            </ScrollView>
+            </Tab.Navigator>
         </View>
     )
 }

@@ -3,12 +3,11 @@ import React, { useState } from 'react'
 
 /* Import components. */
 import {
-  Button,
-  Pressable,
-  ScrollView,
-  StatusBar,
-  Text,
-  View,
+    Pressable,
+    ScrollView,
+    StatusBar,
+    Text,
+    View,
 } from 'react-native'
 
 /* Define properties. */

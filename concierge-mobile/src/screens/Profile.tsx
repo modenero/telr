@@ -248,7 +248,7 @@ const ProfileScreen = ({ navigation }) => {
     }
 
     return (
-        <View className="h-full flex justify-between items-center bg-gray-900">
+        <View className="h-full">
             <Tab.Navigator
                 className="w-full"
                 initialLayout={{
@@ -260,7 +260,7 @@ const ProfileScreen = ({ navigation }) => {
                     name="Settings"
                     component={Settings}
                     options={{
-                        tabBarLabel: 'Settings',
+                        tabBarLabel: 'My Settings',
                     }}
                 />
 
@@ -268,7 +268,7 @@ const ProfileScreen = ({ navigation }) => {
                     name="Security"
                     component={Security}
                     options={{
-                        tabBarLabel: 'Security',
+                        tabBarLabel: 'My Security',
                     }}
                 />
             </Tab.Navigator>
