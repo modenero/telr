@@ -123,12 +123,21 @@ const ProfileScreen = ({ navigation }) => {
 
         /* Set CPU (memory) cost. */
         // NOTE: increasing this increases the overall difficulty.
-        // TODO: Test params on mobile devices (scale back, if necessary).
-// FIXME: Upgrade this value for (3x faster) iOS devices
-        // const N = 16384 // 2^14 (original recommendation)
-        // const N = 32768 // 2^15 (safe recommendation)
-        const N = 65536 // 2^16 (JS-native recommendation)
-        // const N = 1048576 // 2^20 (optimal recommendation)
+        const N1  = 16384   // 2^14 (original recommendation)
+        const N2  = 32768   // 2^15 (safe recommendation)
+        const N4  = 65536   // 2^16 (JS-native recommendation)
+        const N64 = 1048576 // 2^20 (optimal recommendation)
+
+        /* Initialize (N) value. */
+        let N
+
+        /* Handle OS detection. */
+        // NOTE: iOS devices are approx (3x) faster than Android.
+        if (Platform.OS === 'ios') {
+            N = N2 // ~?? iOS / ~?? Android
+        } else {
+            N = N1 // ~30s iOS / ~90s Android
+        }
 
         /* Set block size. */
         // NOTE: Increasing this increases the dependency on memory
