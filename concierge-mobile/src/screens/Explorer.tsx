@@ -70,23 +70,27 @@ const ExplorerScreen = ({ navigation }) => {
      * Geolocation Permission
      */
     const _getGeoPermission = () => {
-        /* Request Android permission. */
-        PermissionsAndroid.requestMultiple(
-            [
-                PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-                PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION
-            ],
-            {
-                title: 'Give Location Permission',
-                message: 'App needs location permission to find your position.'
-            }
-        ).then(granted => {
-            console.log('GRANTED', granted)
+        if (Platform.OS === 'android') {
+            /* Request Android permission. */
+            PermissionsAndroid.requestMultiple(
+                [
+                    PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+                    PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION
+                ],
+                {
+                    title: 'Give Location Permission',
+                    message: 'App needs location permission to find your position.'
+                }
+            ).then(granted => {
+                console.log('GRANTED', granted)
 
-            _handleUserLocation()
-        }).catch(err => {
-            console.warn('LOCATION ERROR:', err)
-        })
+                _handleUserLocation()
+            }).catch(err => {
+                console.warn('LOCATION ERROR:', err)
+            })
+        } else {
+            // TODO
+        }
     }
 
     /**
