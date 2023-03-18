@@ -18,6 +18,7 @@
     "@react-navigation/bottom-tabs": "6.5.7",
     "@react-navigation/native": "6.1.6",
     "@react-navigation/native-stack": "6.9.12",
+    "@rnmapbox/maps": "10.0.0-beta.78",
     "nativewind": "2.0.11",
     "nexajs": "23.3.1",
     "react": "18.2.0",

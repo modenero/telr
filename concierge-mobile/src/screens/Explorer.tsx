@@ -5,28 +5,76 @@ import {
   Pressable,
   ScrollView,
   StatusBar,
+  StyleSheet,
   Text,
   useColorScheme,
   View,
 } from 'react-native'
 
+import MapboxGL from '@rnmapbox/maps'
+MapboxGL.setAccessToken('pk.eyJ1IjoibW9kZW5lcm8iLCJhIjoiY2xmZDVzYmtwMGRicDN6cnJ1ejQwbWZkYiJ9.0Hheyr15SfTnhGVRQI-a_A')
+
 const ExplorerScreen = ({ navigation }) => {
-    const isDarkMode = useColorScheme() === 'dark';
+    const isDarkMode = useColorScheme() === 'dark'
+
+    /* Disable (Mapbox) Telemetry. */
+    MapboxGL.setTelemetryEnabled(false)
+
+    const defaultStyle = {
+        version: 8,
+        name: 'Land',
+        sources: {
+            map: {
+                type: 'raster',
+                tiles: ['https://a.tile.openstreetmap.org/{z}/{x}/{y}.png'],
+                tileSize: 256,
+                minzoom: 1,
+                maxzoom: 19,
+            },
+        },
+        layers: [
+            {
+                id: 'background',
+                type: 'background',
+                paint: {
+                    'background-color': '#f2efea',
+                },
+            },
+            {
+                id: 'map',
+                type: 'raster',
+                source: 'map',
+                paint: {
+                    'raster-fade-duration': 100,
+                },
+            },
+        ],
+    }
 
     return (
-        <View className="h-full flex justify-center items-center bg-gray-900">
-            <View>
-                <Text className="text-3xl text-gray-300 font-medium">
-                    Web3 / Crypto Explorer
-                </Text>
-            </View>
-
-            <Button
-                title="Go to TΞLR"
-                onPress={() => navigation.navigate('Telr')}
-            />
-        </View>
+        <MapboxGL.MapView
+            className="h-screen w-screen"
+            style={styles.map}
+            styleJSON={JSON.stringify(defaultStyle)}
+        />
     )
 }
+
+const styles = StyleSheet.create({
+  page: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#F5FCFF"
+  },
+  container: {
+    height: 300,
+    width: 300,
+    backgroundColor: "tomato"
+  },
+  map: {
+    flex: 1
+  }
+});
 
 export default ExplorerScreen
