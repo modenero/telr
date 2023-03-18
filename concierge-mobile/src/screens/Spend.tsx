@@ -24,9 +24,10 @@ const SpendScreen = ({ navigation }) => {
             </View>
 
             <View>
-                <Text className="text-3xl text-gray-300 font-medium">
-                    BUTTONS HERE
-                </Text>
+                <Button
+                    title="Go to Grow"
+                    onPress={() => navigation.navigate('Grow')}
+                />
             </View>
 
             <ScrollView className="px-3 w-full flex-1 flex-col">

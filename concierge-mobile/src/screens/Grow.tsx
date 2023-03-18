@@ -10,6 +10,8 @@ import {
   View,
 } from 'react-native'
 
+import Platform from '../components/Platform'
+
 const GrowScreen = ({ navigation }) => {
     const isDarkMode = useColorScheme() === 'dark';
 
@@ -21,10 +23,24 @@ const GrowScreen = ({ navigation }) => {
                 </Text>
             </View>
 
-            <Button
-                title="Go to Save"
-                onPress={() => navigation.navigate('Save')}
-            />
+            <View>
+                <Button
+                    title="Go to Spend"
+                    onPress={() => navigation.navigate('Spend')}
+                />
+            </View>
+
+            <ScrollView className="px-3 w-full flex-1 flex-col">
+                <Platform
+                    name="AnyHedge"
+                    balance="BCH"
+                />
+
+                <Platform
+                    name="Nexa Moon"
+                    balance="NEXA"
+                />
+            </ScrollView>
         </View>
     )
 }
