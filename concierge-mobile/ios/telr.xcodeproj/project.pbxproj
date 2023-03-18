@@ -508,7 +508,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 20230307;
+				CURRENT_PROJECT_VERSION = 20230317;
 				DEVELOPMENT_TEAM = 9QL927TTRS;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = telr/Info.plist;
@@ -518,7 +518,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 23.3.7;
+				MARKETING_VERSION = 23.3.17;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -526,8 +526,12 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = app.telr;
 				PRODUCT_NAME = telr;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -538,7 +542,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 20230307;
+				CURRENT_PROJECT_VERSION = 20230317;
 				DEVELOPMENT_TEAM = 9QL927TTRS;
 				INFOPLIST_FILE = telr/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "TΞLR";
@@ -547,7 +551,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 23.3.7;
+				MARKETING_VERSION = 23.3.17;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -555,7 +559,11 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = app.telr;
 				PRODUCT_NAME = telr;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
