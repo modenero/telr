@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 import {
   Button,
@@ -12,6 +12,8 @@ import {
 } from 'react-native'
 
 import Ionicons from 'react-native-vector-icons/Ionicons'
+
+import RBSheet from 'react-native-raw-bottom-sheet'
 
 /* Define window dimensions. */
 const windowWidth = Dimensions.get('window').width
@@ -47,6 +49,8 @@ const NavMenu = ({ state, descriptors, navigation }) => {
         style += ' mb-0'
     }
 
+    const refRBSheet = useRef()
+
     return (
         <View className={style}>
             <Pressable
@@ -71,7 +75,7 @@ const NavMenu = ({ state, descriptors, navigation }) => {
 
             <Pressable
                 onPress={() => navigation.navigate('Telr')}
-                onLongPress={() => null}
+                onLongPress={() => refRBSheet.current.open()}
                 className="-mt-6 w-20 h-18 px-1 flex justify-center items-center bg-indigo-500 border-2 border-indigo-700 rounded-lg"
             >
                 <Text className="text-2xl text-gray-100 font-medium">
@@ -98,6 +102,26 @@ const NavMenu = ({ state, descriptors, navigation }) => {
                     <Ionicons name="person" size={32} color="coral" />
                 </View>
             </Pressable>
+
+            <RBSheet
+                ref={refRBSheet}
+                closeOnDragDown={true}
+                closeOnPressMask={false}
+                customStyles={{
+                    wrapper: {
+                        backgroundColor: "transparent"
+                    },
+                    draggableIcon: {
+                        backgroundColor: "#000"
+                    }
+                }}
+            >
+                <View className="h-32 bg-rose-500">
+                    <Text className="text-3xl text-yellow-500 font-medium">
+                        This is a bottom sheet
+                    </Text>
+                </View>
+            </RBSheet>
         </View>
     )
 }

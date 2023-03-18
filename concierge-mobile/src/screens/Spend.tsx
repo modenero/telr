@@ -16,8 +16,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import GiftCard from '../components/GiftCard'
 
-import QuickAccess from '../components/QuickAccess'
-
 const PERSISTENCE_KEY = 'TELR_SPEND'
 
 const Tab = createMaterialTopTabNavigator()
@@ -35,34 +33,6 @@ const SpendScreen = ({ navigation }) => {
                     <Text className="text-3xl text-gray-300 font-medium">
                         Spend Your Crypto
                     </Text>
-                </View>
-
-                <View className="h-20 my-3 px-3">
-                    <ScrollView
-                        className="my-3 px-3"
-                        horizontal={true}
-                        showsHorizontalScrollIndicator={false}
-                        pagingEnabled={true}
-                        height={20}
-                    >
-                        <QuickAccess
-                            name="Cash"
-                            balance="BCH"
-                            onPress={() => navigation.navigate('Grow')}
-                        />
-
-                        <QuickAccess
-                            name="Mastercard"
-                            balance="NEXA"
-                            onPress={() => navigation.navigate('Grow')}
-                        />
-
-                        <QuickAccess
-                            name="Walmart"
-                            balance="NEXA"
-                            onPress={() => navigation.navigate('Grow')}
-                        />
-                    </ScrollView>
                 </View>
 
                 <ScrollView className="px-3 w-full flex-1 flex-col">

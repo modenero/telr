@@ -10,7 +10,7 @@
 //       assume `crypto.getRandomValues` is available
 import 'react-native-get-random-values'
 
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 import {
   Button,

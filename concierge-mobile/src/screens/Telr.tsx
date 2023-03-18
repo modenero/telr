@@ -1,17 +1,12 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 import {
-  Alert,
-  Button,
-  Pressable,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  useColorScheme,
-  View,
+    Pressable,
+    SafeAreaView,
+    ScrollView,
+    Text,
+    useColorScheme,
+    View,
 } from 'react-native'
 
 /* Import assets. */
@@ -19,7 +14,7 @@ import QrCode from '../assets/svg/QrCode'
 
 import Provider from '../components/Provider'
 
-import QuickAccess from '../components/QuickAccess'
+import Network from '../components/Buttons/Network'
 
 const TelrScreen = ({ navigation }) => {
     const [timesPressed, setTimesPressed] = useState(0)
@@ -35,33 +30,60 @@ const TelrScreen = ({ navigation }) => {
     return (
         <View
             contentInsetAdjustmentBehavior="automatic"
-            className="flex-1 bg-rose-700"
+            className="flex-1 bg-gray-800"
         >
-            <View className="h-20 my-3 px-3">
+            <View className="h-20 my-3">
                 <ScrollView
-                    className="my-3 px-3"
+                    className="my-1 px-2"
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
                     pagingEnabled={true}
-                    height={20}
+                    contentOffset={{ x: 400, y: 0 }}
                 >
-                    <QuickAccess
-                        name="Nexa"
-                        balance="NEXA"
-                        onPress={() => navigation.navigate('Spend')}
+                    <Network
+                        name="Binance"
+                        symbol="BSC"
+                        onPress={() => null}
                     />
 
-                    <QuickAccess
+                    <Network
+                        name="Bitcoin"
+                        symbol="BTC"
+                        onPress={() => null}
+                    />
+
+                    <Network
                         name="Bitcoin Cash"
-                        balance="BCH"
-                        onPress={() => navigation.navigate('Spend')}
+                        symbol="BCH"
+                        onPress={() => null}
                     />
 
-                    <QuickAccess
-                        name="Tron"
-                        balance="TRX"
-                        onPress={() => navigation.navigate('Spend')}
+                    <Network
+                        name="Ethereum"
+                        symbol="ETH"
+                        onPress={() => null}
                     />
+
+                    <Network
+                        name="Nexa"
+                        symbol="NEXA"
+                        onPress={() => null}
+                    />
+
+                    <Network
+                        name="Tron"
+                        symbol="TRX"
+                        onPress={() => null}
+                    />
+
+                    <Network
+                        name="Add (+) New"
+                        symbol="100+ supported assets"
+                        onPress={() => null}
+                    />
+
+                    {/* Spacer for horizontal scroll area */}
+                    <View className="w-3" />
                 </ScrollView>
             </View>
 
