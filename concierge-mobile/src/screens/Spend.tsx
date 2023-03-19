@@ -11,14 +11,23 @@ import {
 } from 'react-native'
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
+import { createStackNavigator } from '@react-navigation/stack'
 
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
+/* Import WebAssembly for NexaJS. */
+import 'react-native-wasm'
+import { sendUtxo } from 'nexajs'
+
 import GiftCard from '../components/GiftCard'
+import WalletHome from './wallet'
+import WalletReceive from './wallet/receive'
+import WalletSend from './wallet/send'
 
 const PERSISTENCE_KEY = 'TELR_SPEND'
 
 const Tab = createMaterialTopTabNavigator()
+const Stack = createStackNavigator()
 
 const SpendScreen = ({ navigation }) => {
     const [isReady, setIsReady] = React.useState(__DEV__ ? false : true)
@@ -26,7 +35,21 @@ const SpendScreen = ({ navigation }) => {
 
     const isDarkMode = useColorScheme() === 'dark'
 
-    const Wallet = () => {
+    const WalletStack = () => {
+        return (
+            <Stack.Navigator>
+                <Stack.Screen name="Home" component={WalletHome} />
+                <Stack.Screen name="Receive" component={WalletReceive} />
+                <Stack.Screen name="Send" component={WalletSend} />
+            </Stack.Navigator>
+        )
+    }
+
+    // const Wallet = () => {
+    //     return <MyWallet />
+    // }
+    //
+    const Vault = () => {
         return (
             <View className="h-full flex justify-center items-center bg-gray-900">
                 <View>
@@ -60,16 +83,6 @@ const SpendScreen = ({ navigation }) => {
         )
     }
 
-    const Vault = () => {
-        return (
-            <View className="p-3">
-                <Text className="text-3xl font-medium">
-                    My Vault
-                </Text>
-            </View>
-        )
-    }
-
     React.useEffect(() => {
         const restoreState = async () => {
             try {
@@ -94,6 +107,50 @@ const SpendScreen = ({ navigation }) => {
         }
     }, [isReady])
 
+    const testSendUtxo = async () => {
+        const TEST_MNEMONIC = 'bacon mind chronic bean luxury endless ostrich festival bicycle dragon worth balcony'
+        const NEXA_TEST_ADDRESS = 'nexa:nqtsq5g57qupnngwws0rlvsevggu6zxqc0tmk7d3v5ulpfh6'
+
+        /* Build parameters. */
+        const params = {
+            mnemonic: TEST_MNEMONIC,
+            receiver: NEXA_TEST_ADDRESS,
+        }
+
+        /* Send UTXO request. */
+        const response = await sendUtxo(params)
+        console.log('Send UTXO (response):', response)
+
+
+        try {
+            const txResult = JSON.parse(response)
+            console.log('TX RESULT', txResult)
+
+            if (txResult.error) {
+                return console.error(txResult.message)
+            }
+
+            expect(txResult.result).to.have.length(64)
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
+    const WalletTemp = () => {
+        return (
+            <>
+                <Text>Wallet Temp</Text>
+
+                <Pressable
+                    className="bg-rose-500 rounded-xl"
+                    onPress={testSendUtxo}
+                >
+                    <Text class="text-3xl font-medium">Send UTXO</Text>
+                </Pressable>
+            </>
+        )
+    }
+
     return (
         <View className="h-full flex">
             <Tab.Navigator
@@ -105,7 +162,7 @@ const SpendScreen = ({ navigation }) => {
             >
                 <Tab.Screen
                     name="Wallet"
-                    component={Wallet}
+                    component={WalletTemp}
                     options={{
                         tabBarLabel: 'My Wallet',
                     }}
