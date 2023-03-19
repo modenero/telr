@@ -39,9 +39,9 @@
 	</dict>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Used to secure your Wallet private keys.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Used to locate nearby Merchants in the Explorer.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Used to locate nearby Merchants in the Explorer.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Used to locate nearby Merchants in the Explorer.</string>
 	<key>UIAppFonts</key>
 	<array>
@@ -63,6 +63,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
