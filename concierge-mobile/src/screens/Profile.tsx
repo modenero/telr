@@ -34,25 +34,40 @@ const ProfileScreen = ({ navigation }) => {
     const [isReady, setIsReady] = React.useState(__DEV__ ? false : true)
     const [state, setState] = React.useState()
 
-    const [mnemonic, setMnemonic] = useState('')
+    const [mnemonic, setMnemonic] = useState(null)
     const [scryptProgress, setScryptProgress] = useState('0.0')
+
+    // FIX Allows the keyboard to stay open during text entry.
+    //     see: https://github.com/jeremybarbet/react-native-modalize/issues/58
+    let mnemonicHandler = useRef('')
+    const updateMnemonic = (_val) => {
+        mnemonicHandler = _val
+    }
 
     const isDarkMode = useColorScheme() === 'dark'
 
     const testAddr = 'nexa:nqtsq5g5qffexn067uqxkysltqq0uhrrr6fqy2geavzpy2fk'
 
     const saveMnemonic = async () => {
-        console.log('Saving...', mnemonic)
+        console.log('Saving...', mnemonicHandler)
+
+        /* Update state. */
+        setMnemonic(mnemonicHandler)
+
+        /* Save to (secure) keychain. */
+        await Keychain.setGenericPassword('mnemonic', mnemonicHandler)
+    }
+
+    const saveOther = () => {
+        console.log('Saving...')
 
         const newState = {
             ...state,
-            // mnemonic,
+            // newVal,
         }
 
+        /* Save to async storage. */
         AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(newState))
-
-        // Store the credentials
-        await Keychain.setGenericPassword('mnemonic', mnemonic)
     }
 
     React.useEffect(() => {
@@ -206,7 +221,8 @@ const ProfileScreen = ({ navigation }) => {
                         autoCorrect={false}
                         autoCapitalize={'none'}
                         autoComplete={'off'}
-                        onChangeText={userInput => setMnemonic(userInput)}
+                        blurOnSubmit={false}
+                        onChangeText={userInput => updateMnemonic(userInput)}
                         defaultValue={mnemonic}
                     />
 
