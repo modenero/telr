@@ -23,11 +23,12 @@ export default defineNuxtConfig({
 
         /* Pinia */
         '@pinia/nuxt',
-        '@pinia-plugin-persistedstate/nuxt',
     ],
 
-    /* Pinia Storage */
-    piniaPersistedstate: {
-        storage: 'localStorage', // NOTE: Default is cookies.
-    },
+    runtimeConfig: {
+        public: {
+            mexcApiKey: process.env.MEXC_API_KEY,
+            mexcApiSecret: process.env.MEXC_API_SECRET,
+        },
+    }
 })

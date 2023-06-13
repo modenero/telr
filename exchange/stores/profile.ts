@@ -9,7 +9,7 @@ export const useProfileStore = defineStore('profile', {
             /* Initialize session. */
             _session: null,
 
-            _apiKey: null,
+            _apiKeys: {},
     }),
 
     getters: {
@@ -26,7 +26,7 @@ export const useProfileStore = defineStore('profile', {
         },
 
         apiKey(_state) {
-            return _state._apiKey
+            return (_exchangeid) => _state._apiKeys[_exchangeid]
         },
     },
 
@@ -72,8 +72,8 @@ export const useProfileStore = defineStore('profile', {
          */
         setApiKey (_key: Object) {
             /* Set session. */
-            this._apiKey = _key
-            console.log('SET API KEY', this._apiKey)
+            this._apiKeys[_key.exchangeid] = _key
+            console.log('SET API KEY', this._apiKeys)
         },
     },
     persist: true,

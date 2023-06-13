@@ -1,6 +1,6 @@
 {
   "name": "telr-exchange",
-  "version": "23.3.1",
+  "version": "23.6.12",
   "license": "MIT",
   "scripts": {
     "build": "nuxt build",
@@ -11,16 +11,17 @@
   },
   "dependencies": {
     "@pinia/nuxt": "0.4.7",
+    "crypto-js": "4.1.1",
     "ethers": "6.0.8",
     "moment": "2.29.4",
     "nexajs": "22.12.23",
     "numeral": "2.0.6",
     "nuxt": "3.0.0",
+    "pinia": "2.0.32",
     "qrcode": "1.5.1",
     "uuid": "9.0.0"
   },
   "devDependencies": {
-    "@nuxtjs/tailwindcss": "6.4.1",
-    "@pinia-plugin-persistedstate/nuxt": "1.0.0"
+    "@nuxtjs/tailwindcss": "6.4.1"
   }
 }
