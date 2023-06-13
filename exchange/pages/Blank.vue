@@ -1,15 +1,49 @@
-<script setup>
+<script setup lang="ts">
+useHead({
+    title: 'Blank — Nexa Studio',
+    meta: [
+        { name: 'description', content: 'Nexa Studio makes building your next BIG idea effortless.' }
+    ],
+})
+
+/* Initialize stores. */
+import { useSystemStore } from '@/stores/system'
+
+/* Initialize System. */
+const System = useSystemStore()
+
+onBeforeMount(() => {
+    System.$state = JSON.parse(localStorage.getItem('system'))
+    // add additional states here...
+})
+
+watch(System.$state, (_state) => {
+    localStorage.setItem('system', JSON.stringify(_state))
+})
+// watch additional states here...
+
+// onMounted(() => {
+//     console.log('Mounted!')
+//     // Now it's safe to perform setup operations.
+// })
+
+// onBeforeUnmount(() => {
+//     console.log('Before Unmount!')
+//     // Now is the time to perform all cleanup operations.
+// })
 
 </script>
 
 <template>
-    <main class="main-body flex-1 my-5 p-3 max-w-5xl mx-auto bg-gradient-to-r from-gray-100 to-gray-200 border-4 border-indigo-500 rounded-xl shadow-md">
-        <h1 class="text-4xl font-medium">
-            Blank View
+    <main class="max-w-7xl mx-auto py-5">
+        <h1 class="text-5xl font-medium">
+            Blank
         </h1>
 
-        <p class="mt-3">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore atque commodi culpa iusto voluptatum, modi qui voluptas cupiditate, ad incidunt odio aliquam voluptatibus. Eveniet, est sequi quod eligendi animi sit!
+        <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id eius voluptatem minus natus at eveniet dolorum eos mollitia, maxime animi excepturi harum omnis illum odit recusandae pariatur! Unde, explicabo molestias.
         </p>
     </main>
+
+    <Footer />
 </template>

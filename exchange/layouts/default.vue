@@ -1,13 +1,16 @@
 <script setup lang="ts">
-//
+
+const isShowingPanel = ref(false)
 </script>
 
 <template>
     <main class="h-screen overflow-hidden flex flex-col justify-between bg-gradient-to-r from-indigo-900 to-gray-900">
-        <Header class="border-b-2 border-gray-100 z-50" />
+        <Header class="border-b-2 border-gray-100 z-20" />
 
         <slot />
     </main>
+
+    <SidePanel v-if="isShowingPanel" />
 </template>
 
 <style>
