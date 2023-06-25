@@ -1,11 +1,16 @@
 <script setup>
-/* Import modules. */
-// import { ref } from 'vue'
+/* Initialize constants. */
+const POLLING_FREQUENCY = 30000
+
+/* Initialize locals. */
+let pollingid
+
+/* Initialize references. */
+const apiKey = ref(null)
+const isLoading = ref(false)
 
 /* Initialize stores. */
 import { useProfileStore } from '@/stores/profile'
-
-/* Initialize Profile store. */
 const Profile = useProfileStore()
 
 onBeforeMount(() => {
@@ -16,14 +21,18 @@ watch(Profile.$state, (_state) => {
     localStorage.setItem('profile', JSON.stringify(_state))
 })
 
-const apiKey = ref(null)
-
+/**
+ * Save API Key
+ */
 const saveApiKey = () => {
     console.log('SAVE API KEY', apiKey.value)
-    Profile.setApiKey(apiKey.value)
 
+    Profile.setApiKey(apiKey.value)
 }
 
+/**
+ * Poll For Authorization
+ */
 const pollForAuth = async () => {
     console.log('POLLING FOR AUTH')
 
@@ -76,10 +85,10 @@ const pollForAuth = async () => {
     Profile.deleteSession()
 
     /* Initialize route handler. */
-    const router = useRouter()
+    // const router = useRouter()
 
     /* Go to homepage. */
-    router.replace('/')
+    // router.replace('/')
 }
 
 /* Handle mounting. */

@@ -18,15 +18,19 @@ const yesterday = computed(() => {
             Trades &amp; Volume
         </h2>
 
-        <div class="component-tabs nav-header">
-            <ul class="nav" role="tablist">
-                <li role="presentation" class="nav-item">
-                    <a href="javascript://#trades" aria-controls="buy" role="tab" data-toggle="tab" class="active nav-link" data-original-title="" title="">Trades</a>
-                </li>
+        <div class="">
+            <ul class="pb-1 px-3 flex flex-row justify-around text-xs text-gray-100 border-b-2 border-gray-700" role="tablist">
+                <button role="presentation" class="nav-item">
+                    <span class="active nav-link" data-original-title="" title="">
+                        Trades
+                    </span>
+                </button>
 
-                <li role="presentation" class="nav-item">
-                    <a href="javascript://#volume" aria-controls="sell" role="tab" data-toggle="tab" class="nav-link" data-original-title="" title="">Volume</a>
-                </li>
+                <button role="presentation" class="nav-item">
+                    <span class="nav-link" data-original-title="" title="">
+                        Volume
+                    </span>
+                </button>
             </ul>
         </div>
 

@@ -4,7 +4,7 @@
             Notices
         </h2>
 
-        <nav class="mb-2 pb-1 px-3 flex flex-row justify-between text-xs text-gray-100 border-b-2 border-gray-700" role="tablist">
+        <nav class="mb-2 pb-1 flex flex-row justify-around text-xs text-gray-100 border-b-2 border-gray-700" role="tablist">
             <button role="presentation" class="nav-item">
                 <a href="javascript://" aria-controls="info" role="tab" data-toggle="tab" class="active nav-link" data-original-title="" title="">Important</a>
             </button>
