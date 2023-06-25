@@ -1,6 +1,22 @@
 <script setup lang="ts">
 
 const isShowingPanel = ref(false)
+
+/* Verify the URL (location), for security reasons. */
+const myLocation = document.location
+// console.log('MY LOCATION', myLocation)
+
+/* Set location hash. */
+const hash = myLocation.hash // #/3f080076-d30b-4d32-b51a-120ae63f6905
+
+/* Set location hostname. */
+const hostname = myLocation.hostname // localhost
+
+/* Detect all mirrors. */
+if (hostname === 'nexaexchange.com') {
+    window.location.replace('https://app.nexa.exchange') // NOTE: We have no history added here.
+    // FIXME: Be sure to attach the "original" path or hash!!
+}
 </script>
 
 <template>
