@@ -7,6 +7,9 @@ const usd = ref(null)
 /* Initialize flags.*/
 const isShowingMobileMenu = ref(false)
 
+/* Initialize emits. */
+const emit = defineEmits(['togglePanel'])
+
 const usdDisplay = computed(() => {
     if (!usd.value) {
         return '$0.00'
@@ -18,6 +21,10 @@ const usdDisplay = computed(() => {
 const updateTicker = async () => {
     usd.value = await $fetch('https://nexa.exchange/mex')
     console.log('USD', usd.value)
+}
+
+const openProfile = () => {
+    emit('togglePanel')
 }
 
 onMounted(() => {
@@ -44,34 +51,36 @@ onMounted(() => {
             </div>
 
             <nav class="hidden lg:flex lg:gap-x-12">
-                <RouterLink to="/" class="text-lg font-semibold leading-6 text-gray-200">
+                <RouterLink to="/" class="text-2xl font-medium text-gray-100">
                     DEX
                 </RouterLink>
 
-                <RouterLink to="/cex" class="text-lg font-semibold leading-6 text-gray-200">
+                <RouterLink to="/cex" class="text-2xl font-medium text-gray-100">
                     CEX
                 </RouterLink>
 
-                <RouterLink to="/help" class="text-lg font-semibold leading-6 text-gray-200">
+                <RouterLink to="/help" class="text-2xl font-medium text-gray-100">
                     Help
                 </RouterLink>
             </nav>
 
             <div class="flex flex-1 items-center justify-end gap-x-6">
-                <RouterLink to="/markets" class="hidden lg:block lg:text-lg lg:font-semibold lg:leading-6 lg:text-gray-900">
-                    mNEXA/USD {{usdDisplay}}
-                </RouterLink>
+                <RouterLink to="/markets" class="hidden lg:flex flex-row items-center font-medium gap-2">
+                    <span class="mt-1 block text-gray-200 text-sm">
+                        mNEXA/USD
+                    </span>
 
-                <RouterLink to="/profile" class="rounded-md bg-indigo-600 py-2 px-3 text-lg font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                    My Profile
+                    <span class="text-amber-300 text-3xl">
+                        {{usdDisplay}}
+                    </span>
                 </RouterLink>
             </div>
 
-            <div class="flex lg:hidden">
-                <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+            <div class="flex">
+                <button @click="openProfile" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
                     <span class="sr-only">Open main menu</span>
 
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <svg class="w-10 h-auto text-gray-100" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                     </svg>
                 </button>

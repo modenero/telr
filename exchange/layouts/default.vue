@@ -21,16 +21,30 @@ if (process.client) {
     //     // FIXME: Be sure to attach the "original" path or hash!!
     // }
 }
+
+const togglePanel = () => {
+    isShowingPanel.value = !isShowingPanel.value
+}
+
+const closePanel = () => {
+    isShowingPanel.value = false
+}
 </script>
 
 <template>
     <main class="h-screen overflow-hidden flex flex-col justify-between bg-gradient-to-r from-indigo-900 to-gray-900">
-        <Header class="border-b-2 border-gray-100 z-20" />
+        <Header
+            class="border-b-2 border-gray-100 z-20"
+            @togglePanel="togglePanel"
+        />
 
         <slot />
     </main>
 
-    <SidePanel v-if="isShowingPanel" />
+    <SidePanel
+        v-if="isShowingPanel"
+        @closePanel="closePanel"
+    />
 </template>
 
 <style>

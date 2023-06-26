@@ -7,6 +7,14 @@ const props = defineProps({
     },
 })
 
+/* Initialize emits. */
+const emit = defineEmits(['closePanel'])
+
+const closePanel = () => {
+    emit('closePanel')
+}
+
+
 // onMounted(() => {
 //     console.log('Mounted!')
 //     // Now it's safe to perform setup operations.
@@ -26,6 +34,7 @@ const props = defineProps({
 
         <div class="fixed inset-0 overflow-hidden">
             <div class="absolute inset-0 overflow-hidden">
+                <div @click="closePanel" class="bg-gray-500 opacity-70 absolute inset-0" />
                 <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16">
                     <!--
             Slide-over panel, show/hide based on slide-over state.
@@ -44,13 +53,19 @@ const props = defineProps({
                                 <div class="bg-gray-50 px-4 py-6 sm:px-6">
                                     <div class="flex items-start justify-between space-x-3">
                                         <div class="space-y-1">
-                                            <h2 class="text-base font-semibold leading-6 text-gray-900" id="slide-over-title">New project</h2>
-                                            <p class="text-sm text-gray-500">Get started by filling in the information below to create your new project.</p>
+                                            <h2 class="text-2xl font-semibold leading-6 text-gray-900" id="slide-over-title">
+                                                My Profile
+                                            </h2>
+
+                                            <p class="text-sm text-gray-500">
+                                                Get started by filling in the information below to create your new project.
+                                            </p>
                                         </div>
+
                                         <div class="flex h-7 items-center">
-                                            <button type="button" class="text-gray-400 hover:text-gray-500">
+                                            <button @click="closePanel" type="button" class="text-gray-400 hover:text-gray-500">
                                                 <span class="sr-only">Close panel</span>
-                                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                                <svg class="w-10 h-auto" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                                                 </svg>
                                             </button>
