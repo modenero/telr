@@ -4,8 +4,8 @@
             Your Transactions
         </h2>
 
-        <div class="component-tabs nav-header">
-            <ul class="nav" role="tablist">
+        <div class="">
+            <ul class="px-5 flex flex-row justify-between text-gray-100 text-sm" role="tablist">
                 <li role="presentation" class="nav-item">
                     <a href="javascript://#myTrades" aria-controls="myTrades" role="tab" data-toggle="tab" class="active nav-link" data-original-title="" title="">Trades</a>
                 </li>
@@ -20,8 +20,8 @@
             </ul>
         </div>
 
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="myTrades">
+        <div class="">
+            <div role="tabpanel" class="text-gray-100" id="myTrades">
                 <div>
                     <table class="table table-condensed table-borderless table-my-trades">
                         <thead>
@@ -43,7 +43,7 @@
                 </div>
             </div>
 
-            <div role="tabpanel" class="tab-pane" id="myOrders">
+            <div role="tabpanel" class="text-gray-100" id="myOrders">
                 <div>
                     <table class="table table-condensed table-borderless table-orders">
                         <thead>
@@ -64,7 +64,7 @@
                 </div>
             </div>
 
-            <div role="tabpanel" class="tab-pane" id="myFunds">
+            <div role="tabpanel" class="text-gray-100" id="myFunds">
                 <div>
                     <table class="table table-condensed table-borderless table-funds">
                         <thead>

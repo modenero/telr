@@ -27,6 +27,10 @@ const openProfile = () => {
     emit('togglePanel')
 }
 
+const openHelp = () => {
+    emit('togglePanel')
+}
+
 onMounted(() => {
     updateTicker()
 })
@@ -59,9 +63,9 @@ onMounted(() => {
                     CEX
                 </RouterLink>
 
-                <RouterLink to="/help" class="text-2xl font-medium text-gray-100">
+                <button @click="openHelp" class="text-2xl font-medium text-gray-100">
                     Help
-                </RouterLink>
+                </button>
             </nav>
 
             <div class="flex flex-1 items-center justify-end gap-x-6">

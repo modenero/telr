@@ -35,15 +35,16 @@ watch(System.$state, (_state) => {
 </script>
 
 <template>
-    <main class="max-w-7xl mx-auto py-5">
-        <h1 class="text-5xl font-medium">
-            Blank
-        </h1>
+    <main class="max-w-7xl mx-auto h-full py-5 flex flex-col justify-center items-center">
+        <section class="">
+            <h1 class="text-5xl text-gray-100 font-medium">
+                Centralized Exchange Portal
+            </h1>
 
-        <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id eius voluptatem minus natus at eveniet dolorum eos mollitia, maxime animi excepturi harum omnis illum odit recusandae pariatur! Unde, explicabo molestias.
-        </p>
+            <p class="text-3xl font-medium text-gray-100">
+                Coming soon...
+            </p>
+
+        </section>
     </main>
-
-    <Footer />
 </template>
