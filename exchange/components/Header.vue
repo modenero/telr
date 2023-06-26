@@ -55,13 +55,13 @@ onMounted(() => {
             </div>
 
             <nav class="hidden lg:flex lg:gap-x-12">
-                <RouterLink to="/" class="text-2xl font-medium text-gray-100">
+                <NuxtLink to="/" class="text-2xl font-medium text-gray-100">
                     DEX
-                </RouterLink>
+                </NuxtLink>
 
-                <RouterLink to="/cex" class="text-2xl font-medium text-gray-100">
+                <NuxtLink to="/cex" class="text-2xl font-medium text-gray-100">
                     CEX
-                </RouterLink>
+                </NuxtLink>
 
                 <button @click="openHelp" class="text-2xl font-medium text-gray-100">
                     Help
@@ -69,15 +69,15 @@ onMounted(() => {
             </nav>
 
             <div class="flex flex-1 items-center justify-end gap-x-6">
-                <RouterLink to="/markets" class="hidden lg:flex flex-row items-center font-medium gap-2">
+                <NuxtLink to="https://nexa.exchange/markets" target="_blank" class="flex flex-row items-center font-medium gap-2">
                     <span class="mt-1 block text-gray-200 text-sm">
                         mNEXA/USD
                     </span>
 
-                    <span class="text-amber-300 text-3xl">
+                    <span class="text-amber-300 text-2xl sm:text-3xl">
                         {{usdDisplay}}
                     </span>
-                </RouterLink>
+                </NuxtLink>
             </div>
 
             <div class="flex">

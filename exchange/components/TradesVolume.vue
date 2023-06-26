@@ -34,9 +34,9 @@ const yesterday = computed(() => {
             </ul>
         </div>
 
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="trades">
-                <div>
+        <div class="">
+            <div role="tabpanel" class="" id="trades">
+                <div class="overflow-y-scroll h-[220px] text-gray-100 text-sm">
                     <table class="table table-condensed table-borderless table-trades">
                         <thead>
                             <tr class="table-header">
@@ -47,7 +47,7 @@ const yesterday = computed(() => {
                             </tr>
                         </thead>
 
-                        <tbody>
+                        <tbody class="text-xs">
                             <tr>
                                 <td>12:44:52 AM {{today}}</td>
                                 <td>
@@ -131,49 +131,43 @@ const yesterday = computed(() => {
                 </div>
             </div>
 
-            <div role="tabpanel" class="tab-pane" id="volume">
+            <section class="grid grid-cols-3 text-gray-100 text-sm font-medium">
+                <h3>Token</h3>
+                <h3>Daily</h3>
+                <h3>last</h3>
+
+            </section>
+
+            <section class="grid grid-cols-3 text-gray-100 text-xs font-medium">
                 <div>
-                    <table class="table table-condensed table-borderless table-volume">
-                        <thead>
-                            <tr>
-                                <th>Token</th>
-                                <th>Daily</th>
-                                <th>last</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <a href="javascript://#RHOC-BCH">RHOC</a>
-                                </td>
-                                <td>200000</td>
-                                <td class="text-danger">0.000151421</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="javascript://#PLR-BCH">PLR</a>
-                                </td>
-                                <td>119621</td>
-                                <td class="text-danger">0.000162000</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="javascript://#VERI-BCH">VERI</a>
-                                </td>
-                                <td>112</td>
-                                <td class="text-success">0.127800000</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="javascript://#%C2%A2-BCH">¢</a>
-                                </td>
-                                <td>0</td>
-                                <td class="text-success"></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <a href="javascript://#RHOC-BCH">RHOC</a>
                 </div>
-            </div>
+                <div>
+                    200000
+                </div>
+                <div class="text-danger">
+                    0.000151421
+                </div>
+
+                <div>
+                    <a href="javascript://#PLR-BCH">PLR</a>
+                </div>
+                <div>119621</div>
+                <div class="text-danger">0.000162000</div>
+
+                <div>
+                    <a href="javascript://#VERI-BCH">VERI</a>
+                </div>
+                <div>112</div>
+                <div class="text-success">0.127800000</div>
+
+                <div>
+                    <a href="javascript://#%C2%A2-BCH">¢</a>
+                </div>
+                <div>0</div>
+                <div class="text-success"></div>
+            </section>
+
         </div>
     </main>
 </template>
