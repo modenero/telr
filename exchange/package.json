@@ -1,6 +1,6 @@
 {
   "name": "telr-exchange",
-  "version": "23.6.26",
+  "version": "23.6.27",
   "license": "MIT",
   "scripts": {
     "build": "nuxt build",
@@ -25,7 +25,7 @@
     "numeral": "2.0.6",
     "nuxt": "3.0.0",
     "pinia": "2.0.32",
-    "qr-scanner": "^1.4.2",
+    "qr-scanner": "1.4.2",
     "qrcode": "1.5.1",
     "uuid": "9.0.0"
   },

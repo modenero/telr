@@ -22,10 +22,12 @@ const isShowingCurrencyOptions = ref(false)
 
     /* Handle (user-defined) amount. */
     if (Wallet.nex > 0) {
-        bip21Url = `${Wallet.address}?amount=${Wallet.nex}&label=WallyDice`
+        bip21Url = `${Wallet.address}?amount=${Wallet.nex}`
     } else {
         bip21Url = Wallet.address
     }
+    console.log('Wallet.address', Wallet.address)
+    console.log('bip21Url', bip21Url)
 
     /* Set data URL. */
     dataUrl.value = await QRCode.toDataURL(bip21Url)
@@ -35,6 +37,9 @@ const isShowingCurrencyOptions = ref(false)
 onMounted(() => {
     /* Update the QR code. */
     updateQrCode()
+    console.log('Wallet.address', Wallet.address)
+    console.log('Wallet.mnemonic', Wallet.mnemonic)
+    console.log('Wallet.wallet', Wallet.wallet)
 })
 
 // onBeforeUnmount(() => {

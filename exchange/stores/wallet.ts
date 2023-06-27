@@ -1,11 +1,18 @@
 /* Import modules. */
 import { defineStore } from 'pinia'
-import { encodePrivateKeyWif } from '@nexajs/hdnode'
-import { entropyToMnemonic } from '@nexajs/hdnode'
-import { getAddressBalance } from '@nexajs/rostrum'
+
+import {
+    encodePrivateKeyWif,
+    entropyToMnemonic,
+} from '@nexajs/hdnode'
+
+import {
+    getAddressBalance,
+    subscribeAddress,
+} from '@nexajs/rostrum'
+
 import { listUnspent } from '@nexajs/address'
 import { sha256 } from '@nexajs/crypto'
-import { subscribeAddress } from '@nexajs/rostrum'
 import { Wallet } from '@nexajs/wallet'
 
 import _createWallet from './wallet/create.ts'
@@ -119,6 +126,8 @@ export const useWalletStore = defineStore('wallet', {
 
         async createWallet() {
             _createWallet.bind(this)()
+
+            this._wallet = new Wallet(this.mnemonic)
         },
 
         /**
@@ -208,6 +217,14 @@ export const useWalletStore = defineStore('wallet', {
 
         setEntropy(_entropy) {
             this._entropy = _entropy
+        },
+
+        setMnemonic(_mnemonic) {
+            this._mnemonic = _mnemonic
+
+            const entropy = 'XXX'
+
+            this._entropy = entropy
         },
 
         setSatoshis(_satoshis) {
