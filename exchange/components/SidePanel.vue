@@ -8,10 +8,10 @@ const props = defineProps({
 })
 
 /* Initialize emits. */
-const emit = defineEmits(['closePanel'])
+const emit = defineEmits(['toggleMenu'])
 
-const closePanel = () => {
-    emit('closePanel')
+const toggleMenu = () => {
+    emit('toggleMenu')
 }
 
 
@@ -73,7 +73,10 @@ const closePanel = () => {
                                     </div>
                                 </div>
 
-                                <PanelMenu :isShowingMenu="true" />
+                                <PanelMenu
+                                    @toggleMenu="toggleMenu"
+                                    :isShowingMenu="true"
+                                />
                             </div>
 
                             <!-- Action buttons -->

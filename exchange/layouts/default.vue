@@ -26,9 +26,13 @@ const togglePanel = () => {
     isShowingPanel.value = !isShowingPanel.value
 }
 
-const closePanel = () => {
-    isShowingPanel.value = false
+const toggleMenu = () => {
+    isShowingPanel.value = !isShowingPanel.value
 }
+
+// const openPanel = () => {
+//     isShowingPanel.value = true
+// }
 </script>
 
 <template>
@@ -43,7 +47,7 @@ const closePanel = () => {
 
     <SidePanel
         v-if="isShowingPanel"
-        @closePanel="closePanel"
+        @toggleMenu="toggleMenu"
     />
 </template>
 

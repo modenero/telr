@@ -73,17 +73,17 @@ curTab.value = 'wallet'
                                     <div class="block">
                                         <div class="border-b border-gray-200">
                                             <nav class="-mb-px flex" aria-label="Tabs">
-                                                <button @click="curTab = 'wallet'" aria-current="page" class="w-1/3 border-b-2 py-4 px-1 text-center text-sm font-medium" :class="[{ 'border-indigo-500 text-indigo-600': curTab === 'wallet', 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700': curTab !== 'wallet' }]">
+                                                <div @click="curTab = 'wallet'" aria-current="page" class="cursor-pointer w-1/3 border-b-2 py-4 px-1 text-center text-sm font-medium" :class="[{ 'border-indigo-500 text-indigo-600': curTab === 'wallet', 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700': curTab !== 'wallet' }]">
                                                     Wallet
-                                                </button>
+                                                </div>
 
-                                                <button @click="curTab = 'settings'" aria-current="page" class="w-1/3 border-b-2 py-4 px-1 text-center text-sm font-medium" :class="[{ 'border-indigo-500 text-indigo-600': curTab === 'settings', 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700': curTab !== 'settings' }]">
+                                                <div @click="curTab = 'settings'" aria-current="page" class="cursor-pointer w-1/3 border-b-2 py-4 px-1 text-center text-sm font-medium" :class="[{ 'border-indigo-500 text-indigo-600': curTab === 'settings', 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700': curTab !== 'settings' }]">
                                                     Settings
-                                                </button>
+                                                </div>
 
-                                                <button @click="curTab = 'help'" aria-current="page" class="w-1/3 border-b-2 py-4 px-1 text-center text-sm font-medium" :class="[{ 'border-indigo-500 text-indigo-600': curTab === 'help', 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700': curTab !== 'help' }]">
+                                                <div @click="curTab = 'help'" aria-current="page" class="cursor-pointer w-1/3 border-b-2 py-4 px-1 text-center text-sm font-medium" :class="[{ 'border-indigo-500 text-indigo-600': curTab === 'help', 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700': curTab !== 'help' }]">
                                                     Help
-                                                </button>
+                                                </div>
                                             </nav>
                                         </div>
                                     </div>
