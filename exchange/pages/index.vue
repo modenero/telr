@@ -5,8 +5,8 @@
 <template>
     <main class="main-body px-1 flex flex-col sm:flex-row gap-1 sm:overflow-y-hidden">
         <div class="w-full sm:w-72 flex flex-col">
-            <Balance class="mx-1 my-2 h-[250px]" />
-            <Trade class="mx-1 my-2 flex-1" />
+            <TradeMarket class="mx-1 my-2 h-[250px]" />
+            <TradeLimit class="mx-1 my-2 flex-1" />
         </div>
 
         <OrderBook class="w-96" />

@@ -9,6 +9,10 @@ const isShowingStaking = ref(false)
 
 <template>
     <main class="px-2 py-1 bg-gradient-to-b from-gray-900 to-gray-700 border-2 border-gray-500 rounded-lg">
+        <div class="text-lg text-yellow-500 font-medium">
+            Market Buy | Sell
+        </div>
+
         <h2 class="flex text-base gap-1">
             <span class="text-purple-400">Nexa</span>
             <span class="text-yellow-400">Exchange</span>

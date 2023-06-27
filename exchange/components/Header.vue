@@ -47,24 +47,24 @@ onMounted(() => {
     <header class="bg-gradient-to-b from-gray-900 to-gray-700">
         <nav class="mx-auto flex items-center justify-between gap-x-6 px-6 py-1 lg:px-8" aria-label="Global">
             <div class="flex lg:flex-1">
-                <a href="javascript://" class="-m-1.5 p-1.5">
+                <NuxtLink to="/" class="-m-1.5 p-1.5">
                     <span class="sr-only">Exchange</span>
 
                     <img class="h-8 w-auto" src="@/assets/logo.png" alt="" />
-                </a>
+                </NuxtLink>
             </div>
 
             <nav class="hidden lg:flex lg:gap-x-12">
-                <NuxtLink to="/" class="text-2xl font-medium text-gray-100">
+                <NuxtLink to="/" class="text-2xl font-medium text-gray-100 tracking-widest">
                     DEX
                 </NuxtLink>
 
-                <NuxtLink to="/cex" class="text-2xl font-medium text-gray-100">
+                <NuxtLink to="/cex" class="text-2xl font-medium text-gray-100 tracking-widest">
                     CEX
                 </NuxtLink>
 
-                <button @click="openHelp" class="text-2xl font-medium text-gray-100">
-                    Help
+                <button @click="openHelp" class="text-2xl font-medium text-gray-100 tracking-widest">
+                    Help?
                 </button>
             </nav>
 
