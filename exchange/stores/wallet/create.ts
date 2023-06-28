@@ -13,8 +13,14 @@ const ENTROPY_BYTES_LENGTH = 32
  * Generates 128-bits of random entropy and saves it to the
  * local browser.
  */
-export default async function () {
+export default function (_entropy) {
     let entropy
+
+    if (_entropy) {
+        this.setEntropy(_entropy)
+
+        return _entropy
+    }
 
     /* Return random bytes (as hex string). */
     const localBytes = binToHex(randomBytes(ENTROPY_BYTES_LENGTH))

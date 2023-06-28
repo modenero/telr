@@ -9,6 +9,8 @@ import { useWalletStore } from '@/stores/wallet'
 const Profile = useProfileStore()
 const Wallet = useWalletStore()
 
+const mnemonic = ref(null)
+
 const isShowingDeposit = ref(false)
 const isShowingHistory = ref(false)
 const isShowingWithdraw = ref(false)
@@ -37,7 +39,10 @@ const pendingBalance = computed(() => {
     return numeral(nex).format('0,0.00') + ' NEXA'
 })
 
-
+const importWallet = () => {
+    const success = Wallet.setMnemonic(mnemonic.value)
+    console.log('SUCCESS', success)
+}
 
 
 /**
@@ -62,16 +67,18 @@ const setTab = (_tab) => {
     }
 }
 
-
-
-onMounted(() => {
+onMounted(async () => {
     setTab('deposit')
+
+    await Wallet.init()
+
+    let newAddress = Wallet.getAddress(3)
+    console.log('NEW ADDRESS (3)', newAddress)
 })
 
 // onBeforeUnmount(() => {
 //     console.log('Before Unmount!')
 // })
-
 </script>
 
 <template>
@@ -81,9 +88,25 @@ onMounted(() => {
             Click the button below to create a new wallet and begin playing.
         </p>
 
-        <button @click="Wallet.createWallet" class="px-3 py-2 text-2xl text-blue-100 font-medium bg-blue-500 border-2 border-blue-700 rounded-lg shadow hover:bg-blue-400">
+        <div @click="Wallet.createWallet" class="cursor-pointer px-3 py-2 text-2xl text-blue-100 font-medium bg-blue-500 border-2 border-blue-700 rounded-lg shadow hover:bg-blue-400">
             Create New Wallet
-        </button>
+        </div>
+
+        <hr />
+
+        <p class="px-3 py-2 bg-yellow-100 text-base font-medium border-2 border-yellow-200 rounded-lg shadow-md">
+            Import your existing wallet into Nexa Exchange.
+        </p>
+
+        <textarea
+            placeholder="Seed #1 Seed #2 Seed #3 ..."
+            v-model="mnemonic"
+            class="px-3 py-2 border-2 border-amber-500 rounded-lg shadow"
+        />
+
+        <div @click="importWallet" class="cursor-pointer px-3 py-2 text-2xl text-blue-100 font-medium bg-blue-500 border-2 border-blue-700 rounded-lg shadow hover:bg-blue-400">
+            Import Existing Wallet
+        </div>
     </main>
 
     <main v-else class="">

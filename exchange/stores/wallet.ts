@@ -4,6 +4,7 @@ import { defineStore } from 'pinia'
 import {
     encodePrivateKeyWif,
     entropyToMnemonic,
+    mnemonicToEntropy,
 } from '@nexajs/hdnode'
 
 import {
@@ -38,6 +39,8 @@ export const useWalletStore = defineStore('wallet', {
 
         _coins: null,
 
+        _tokens: null,
+
         _spentCoins: null,
 
         _satoshis: null,
@@ -57,6 +60,8 @@ export const useWalletStore = defineStore('wallet', {
 
         abbr(_state) {
             if (!_state._wallet) return null
+
+            console.log('_state._wallet', _state._wallet)
 
             return _state._wallet.address.slice(0, 19) + '...' + _state._wallet.address.slice(-6)
         },
@@ -119,15 +124,17 @@ export const useWalletStore = defineStore('wallet', {
             }
 
             this._wallet = new Wallet(this.mnemonic)
+            console.log('RE-CREATED WALLET', this._wallet)
 
             // FIXME Workaround to solve race condition.
             setTimeout(this.loadCoins, 1000)
         },
 
-        async createWallet() {
-            _createWallet.bind(this)()
+        createWallet(_entropy) {
+            _createWallet.bind(this)(_entropy)
 
             this._wallet = new Wallet(this.mnemonic)
+            console.log('NEW WALLET', this._wallet)
         },
 
         /**
@@ -220,20 +227,48 @@ export const useWalletStore = defineStore('wallet', {
         },
 
         setMnemonic(_mnemonic) {
+            let entropy
+            let error
+
+            try {
+                /* Derive entropy. */
+                entropy = mnemonicToEntropy(_mnemonic)
+            } catch (err) {
+                /* Set error message. */
+                error = err.message
+            }
+
+            /* Validate error. */
+            if (error) {
+                return error
+            }
+
+            /* Set mnemonic. */
             this._mnemonic = _mnemonic
 
-            const entropy = 'XXX'
-
+            /* Set entropy. */
             this._entropy = entropy
+
+            /* Create wallet. */
+            this.createWallet(entropy)
+
+            /* Return entropy. */
+            return this._entropy
         },
 
         setSatoshis(_satoshis) {
             this._satoshis = _satoshis
         },
 
+        getAddress(_accountIdx) {
+            return this._wallet.getAddress(_accountIdx)
+        },
+
         destroy() {
-            /* Reset entropy. */
+            /* Reset wallet. */
             this._entropy = null
+            this._wallet = null
+            this._wif = null
             console.info('Wallet destroyed successfully!')
         },
 
