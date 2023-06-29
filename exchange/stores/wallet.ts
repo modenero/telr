@@ -84,6 +84,10 @@ export const useWalletStore = defineStore('wallet', {
             return _state._coins
         },
 
+        tokens(_state) {
+            return _state._tokens
+        },
+
         spentCoins(_state) {
             return _state._spentCoins
         },
@@ -144,8 +148,12 @@ export const useWalletStore = defineStore('wallet', {
          */
         async loadCoins() {
             console.info('Wallet address:', this.address)
+            console.info('Wallet address (1):', this.getAddress(1))
+            console.info('Wallet address (2):', this.getAddress(2))
+            console.info('Wallet address (3):', this.getAddress(3))
 
             /* Initialize locals. */
+            let satoshis
             let unspent
 
             /* Start monitoring address. */
@@ -161,51 +169,73 @@ export const useWalletStore = defineStore('wallet', {
             /* Validate balance. */
             if (this.balance) {
                 /* Calculate (total) satoshis. */
-                this._satoshis = this.balance.confirmed + this.balance.unconfirmed
+                this._satoshis = satoshis = this.balance.confirmed + this.balance.unconfirmed
             }
+
+            let bal
+
+            this._balance = bal = await getAddressBalance(this.getAddress(1))
+                .catch(err => console.error(err))
+            console.log('\n  Address balance (1):\n', this.balance, bal)
+            this._satoshis = satoshis = satoshis + bal.confirmed + bal.unconfirmed
+
+            this._balance = bal = await getAddressBalance(this.getAddress(2))
+                .catch(err => console.error(err))
+            console.log('\n  Address balance (2):\n', this.balance, bal)
+            this._satoshis = satoshis = satoshis + bal.confirmed + bal.unconfirmed
+
+            this._balance = bal = await getAddressBalance(this.getAddress(3))
+                .catch(err => console.error(err))
+            console.log('\n  Address balance (3):\n', this.balance, bal)
+            this._satoshis = satoshis = satoshis + bal.confirmed + bal.unconfirmed
 
             // Fetch all unspent transaction outputs for the temporary in-browser wallet.
             unspent = await listUnspent(this.address)
                 .catch(err => console.error(err))
             console.log('\n  Unspent outputs:\n', unspent)
 
-            /* Filter out ANY tokens & spent. */
-            // FIXME We should probably do something better than this, lol.
-            unspent = unspent.filter(_unspent => {
-                /* Initialize flag. */
-                let isValid = true
-
-                if (_unspent.value <= this.DUST_LIMIT) {
-                    /* Set flag. */
-                    isValid = false
-                }
-
-                if (this._spentCoins.includes(_unspent.outpointHash)) {
-                    /* Set flag. */
-                    isValid = false
-                }
-
-                /* Return flag. */
-                return isValid
-            })
-
             /* Validate unspent outputs. */
             if (unspent.length === 0) {
                 return console.error('There are NO unspent outputs available.')
             }
 
-            /* Build parameters. */
-            this._coins = unspent.map(_unspent => {
-                const outpoint = _unspent.outpointHash
-                const satoshis = _unspent.value
+            /* Retrieve coins. */
+            this._coins = unspent
+                .filter(_u => _u.isToken === false)
+                .filter(_u => this._spentCoins.includes(_u.outpoint) === false)
+                .map(_unspent => {
+                    console.log('UNSPENT COINS **DEBUG**', _unspent)
+                    const outpoint = _unspent.outpoint
+                    const satoshis = _unspent.satoshis
 
-                return {
-                    outpoint,
-                    satoshis,
-                    wif: this._wif,
-                }
-            })
+                    return {
+                        outpoint,
+                        satoshis,
+                        wif: this._wif,
+                    }
+                })
             console.log('\n  Coins:', this.coins)
+
+            /* Retrieve tokens. */
+            this._tokens = unspent
+                .filter(_u => _u.isToken === true)
+                .filter(_u => this._spentCoins.includes(_u.outpoint) === false)
+                .map(_unspent => {
+                    console.log('UNSPENT TOKENS **DEBUG**', _unspent)
+                    const outpoint = _unspent.outpoint
+                    const satoshis = _unspent.satoshis
+                    const tokenid = _unspent.tokenid
+                    const tokens = _unspent.tokens
+
+                    return {
+                        outpoint,
+                        satoshis,
+                        tokenid,
+                        tokens,
+                        wif: this._wif,
+                    }
+                })
+            console.log('\n  Tokens:', this.tokens)
         },
 
         manageSpent(_coins) {
@@ -269,6 +299,10 @@ export const useWalletStore = defineStore('wallet', {
             this._entropy = null
             this._wallet = null
             this._wif = null
+            this._coins = null
+            this._tokens = null
+            this._satoshis = null
+
             console.info('Wallet destroyed successfully!')
         },
 

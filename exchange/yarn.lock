@@ -769,7 +769,7 @@
     graphql-ws "5.12.0"
     ws "8.13.0"
 
-"@nexajs/address@23.6.23":
+"@nexajs/address@^23.6.23":
   version "23.6.23"
   resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.6.23.tgz#ebe3e2381208f35636e572692964d96b68624d80"
   integrity sha512-qtnsQzz7hrHMHp2lqspUn8yxIgvmVhdJDQ4GlKDjcBLBlUrGjSAcf2uRoANVsFv+X18JSNS0k/CYj1ibc+CHug==
@@ -883,7 +883,7 @@
     uuid "9.0.0"
     ws "8.12.1"
 
-"@nexajs/rostrum@23.6.21":
+"@nexajs/rostrum@23.6.21", "@nexajs/rostrum@^23.6.21":
   version "23.6.21"
   resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.6.21.tgz#a87a45d79644b844d053affd6b825d6b20fce108"
   integrity sha512-czMS3o1gVXLS5VOk0Izr1KBZnputiAp3F+LxJKTdIczxhn7cGXwxKFgKxjqIIbXBTuzBevj3eiWUfUnTEphLlw==
@@ -943,7 +943,7 @@
   dependencies:
     debug "4.3.4"
 
-"@nexajs/wallet@23.5.17":
+"@nexajs/wallet@^23.5.17":
   version "23.5.17"
   resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-23.5.17.tgz#6ce0c4c84a11392249a970a0e5394fb1313ceebb"
   integrity sha512-eQEZvOb32z/7TJCTD4Ql8Vb6dltJVWKwyKDdKeR/nfqZSyEhXVr6tLifbVTZuEvDMz3D0zOvRBKwc1SWpjG78Q==
