@@ -7,7 +7,7 @@ import QRCode from 'qrcode'
 import { useProfileStore } from '@/stores/profile'
 
 /* Set constants. */
-const NEXID_ENDPOINT = 'nexid://nexa.exchange/v1/auth'
+const NEXID_ENDPOINT = 'nexid://app.nexa.exchange/v1/auth'
 
 /* Initialize (reactive) holders. */
 let regLink = ref(null)
