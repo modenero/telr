@@ -3,22 +3,26 @@
 </script>
 
 <template>
-    <main class="main-body px-1 flex flex-col sm:flex-row gap-1 sm:overflow-y-hidden">
-        <div class="w-full sm:w-72 flex flex-col">
-            <TradeMarket class="mx-1 my-2 h-[250px]" />
-            <TradeLimit class="mx-1 my-2 flex-1" />
+    <main class="main-body px-1 grid grid-cols-1 sm:grid-cols-2 gap-1 sm:overflow-y-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-2">
+            <div class="py-2 w-full flex flex-col gap-2">
+                <TradeMarket class="h-[250px]" />
+                <TradeLimit class="flex-1" />
+            </div>
+
+            <OrderBook class="w-full" />
         </div>
 
-        <OrderBook class="w-96" />
+        <div class="grid grid-cols-1 lg:grid-cols-2">
+            <div class="w-full">
+                <PriceChart class="mx-1 my-1 h-[250px]" />
+                <Transactions class="mx-1 my-1 flex-1" />
+            </div>
 
-        <div class="flex-1">
-            <PriceChart class="mx-1 my-1 h-[250px]" />
-            <Transactions class="mx-1 my-1 flex-1" />
-        </div>
-
-        <div class="w-full sm:w-72 flex flex-col gap-1">
-            <TradesVolume class="flex-1" />
-            <Notices class="mx-1 my-1 h-[300px]" />
+            <div class="w-full">
+                <TradesVolume class="flex-1" />
+                <Notices class="mx-1 my-1 h-[300px]" />
+            </div>
         </div>
     </main>
 </template>
