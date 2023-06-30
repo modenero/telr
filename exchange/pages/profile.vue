@@ -133,7 +133,7 @@ onBeforeUnmount(() => {
         <div v-else>
             <section v-if="hasAuth" class="py-10 flex flex-col items-center gap-10">
                 <h2 class="text-3xl text-rose-500 font-bold">
-                   Coming Soon...
+                   Nexa Exchange Profile
                 </h2>
 
                 <p class="max-w-lg text-xl text-center">

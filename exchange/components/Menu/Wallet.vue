@@ -84,8 +84,8 @@ onMounted(async () => {
 <template>
     <main v-if="!Wallet.isReady" class="flex flex-col gap-5">
         <p class="px-3 py-2 bg-yellow-100 text-base font-medium border-2 border-yellow-200 rounded-lg shadow-md">
-            Welcome to your Wally Dice game wallet.
-            Click the button below to create a new wallet and begin playing.
+            Welcome to your Nexa Exchange wallet.
+            Click the button below to create a new wallet and begin trading.
         </p>
 
         <div @click="Wallet.createWallet" class="cursor-pointer px-3 py-2 text-2xl text-blue-100 font-medium bg-blue-500 border-2 border-blue-700 rounded-lg shadow hover:bg-blue-400">

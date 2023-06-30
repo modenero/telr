@@ -37,10 +37,10 @@ if (process.client) {
     console.log('HOSTNAME', hostname)
 
     /* Detect all mirrors. */
-    // if (hostname === 'nexaexchange.com') {
-    //     window.location.replace('https://app.nexa.exchange') // NOTE: We have no history added here.
-    //     // FIXME: Be sure to attach the "original" path or hash!!
-    // }
+    if (hostname === 'nexaexchange.com') {
+        window.location.replace('https://app.nexa.exchange') // NOTE: We have no history added here.
+        // FIXME: Be sure to attach the "original" path or hash!!
+    }
 }
 
 const togglePanel = () => {
