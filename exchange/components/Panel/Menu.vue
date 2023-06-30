@@ -77,13 +77,17 @@ curTab.value = 'wallet'
                                                     Wallet
                                                 </div>
 
+                                                <div @click="curTab = 'profile'" aria-current="page" class="cursor-pointer w-1/3 border-b-2 py-4 px-1 text-center text-sm font-medium" :class="[{ 'border-indigo-500 text-indigo-600': curTab === 'profile', 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700': curTab !== 'profile' }]">
+                                                    Profile
+                                                </div>
+
                                                 <div @click="curTab = 'settings'" aria-current="page" class="cursor-pointer w-1/3 border-b-2 py-4 px-1 text-center text-sm font-medium" :class="[{ 'border-indigo-500 text-indigo-600': curTab === 'settings', 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700': curTab !== 'settings' }]">
                                                     Settings
                                                 </div>
 
-                                                <div @click="curTab = 'help'" aria-current="page" class="cursor-pointer w-1/3 border-b-2 py-4 px-1 text-center text-sm font-medium" :class="[{ 'border-indigo-500 text-indigo-600': curTab === 'help', 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700': curTab !== 'help' }]">
+                                                <!-- <div @click="curTab = 'help'" aria-current="page" class="cursor-pointer w-1/3 border-b-2 py-4 px-1 text-center text-sm font-medium" :class="[{ 'border-indigo-500 text-indigo-600': curTab === 'help', 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700': curTab !== 'help' }]">
                                                     Help
-                                                </div>
+                                                </div> -->
                                             </nav>
                                         </div>
                                     </div>
@@ -91,6 +95,7 @@ curTab.value = 'wallet'
 
 
                                 <div class="mt-6 px-4 sm:mt-8 sm:flex sm:items-end sm:px-6">
+                                    <MenuProfile v-if="curTab == 'profile'" class="w-full" />
                                     <MenuSettings v-if="curTab == 'settings'" class="w-full" />
                                     <MenuWallet v-if="curTab == 'wallet'" class="w-full" />
                                     <MenuHelp v-if="curTab == 'help'" class="w-full" />
