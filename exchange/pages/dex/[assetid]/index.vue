@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-    title: 'Blank — Nexa Exchange',
+    title: 'DEX — Nexa Exchange',
     meta: [
         { name: 'description', content: 'Nexa Exchange makes building your next BIG idea effortless.' }
     ],
@@ -11,16 +11,6 @@ import { useSystemStore } from '@/stores/system'
 
 /* Initialize System. */
 const System = useSystemStore()
-
-onBeforeMount(() => {
-    System.$state = JSON.parse(localStorage.getItem('system'))
-    // add additional states here...
-})
-
-watch(System.$state, (_state) => {
-    localStorage.setItem('system', JSON.stringify(_state))
-})
-// watch additional states here...
 
 /* Initialize route. */
 const route = useRoute()

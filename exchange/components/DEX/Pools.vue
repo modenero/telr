@@ -31,8 +31,6 @@ const orders = ref([])
             </div>
         </header>
 
-        <PoolsTopFeed
-            trade-pair="NEX/AVAS"
-        />
+        <DEXPoolsTopFeed />
     </main>
 </template>
