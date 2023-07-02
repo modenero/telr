@@ -5,12 +5,23 @@ import { ref } from 'vue'
 const isShowingDeposit = ref(true)
 const isShowingWithdraw = ref(false)
 const isShowingStaking = ref(false)
+
+const assetid = ref(null)
+
+/* Initialize route. */
+const route = useRoute()
+// console.log('ROUTE', route)
+
+console.log('PARAMS', route.params)
+/* Set (route) path. */
+assetid.value = route.params.assetid
+console.log('assetid', assetid.value)
 </script>
 
 <template>
     <main class="px-2 py-1 bg-gradient-to-b from-gray-900 to-gray-700 border-2 border-gray-500 rounded-lg">
         <div class="text-lg text-yellow-500 font-medium">
-            Instant Buy
+            Instant Buy {{assetid}}
         </div>
 
         <h2 class="flex text-base gap-1">
