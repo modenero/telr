@@ -47,10 +47,14 @@ onMounted(() => {
     <header class="bg-gradient-to-b from-gray-900 to-gray-700">
         <nav class="mx-auto flex items-center justify-between gap-x-6 px-6 py-1 lg:px-8" aria-label="Global">
             <div class="flex lg:flex-1">
-                <NuxtLink to="/" class="-m-1.5 p-1.5">
+                <NuxtLink to="/" class="-m-1.5 p-1.5 flex flex-row items-center gap-3">
                     <span class="sr-only">Exchange</span>
 
                     <img class="h-8 w-auto" src="@/assets/logo.png" alt="" />
+
+                    <h1 class="hidden sm:block text-2xl text-gray-200 font-thin tracking-tight">
+                        Nexa Exchange
+                    </h1>
                 </NuxtLink>
             </div>
 

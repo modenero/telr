@@ -31,8 +31,8 @@ const orders = ref([])
             </div>
         </header>
 
-        <OrderBookMarketFeed
-            trade-pair="mNEXA/AVAS"
+        <CEXOrderBookMarketFeed
+            trade-pair="mNEXA/USDT"
         />
     </main>
 </template>

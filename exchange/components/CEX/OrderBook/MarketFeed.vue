@@ -71,11 +71,11 @@ const quotePair = computed(() => {
     if (!props.tradePair) return 'USDT'
 
     switch(props.tradePair) {
-    case 'NEX/AVAS':
+    case 'mNEXA/AVAS':
         return 'AVAS'
-    case 'NEX/BCH':
+    case 'mNEXA/BCH':
         return 'BCH'
-    case 'NEX/USDT':
+    case 'mNEXA/USDT':
         return 'USDT'
     default:
         return 'USDT'
@@ -83,16 +83,16 @@ const quotePair = computed(() => {
 })
 
 const formatOrderBookValue = (_value) => {
-    if (_value < 100000000) {
+    if (_value < 100000) {
         let val
 
         if (_value < 100) {
-            val = '000000' + _value.toString()
+            val = '000' + _value.toString()
         } else {
-            val = '00000' + _value.toString()
+            val = '00' + _value.toString()
         }
 
-        const parsed = '0 . <small>' + val.slice(0, 3) + '</small> ' + val.slice(3, 6) + ' ' + val.slice(6)
+        const parsed = '<small>' + val.slice(0, 3) + '</small> ' + val.slice(3, 6) + ' ' + val.slice(6)
 
         if (val.length < 7) {
             return parsed + '000 <small>000</small>'
@@ -130,8 +130,9 @@ const formatOrderBookValue = (_value) => {
 
         <div class="py-3 flex flex-col items-center bg-gray-100">
             <span class="text-gray-400 text-xl font-bold">
-                <span class="mx-1 text-gray-800">0 .</span>
-                <small>000</small> <small>00</small><span class="text-gray-800">1</span> <span class="text-gray-800">164</span>
+                <span class="text-gray-800">6</span>
+                <span class="px-1 text-sky-600">.</span>
+                <span class="text-gray-800">988</span> <small>330</small>
                 <span class="mx-1 text-gray-800">{{quotePair}}</span>
             </span>
 
