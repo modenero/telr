@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-    title: 'Centralized Exchange Service — Nexa Studio',
+    title: 'Centralized Exchange Service — Nexa Exchange',
     meta: [
         { name: 'description', content: 'Nexa Exchange makes building your next BIG idea effortless.' }
     ],
@@ -35,16 +35,26 @@ watch(System.$state, (_state) => {
 </script>
 
 <template>
-    <main class="max-w-7xl mx-auto h-full py-5 flex flex-col justify-center items-center">
-        <section class="">
-            <h1 class="text-5xl text-gray-100 font-medium">
-                Centralized Exchange Portal
-            </h1>
+    <main class="main-body px-1 grid grid-cols-1 sm:grid-cols-2 gap-1 sm:overflow-y-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-2">
+            <div class="py-2 w-full flex flex-col gap-2">
+                <CexMarket class="h-[250px]" />
+                <CEXMarketMaker class="flex-1" />
+            </div>
 
-            <p class="text-3xl font-medium text-gray-100">
-                Coming soon...
-            </p>
+            <CEXOrderBook class="w-full" />
+        </div>
 
-        </section>
+        <div class="grid grid-cols-1 lg:grid-cols-2">
+            <div class="w-full">
+                <PriceChart class="mx-1 my-1 h-[250px]" />
+                <Transactions class="mx-1 my-1 flex-1" />
+            </div>
+
+            <div class="w-full">
+                <TradesVolume class="flex-1" />
+                <Notices class="mx-1 my-1 h-[300px]" />
+            </div>
+        </div>
     </main>
 </template>

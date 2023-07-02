@@ -55,16 +55,16 @@ const updateSellTotal = () => {
 <template>
     <main class="px-2 py-1 bg-gradient-to-b from-gray-900 to-gray-700 border-2 border-gray-500 rounded-lg">
         <div class="text-lg text-yellow-500 font-medium">
-            Limit Buy | Sell
+            Liquidity Provider (LP)
         </div>
 
         <ul class="mt-2 flex gap-3 border-b border-gray-400" role="tablist">
             <button class="text-gray-200 text-sm" aria-controls="buy" aria-selected="true">
-                Buy Order
+                Create Position
             </button>
 
             <button class="text-gray-200 text-sm" aria-controls="sell" aria-selected="false">
-                Sell Order
+                Manage Positions
             </button>
         </ul>
 
