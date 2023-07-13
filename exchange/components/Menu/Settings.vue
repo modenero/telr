@@ -60,11 +60,11 @@ currency.value = 'USD'
         <div class="flex items-center justify-between gap-4">
             <span class="flex flex-grow flex-col">
                 <span class="text-sm font-medium leading-6 text-gray-900" id="availability-label">
-                    Expert Play Mode
+                    Enable PRO Trader
                 </span>
 
                 <span class="text-sm text-gray-500" id="availability-description">
-                    Fully control the <strong>SPEED</strong> of gameplay w/ advanced wallet features.
+                    Fully control the <strong>SPEED</strong> of trade execution w/ advanced wallet features.
                 </span>
             </span>
 
@@ -76,7 +76,7 @@ currency.value = 'USD'
         </div>
 
 
-        <fieldset>
+        <fieldset v-if="1 === 2">
             <legend class="block text-sm font-medium leading-6 text-gray-900">
                 Choose a Theme Color
             </legend>
@@ -131,7 +131,7 @@ currency.value = 'USD'
         </fieldset>
 
 
-        <div>
+        <div v-if="1 === 2">
             <label for="combobox" class="block text-sm font-medium leading-6 text-gray-900">
                 Save My Games
             </label>
@@ -227,9 +227,12 @@ currency.value = 'USD'
             </div>
         </div>
 
-        <section v-if="Wallet.mnemonic" class="mt-20 mb-5 p-5 bg-red-300 border-2 border-red-500 rounded-lg shadow">
+        <section v-if="Wallet.mnemonic" class="mt-20 mb-5 px-3 py-2 bg-red-300 border-2 border-red-500 rounded-lg shadow">
+            <h2 class="text-2xl text-red-900 font-bold">
+                Danger Zone
+            </h2>
 
-            <div class="rounded-md bg-amber-50 p-4">
+            <div class="mt-3 rounded-md bg-amber-50 p-4">
                 <div class="flex">
                     <div class="flex-shrink-0">
                         <svg class="h-5 w-5 text-amber-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -264,15 +267,19 @@ currency.value = 'USD'
                 </div>
             </div>
 
-            <p class="py-5 text-center font-bold">
-                BE CAREFUL!
-                THIS CANNOT BE UNDONE.
-                YOU'RE WALLET WILL BE PERMANENTLY ERASED!
-            </p>
+            <div class="my-10 border-t border-red-700" />
 
-            <button @click="destroyWallet" class="w-full px-3 py-1 bg-red-500 border-2 border-red-700 text-2xl font-medium rounded-lg">
-                Destroy Wallet
-            </button>
+            <div>
+                <div @click="destroyWallet" class="w-full px-3 py-1 bg-red-500 border-2 border-red-700 text-center text-2xl text-red-100 font-medium rounded-lg cursor-pointer hover:bg-red-600">
+                    Destroy Wallet
+                </div>
+
+                <p class="px-3 py-2 text-sm text-center font-bold">
+                    BE CAREFUL!
+                    THIS CANNOT BE UNDONE.
+                    YOU'RE WALLET WILL BE PERMANENTLY ERASED!
+                </p>
+            </div>
         </section>
 
     </main>

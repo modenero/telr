@@ -66,9 +66,10 @@ const toggleMenu = () => {
         <slot />
     </main>
 
-    <SidePanel
+    <PanelMenu
         v-if="isShowingPanel"
         @toggleMenu="toggleMenu"
+        :isShowingMenu="isShowingPanel"
     />
 </template>
 

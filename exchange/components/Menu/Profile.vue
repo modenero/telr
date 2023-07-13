@@ -4,18 +4,7 @@
 
 /* Initialize stores. */
 import { useProfileStore } from '@/stores/profile'
-
-/* Initialize profile. */
 const Profile = useProfileStore()
-
-onBeforeMount(() => {
-    Profile.$state = JSON.parse(localStorage.getItem('profile'))
-})
-
-watch(Profile.$state, (_state) => {
-    localStorage.setItem('profile', JSON.stringify(_state))
-})
-
 
 
 /* Initialize constants. */
@@ -114,7 +103,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <main class="px-3 max-w-5xl mx-auto text-gray-100">
+    <main class="px-3 max-w-5xl mx-auto text-gray-700">
         <div class="pt-10 flex justify-center">
             <h1 v-if="isLoading || hasAuth" class="text-3xl sm:text-5xl font-bold tracking-widest text-center">
                 My Profile
@@ -137,12 +126,8 @@ onBeforeUnmount(() => {
                 </h2>
 
                 <p class="max-w-lg text-xl text-center">
-                    While you wait for your Awesome profile page, please submit your favorite Nexa link.
+                    Please stand by as we prepare your Exchange profile page.
                 </p>
-
-                <NuxtLink to="/submit" class="px-5 py-2 bg-green-500 text-xl text-green-50 font-medium border-4 border-green-700 rounded-md shadow-md hover:bg-green-600">
-                    Submit a New Listing
-                </NuxtLink>
 
                 <button @click="signOut" class="px-5 py-2 bg-red-500 text-xl text-red-50 font-medium border-4 border-red-700 rounded-md shadow-md hover:bg-red-600">
                     Sign Out

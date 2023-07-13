@@ -29,7 +29,7 @@ curTab.value = 'wallet'
         <!-- Background backdrop, show/hide based on slide-over state. -->
         <div class="fixed inset-0"></div>
 
-        <div class="fixed inset-0 overflow-hidden bg-sky-900">
+        <div class="fixed inset-0 overflow-hidden bg-sky-900 bg-opacity-50 backdrop-blur-sm">
             <div class="absolute inset-0 overflow-hidden">
 
             <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16">
