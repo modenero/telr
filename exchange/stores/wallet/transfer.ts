@@ -11,11 +11,6 @@ export default async function (_receiver, _satoshis) {
         /* Initialize flag. */
         let isValid = true
 
-        if (_coin.satoshis <= this.DUST_LIMIT) {
-            /* Set flag. */
-            isValid = false
-        }
-
         if (this.spentCoins.includes(_coin.outpoint)) {
             /* Set flag. */
             isValid = false

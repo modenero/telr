@@ -25,7 +25,8 @@ watch(() => amount.value, (_amount) => {
     // console.log('AMOUNT CHANGED', _amount)
 
     /* Convert to satoshis. */
-    satoshis.value = parseInt(_amount / System._ticker.quote?.USD?.price * 100)
+    // satoshis.value = parseInt(_amount / System._ticker.quote?.USD?.price * 100)
+    satoshis.value = parseInt(_amount * 100)
 })
 
 const openScanner = () => {
@@ -156,12 +157,12 @@ const send = async () => {
             placeholder="Enter a Crypto address"
         />
 
-        <button @click="openScanner">
-            <svg class="w-12 h-12 hover:text-red-500 hover:cursor-pointer" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <div @click="openScanner">
+            <svg class="cursor-pointer w-12 h-12 hover:text-red-500 hover:cursor-pointer" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 013.75 9.375v-4.5zM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.5zM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0113.5 9.375v-4.5z"></path>
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 6.75h.75v.75h-.75v-.75zM6.75 16.5h.75v.75h-.75v-.75zM16.5 6.75h.75v.75h-.75v-.75zM13.5 13.5h.75v.75h-.75v-.75zM13.5 19.5h.75v.75h-.75v-.75zM19.5 13.5h.75v.75h-.75v-.75zM19.5 19.5h.75v.75h-.75v-.75zM16.5 16.5h.75v.75h-.75v-.75z"></path>
             </svg>
-        </button>
+        </div>
     </section>
 
     <div class="px-3">
@@ -186,7 +187,7 @@ const send = async () => {
             class="w-full px-3 py-1 text-xl sm:text-2xl bg-yellow-200 border-2 border-yellow-400 rounded-md shadow"
             type="number"
             v-model="amount"
-            placeholder="Enter a (USD) amount"
+            placeholder="Enter a (NEXA) amount"
         />
 
         <h4 v-if="satoshis > 0" class="mt-1 ml-3 text-sm text-gray-500 font-medium">
@@ -194,11 +195,11 @@ const send = async () => {
         </h4>
     </section>
 
-    <button
+    <div
         @click="send"
-        class="my-5 block px-3 py-1 text-2xl font-medium bg-blue-200 border-2 border-blue-400 rounded-md shadow hover:bg-blue-300"
+        class="cursor-pointer my-5 block px-3 py-1 text-2xl font-medium bg-blue-200 border-2 border-blue-400 rounded-md shadow hover:bg-blue-300"
     >
         Send NEXA
-    </button>
+    </div>
 
 </template>

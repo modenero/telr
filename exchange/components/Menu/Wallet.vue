@@ -132,20 +132,20 @@ onMounted(async () => {
             <div class="block">
                 <nav class="isolate flex divide-x divide-gray-200 rounded-lg shadow" aria-label="Tabs">
                     <!-- Current: "text-gray-900", Default: "text-gray-500 hover:text-gray-700" -->
-                    <button @click="setTab('deposit')" class="bg-gray-700 text-gray-100 rounded-l-lg group relative min-w-0 flex-1 overflow-hidden py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 hover:text-gray-600 focus:z-10" aria-current="page">
+                    <div @click="setTab('deposit')" class="cursor-pointer bg-gray-700 text-gray-100 rounded-l-lg group relative min-w-0 flex-1 overflow-hidden py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 hover:text-gray-600 focus:z-10" aria-current="page">
                         <span>Deposit</span>
                         <span aria-hidden="true" class="bg-indigo-500 absolute inset-x-0 bottom-0 h-0.5"></span>
-                    </button>
+                    </div>
 
-                    <button @click="setTab('withdraw')" class="bg-gray-700 text-gray-400 hover:text-gray-700 group relative min-w-0 flex-1 overflow-hidden py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 hover:text-gray-600 focus:z-10">
+                    <div @click="setTab('withdraw')" class="cursor-pointer bg-gray-700 text-gray-400 hover:text-gray-700 group relative min-w-0 flex-1 overflow-hidden py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 hover:text-gray-600 focus:z-10">
                         <span>Withdraw</span>
                         <span aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
-                    </button>
+                    </div>
 
-                    <button @click="setTab('history')" class="bg-gray-700 text-gray-400 hover:text-gray-700 rounded-r-lg group relative min-w-0 flex-1 overflow-hidden py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 hover:text-gray-600 focus:z-10">
+                    <div @click="setTab('history')" class="cursor-pointer bg-gray-700 text-gray-400 hover:text-gray-700 rounded-r-lg group relative min-w-0 flex-1 overflow-hidden py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 hover:text-gray-600 focus:z-10">
                         <span>History</span>
                         <span aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
-                    </button>
+                    </div>
                 </nav>
             </div>
         </div>
