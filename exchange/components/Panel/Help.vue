@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 
 const props = defineProps({
-    isShowingPrice: Boolean,
+    isShowingHelp: Boolean,
 })
 
 /* Initialize stores. */
@@ -11,12 +11,12 @@ import { useSystemStore } from '@/stores/system'
 /* Initialize System. */
 const System = useSystemStore()
 
-const emit = defineEmits(['togglePrice'])
+const emit = defineEmits(['toggleHelp'])
 
 const curTab = ref(null)
 
-const togglePrice = () => {
-    emit('togglePrice')
+const toggleHelp = () => {
+    emit('toggleHelp')
 }
 
 /* Set default tab. */
@@ -25,11 +25,11 @@ curTab.value = 'live'
 </script>
 
 <template>
-    <main v-if="isShowingPrice" class="relative z-10" role="dialog" aria-modal="true">
+    <main v-if="isShowingHelp" class="relative z-10" role="dialog" aria-modal="true">
         <!-- Background backdrop, show/hide based on slide-over state. -->
         <div class="fixed inset-0"></div>
 
-        <div class="fixed inset-0 overflow-hidden bg-rose-900">
+        <div class="fixed inset-0 overflow-hidden bg-rose-900 bg-opacity-50 backdrop-blur-sm">
             <div class="absolute inset-0 overflow-hidden">
 
             <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16">
@@ -50,11 +50,11 @@ curTab.value = 'live'
 
                     <div class="flex items-start justify-between">
                         <h2 id="slide-over-heading" class="text-2xl font-semibold leading-6 text-gray-900">
-                            Da Price Guru
+                            Da Help Guru
                         </h2>
 
                         <div class="ml-3 flex h-7 items-center">
-                            <button @click="togglePrice" type="button" class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500">
+                            <button @click="toggleHelp" type="button" class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500">
                                 <span class="sr-only">Close panel</span>
                                 <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -91,9 +91,9 @@ curTab.value = 'live'
 
 
                                 <div class="mt-6 px-4 sm:mt-8 sm:flex sm:items-end sm:px-6">
-                                    <PriceLive v-if="curTab == 'live'" class="w-full" />
-                                    <PricePast v-if="curTab == 'past'" class="w-full" />
-                                    <PriceFuture v-if="curTab == 'future'" class="w-full" />
+                                    <HelpLive v-if="curTab == 'live'" class="w-full" />
+                                    <HelpPast v-if="curTab == 'past'" class="w-full" />
+                                    <HelpFuture v-if="curTab == 'future'" class="w-full" />
                                 </div>
                             </div>
                         </div>

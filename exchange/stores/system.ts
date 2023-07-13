@@ -59,6 +59,13 @@ export const useSystemStore = defineStore('system', {
          *       of this storage field.
          */
         _notices: null,
+
+        /**
+         * Tickers
+         *
+         * Support for multiple exchange tickers across multiple currencies.
+         */
+        _tickers: null,
     }),
 
     getters: {

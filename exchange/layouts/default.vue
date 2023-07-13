@@ -21,7 +21,8 @@ watch([Profile.$state, System.$state, Wallet.$state], (_state) => {
 })
 
 
-const isShowingPanel = ref(false)
+const isShowingMenu = ref(false)
+const isShowingHelp = ref(false)
 
 if (process.client) {
     /* Verify the URL (location), for security reasons. */
@@ -43,33 +44,41 @@ if (process.client) {
     }
 }
 
-const togglePanel = () => {
-    isShowingPanel.value = !isShowingPanel.value
-}
-
 const toggleMenu = () => {
-    isShowingPanel.value = !isShowingPanel.value
+    isShowingHelp.value = false
+
+    isShowingMenu.value = !isShowingMenu.value
 }
 
-// const openPanel = () => {
-//     isShowingPanel.value = true
-// }
+const toggleHelp = () => {
+    isShowingMenu.value = false
+
+    isShowingHelp.value = !isShowingHelp.value
+}
+
 </script>
 
 <template>
     <main class="h-screen overflow-hidden flex flex-col justify-between bg-gradient-to-r from-indigo-900 to-gray-900">
         <Header
             class="border-b-2 border-gray-100 z-20"
-            @togglePanel="togglePanel"
+            @toggleMenu="toggleMenu"
+            @toggleHelp="toggleHelp"
         />
 
         <slot />
     </main>
 
     <PanelMenu
-        v-if="isShowingPanel"
+        v-if="isShowingMenu"
         @toggleMenu="toggleMenu"
-        :isShowingMenu="isShowingPanel"
+        :isShowingMenu="isShowingMenu"
+    />
+
+    <PanelHelp
+        v-if="isShowingHelp"
+        @toggleHelp="toggleHelp"
+        :isShowingHelp="isShowingHelp"
     />
 </template>
 

@@ -8,7 +8,7 @@ const usd = ref(null)
 const isShowingMobileMenu = ref(false)
 
 /* Initialize emits. */
-const emit = defineEmits(['togglePanel'])
+const emit = defineEmits(['toggleMenu', 'toggleHelp'])
 
 const usdDisplay = computed(() => {
     if (!usd.value) {
@@ -23,12 +23,12 @@ const updateTicker = async () => {
     console.log('USD', usd.value)
 }
 
-const openProfile = () => {
-    emit('togglePanel')
+const openMenu = () => {
+    emit('toggleMenu')
 }
 
 const openHelp = () => {
-    emit('togglePanel')
+    emit('toggleHelp')
 }
 
 onMounted(() => {
@@ -85,7 +85,7 @@ onMounted(() => {
             </div>
 
             <div class="flex">
-                <button @click="openProfile" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+                <button @click="openMenu" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
                     <span class="sr-only">Open main menu</span>
 
                     <svg class="w-10 h-auto text-gray-100" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
