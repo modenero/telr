@@ -63,8 +63,8 @@ const makeSwap = async () => {
                 </div>
             </div>
 
-            <div class="col-span-2 w-full grid grid-cols-3 gap-3">
-                <div @click="isSwapping = true" class="w-full h-20 sm:h-24 flex justify-center items-center border-2 border-green-800 rounded-lg shadow bg-gradient-to-b from-green-600 to-green-400">
+            <div class="col-span-2 w-full flex flex-row gap-3">
+                <div @click="isSwapping = true" class="flex-1 h-20 sm:h-24 flex justify-center items-center border-2 border-green-800 rounded-lg shadow bg-gradient-to-b from-green-600 to-green-400">
                     <div class="flex flex-col items-center">
                         <h2 class="text-sm sm:text-lg text-green-900 font-extrabold">
                             Bitcoin Cash
@@ -76,7 +76,7 @@ const makeSwap = async () => {
                     </div>
                 </div>
 
-                <div @click="isSwapping = true" class="w-full h-20 sm:h-24 flex justify-center items-center border-2 border-indigo-500 rounded-lg shadow bg-gradient-to-b from-indigo-400 to-indigo-200">
+                <div @click="isSwapping = true" class="flex-1 h-20 sm:h-24 flex justify-center items-center border-2 border-indigo-500 rounded-lg shadow bg-gradient-to-b from-indigo-400 to-indigo-200">
                     <div class="flex flex-col items-center">
                         <h2 class="text-sm sm:text-lg text-indigo-900 font-extrabold">
                             Dash
@@ -88,7 +88,7 @@ const makeSwap = async () => {
                     </div>
                 </div>
 
-                <div @click="isSwapping = true" class="w-full h-20 sm:h-24 flex justify-center items-center border-2 border-lime-500 rounded-lg shadow bg-gradient-to-b from-lime-400 to-lime-200">
+                <div @click="isSwapping = true" class="flex-1 h-20 sm:h-24 flex justify-center items-center border-2 border-lime-500 rounded-lg shadow bg-gradient-to-b from-lime-400 to-lime-200">
                     <div class="flex flex-col items-center">
                         <h2 class="text-sm sm:text-lg text-lime-900 font-extrabold">
                             Tether
