@@ -64,7 +64,7 @@ const makeSwap = async () => {
             </div>
 
             <div class="col-span-2 w-full flex flex-row gap-3">
-                <div @click="isSwapping = true" class="flex-1 h-20 sm:h-24 flex justify-center items-center border-2 border-green-800 rounded-lg shadow bg-gradient-to-b from-green-600 to-green-400">
+                <div @click="isSwapping = true" class="px-2 flex-1 h-20 sm:h-24 flex justify-center items-center border-2 border-green-800 rounded-lg shadow bg-gradient-to-b from-green-600 to-green-400">
                     <div class="flex flex-col items-center">
                         <h2 class="text-sm sm:text-lg text-green-900 font-extrabold">
                             Bitcoin Cash
