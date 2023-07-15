@@ -39,13 +39,13 @@ const makeSwap = async () => {
                 I Want ↴
             </h2>
 
-            <div @click="isSwapping = true" class="px-2 flex-1 h-24 sm:h-32 flex justify-center items-center border border-amber-700 rounded-lg shadow bg-gradient-to-b from-amber-500 to-amber-300">
+            <div @click="isSwapping = true" class="px-2 flex-1 h-24 sm:h-32 flex justify-center items-center border border-yellow-700 rounded-lg shadow bg-gradient-to-b from-yellow-500 to-yellow-300">
                 <div class="flex flex-col items-center">
-                    <h2 class="text-2xl sm:text-3xl text-amber-800 font-medium whitespace-nowrap">
+                    <h2 class="text-2xl sm:text-3xl text-yellow-800 font-medium whitespace-nowrap">
                         Nexa
                     </h2>
 
-                    <h3 class="text-sm sm:text-base text-amber-600 font-medium">
+                    <h3 class="text-sm sm:text-base text-yellow-600 font-medium">
                         NEXA
                     </h3>
                 </div>
