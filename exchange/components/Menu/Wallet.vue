@@ -12,8 +12,8 @@ const Wallet = useWalletStore()
 const mnemonic = ref(null)
 
 const isShowingAssets = ref(false)
+const isShowingDeposit = ref(false)
 const isShowingSend = ref(false)
-const isShowingReceive = ref(false)
 const isShowingHistory = ref(false)
 const isShowingSwap = ref(false)
 
@@ -54,7 +54,7 @@ const setTab = (_tab) => {
     /* Clear all tabs. */
     isShowingAssets.value = false
     isShowingSend.value = false
-    isShowingReceive.value = false
+    isShowingDeposit.value = false
     isShowingHistory.value = false
     isShowingSwap.value = false
 
@@ -66,8 +66,8 @@ const setTab = (_tab) => {
         isShowingSend.value = true
     }
 
-    if (_tab === 'receive') {
-        isShowingReceive.value = true
+    if (_tab === 'deposit') {
+        isShowingDeposit.value = true
     }
 
     if (_tab === 'history') {
@@ -173,32 +173,32 @@ onMounted(async () => {
         <div class="block">
             <nav class="isolate grid grid-cols-4 divide-x divide-gray-200 rounded-x-lg rounded-b-lg shadow" aria-label="Tabs">
                 <!-- Current: "text-gray-900", Default: "text-gray-500 hover:text-gray-700" -->
-                <div @click="setTab('send')" class="cursor-pointer bg-gray-700 rounded-bl-lg group relative min-w-0 flex flex-row justify-center gap-1 overflow-hidden py-2 px-4 text-sm font-medium hover:bg-gray-50 hover:text-gray-600 focus:z-10" aria-current="page" :class="[ isShowingSend ? 'text-gray-100' : 'text-gray-400' ]">
-                    <svg class="w-4 h-auto" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"></path>
+                <div @click="setTab('deposit')" class="cursor-pointer bg-gray-700 rounded-bl-lg group relative min-w-0 flex flex-row justify-center gap-1 overflow-hidden py-2 px-2 text-sm font-medium hover:bg-gray-50 hover:text-gray-600 focus:z-10" aria-current="page" :class="[ isShowingSend ? 'text-gray-100' : 'text-gray-400' ]">
+                    <svg class="hidden sm:block w-4 h-auto" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"></path>
                     </svg>
-                    <span>Send</span>
+                    <span>Deposit</span>
                     <span aria-hidden="true" class="absolute inset-x-0 bottom-0 h-0.5" :class="[ isShowingSend ? 'bg-sky-500' : 'bg-transparent' ]"></span>
                 </div>
 
-                <div @click="setTab('receive')" class="cursor-pointer bg-gray-700 text-gray-400 group relative min-w-0 flex flex-row justify-center gap-1 overflow-hidden py-2 px-4 text-center text-sm font-medium hover:bg-gray-50 hover:text-gray-600 focus:z-10">
-                    <svg class="w-4 h-auto" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"></path>
+                <div @click="setTab('send')" class="cursor-pointer bg-gray-700 text-gray-400 group relative min-w-0 flex flex-row justify-center gap-1 overflow-hidden py-2 px-2 text-center text-sm font-medium hover:bg-gray-50 hover:text-gray-600 focus:z-10">
+                    <svg class="hidden sm:block w-4 h-auto" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"></path>
                     </svg>
-                    <span>Receive</span>
+                    <span>Send</span>
                     <span aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
                 </div>
 
-                <div @click="setTab('history')" class="cursor-pointer bg-gray-700 text-gray-400 group relative min-w-0 flex flex-row justify-center gap-1 overflow-hidden py-2 px-4 text-center text-sm font-medium hover:bg-gray-50 hover:text-gray-600 focus:z-10">
-                    <svg class="w-4 h-auto" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <div @click="setTab('history')" class="cursor-pointer bg-gray-700 text-gray-400 group relative min-w-0 flex flex-row justify-center gap-1 overflow-hidden py-2 px-2 text-center text-sm font-medium hover:bg-gray-50 hover:text-gray-600 focus:z-10">
+                    <svg class="hidden sm:block w-4 h-auto" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 4.5h14.25M3 9h9.75M3 13.5h9.75m4.5-4.5v12m0 0l-3.75-3.75M17.25 21L21 17.25"></path>
                     </svg>
                     <span>History</span>
                     <span aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
                 </div>
 
-                <div @click="setTab('swap')" class="cursor-pointer bg-gray-700 text-gray-400 rounded-br-lg group relative min-w-0 flex flex-row justify-center gap-1 overflow-hidden py-2 px-4 text-center text-sm font-medium hover:bg-gray-50 hover:text-gray-600 focus:z-10">
-                    <svg class="w-4 h-auto" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <div @click="setTab('swap')" class="cursor-pointer bg-gray-700 text-gray-400 rounded-br-lg group relative min-w-0 flex flex-row justify-center gap-1 overflow-hidden py-2 px-2 text-center text-sm font-medium hover:bg-gray-50 hover:text-gray-600 focus:z-10">
+                    <svg class="hidden sm:block w-4 h-auto" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"></path>
                     </svg>
                     <span>Swap</span>
@@ -210,7 +210,7 @@ onMounted(async () => {
         <div class="my-5">
             <MenuWalletAssets v-if="isShowingAssets" />
             <MenuWalletSend v-if="isShowingSend" />
-            <MenuWalletReceive v-if="isShowingReceive" />
+            <MenuWalletDeposit v-if="isShowingDeposit" />
             <MenuWalletHistory v-if="isShowingHistory" />
             <MenuWalletSwap v-if="isShowingSwap" />
         </div>

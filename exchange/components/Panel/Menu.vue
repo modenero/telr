@@ -14,6 +14,7 @@ const System = useSystemStore()
 const emit = defineEmits(['toggleMenu'])
 
 const curTab = ref(null)
+const isFullScreen = ref(false)
 
 const toggleMenu = () => {
     emit('toggleMenu')
@@ -32,42 +33,49 @@ curTab.value = 'wallet'
         <div class="fixed inset-0 overflow-hidden bg-sky-900 bg-opacity-50 backdrop-blur-sm">
             <div class="absolute inset-0 overflow-hidden">
 
-            <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16">
-                <!--
-                Slide-over panel, show/hide based on slide-over state.
+                <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16">
+                    <!--
+                    Slide-over panel, show/hide based on slide-over state.
 
-                Entering: "transform transition ease-in-out duration-500 sm:duration-700"
-                    From: "translate-x-full"
-                    To: "translate-x-0"
-                Leaving: "transform transition ease-in-out duration-500 sm:duration-700"
-                    From: "translate-x-0"
-                    To: "translate-x-full"
-                -->
-                <div class="pointer-events-auto w-full max-w-md">
+                    Entering: "transform transition ease-in-out duration-500 sm:duration-700"
+                        From: "translate-x-full"
+                        To: "translate-x-0"
+                    Leaving: "transform transition ease-in-out duration-500 sm:duration-700"
+                        From: "translate-x-0"
+                        To: "translate-x-full"
+                    -->
+                    <div class="pointer-events-auto w-full max-w-md lg:max-w-5xl">
 
-                <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
-                    <div class="px-4 py-6 sm:px-6">
+                        <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl w-[335px] sm:w-[450px]" :class="[ isFullScreen ? 'lg:w-[1000px]' : 'lg:w-[450px]' ]">
+                            <div class="px-4 py-6 sm:px-6">
 
-                    <div class="flex items-start justify-between">
-                        <h2 id="slide-over-heading" class="text-2xl font-semibold leading-6 text-gray-900">
-                            Main Menu
-                        </h2>
+                                <div class="flex items-start justify-between">
+                                    <h2 id="slide-over-heading" class="text-2xl font-semibold leading-6 text-gray-900">
+                                        Main Menu
+                                    </h2>
 
-                        <div class="ml-3 flex h-7 items-center">
-                            <button @click="toggleMenu" type="button" class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500">
-                                <span class="sr-only">Close panel</span>
-                                <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                    </div>
+                                    <div class="ml-3 flex h-7 items-center">
+                                        <button @click="toggleMenu" type="button" class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500">
+                                            <span class="sr-only">Close panel</span>
+                                            <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
 
-                    <!-- Main -->
-                    <div>
-                        <div class="pb-1 sm:pb-6">
-                            <div>
+                            <!-- Main -->
+                            <div class="pb-1 sm:pb-6">
+
+                                <div @click="isFullScreen = !isFullScreen" class="hidden lg:block lg:absolute -mt-5" :class="[ isFullScreen ? 'right-[25px]' : 'left-[70px]' ]">
+                                    <svg v-if="!isFullScreen" class="w-8 h-auto cursor-pointer hover:scale-105 hover:text-rose-400 transition duration-200 ease-in-out" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"></path>
+                                    </svg>
+                                    <svg v-if="isFullScreen" class="w-8 h-auto cursor-pointer hover:scale-105 hover:text-rose-400 transition duration-200 ease-in-out" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"></path>
+                                    </svg>
+                                </div>
 
                                 <section>
                                     <div class="block">
@@ -93,7 +101,6 @@ curTab.value = 'wallet'
                                     </div>
                                 </section>
 
-
                                 <div class="mt-6 px-4 sm:mt-8 sm:flex sm:items-end sm:px-6">
                                     <MenuProfile v-if="curTab == 'profile'" class="w-full" />
                                     <MenuSettings v-if="curTab == 'settings'" class="w-full" />
@@ -101,12 +108,10 @@ curTab.value = 'wallet'
                                     <MenuHelp v-if="curTab == 'help'" class="w-full" />
                                 </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
-                </div>
-            </div>
             </div>
         </div>
     </main>
