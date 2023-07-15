@@ -1,8 +1,10 @@
 <script setup>
 /* Import modules. */
+import moment from 'moment'
 import {
-    listUnspent,
-} from '@nexajs/address'
+    getAddressHistory,
+    getTransaction,
+} from '@nexajs/rostrum'
 
 /* Initialize stores. */
 import { useSystemStore } from '@/stores/system'
@@ -10,16 +12,48 @@ import { useWalletStore } from '@/stores/wallet'
 const System = useSystemStore()
 const Wallet = useWalletStore()
 
-const unspent = ref(null)
+const history = ref(null)
+const txs = ref(null)
 
 const init = async () => {
-    let response
+    let history
+    let txids
 
     console.log('ADDRESS', Wallet.address)
 
-    unspent.value = await listUnspent(Wallet.address)
+    history = await getAddressHistory(Wallet.address)
         .catch(err => console.error(err))
-    console.log('UNSPENT', unspent.value)
+    console.log('HISTORY', history)
+
+    txids = history.map(_tx => _tx.tx_hash)
+
+    txs.value = {}
+
+    txids.forEach(async _txid => {
+        let details
+
+        details = await getTransaction(_txid)
+            .catch(err => console.error(err))
+        console.log('DETAILS', details)
+
+        txs.value[_txid] = details
+    })
+}
+
+const displayTransaction = (_txid) => {
+    if (!txs.value) {
+        return 'n/a'
+    }
+
+    return txs.value[_txid]
+}
+
+const displayTime = (_time) => {
+    return moment.unix(_time).format('lll')
+}
+
+const displayTimeAgo = (_time) => {
+    return moment.unix(_time).fromNow()
 }
 
 
@@ -36,16 +70,30 @@ onMounted(() => {
 
 <template>
     <main class="flex flex-col gap-4">
-        <p class="px-3 py-2 bg-rose-100 text-sm border border-rose-200 rounded-lg shadow-md">
-            Thanks for visiting.
-            This area is still under development and will be updated soon.
-        </p>
-
-        <h2 class="text-2xl font-medium">
-            What's Coming?
+        <h2 class="text-xl font-medium">
+            Recent Transactions
         </h2>
 
-        <pre>{{unspent}}</pre>
+        <div v-for="tx of txs" :key="tx.txidem" class="px-2 p-1 bg-amber-100 border border-amber-300 rounded-md shadow">
+            <h3 class="text-xs font-medium truncate">
+                TXID {{tx.txidem}}
+            </h3>
+
+            <h3>
+                {{displayTime(tx.time)}}
+                <small>({{displayTimeAgo(tx.time)}})</small>
+            </h3>
+
+            <h3>fee: {{tx.fee}}</h3>
+
+            <h3>size: {{tx.size}}</h3>
+
+            <pre class="text-xs">{{tx.vin}}</pre>
+
+            <pre class="text-xs">{{tx.vout}}</pre>
+
+            <!-- <pre class="text-xs">{{displayTransaction(tx.txid)}}</pre> -->
+        </div>
 
     </main>
 </template>
