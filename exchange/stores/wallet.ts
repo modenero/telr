@@ -21,6 +21,22 @@ import _depositHandler from './wallet/depositHandler.ts'
 import _transfer from './wallet/transfer.ts'
 
 
+const getCoinBalance = async (_address) => {
+    let balance
+    let unspent
+
+    unspent = await listUnspent(_address)
+        .catch(err => console.error(err))
+    console.log('UNSPENT', unspent)
+
+    balance = unspent.reduce(
+        (totalBalance, unspent) => unspent.isToken ? 0 : (totalBalance + unspent.satoshis), 0
+    )
+
+    return balance
+}
+
+
 /**
  * Wallet Store
  */
@@ -162,32 +178,32 @@ export const useWalletStore = defineStore('wallet', {
             /* Encode Private Key WIF. */
             this._wif = encodePrivateKeyWif({ hash: sha256 }, this._wallet.privateKey, 'mainnet')
 
-            this._balance = await getAddressBalance(this.address)
+            this._balance = await getCoinBalance(this.address)
                 .catch(err => console.error(err))
             console.log('\n  Address balance:\n', this.balance)
 
             /* Validate balance. */
             if (this.balance) {
                 /* Calculate (total) satoshis. */
-                this._satoshis = satoshis = this.balance.confirmed + this.balance.unconfirmed
+                this._satoshis = satoshis = this.balance
             }
 
             let bal
 
-            this._balance = bal = await getAddressBalance(this.getAddress(1))
+            this._balance = bal = await getCoinBalance(this.getAddress(1))
                 .catch(err => console.error(err))
             console.log('\n  Address balance (1):\n', this.balance, bal)
-            this._satoshis = satoshis = satoshis + bal.confirmed + bal.unconfirmed
+            this._satoshis = satoshis = satoshis + bal
 
-            this._balance = bal = await getAddressBalance(this.getAddress(2))
+            this._balance = bal = await getCoinBalance(this.getAddress(2))
                 .catch(err => console.error(err))
             console.log('\n  Address balance (2):\n', this.balance, bal)
-            this._satoshis = satoshis = satoshis + bal.confirmed + bal.unconfirmed
+            this._satoshis = satoshis = satoshis + bal
 
-            this._balance = bal = await getAddressBalance(this.getAddress(3))
+            this._balance = bal = await getCoinBalance(this.getAddress(3))
                 .catch(err => console.error(err))
             console.log('\n  Address balance (3):\n', this.balance, bal)
-            this._satoshis = satoshis = satoshis + bal.confirmed + bal.unconfirmed
+            this._satoshis = satoshis = satoshis + bal
 
             // Fetch all unspent transaction outputs for the temporary in-browser wallet.
             unspent = await listUnspent(this.address)
@@ -307,6 +323,4 @@ export const useWalletStore = defineStore('wallet', {
         },
 
     },
-
-    // persist: true,
 })

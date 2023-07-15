@@ -1,14 +1,31 @@
 <script setup>
-import numeral from 'numeral'
+/* Import modules. */
+import {
+    listUnspent,
+} from '@nexajs/address'
 
 /* Initialize stores. */
 import { useSystemStore } from '@/stores/system'
+import { useWalletStore } from '@/stores/wallet'
 const System = useSystemStore()
+const Wallet = useWalletStore()
 
-// onMounted(() => {
-//     console.log('Mounted!')
-//     // Now it's safe to perform setup operations.
-// })
+const unspent = ref(null)
+
+const init = async () => {
+    let response
+
+    console.log('ADDRESS', Wallet.address)
+
+    unspent.value = await listUnspent(Wallet.address)
+        .catch(err => console.error(err))
+    console.log('UNSPENT', unspent.value)
+}
+
+
+onMounted(() => {
+    init()
+})
 
 // onBeforeUnmount(() => {
 //     console.log('Before Unmount!')
@@ -28,10 +45,7 @@ const System = useSystemStore()
             What's Coming?
         </h2>
 
-        <ol class="pl-10 list-disc">
-            <li>Transaction history</li>
-            <li>Data exporting</li>
-        </ol>
+        <pre>{{unspent}}</pre>
 
     </main>
 </template>

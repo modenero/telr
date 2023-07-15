@@ -123,7 +123,7 @@ onMounted(async () => {
 
     <main v-else class="">
         <section @click="setTab('assets')" class="cursor-pointer group px-5 py-3 bg-sky-50 border-t border-x border-sky-400 rounded-t-lg rounded-x-lg shadow-md hover:bg-sky-100">
-            <div class="w-fit">
+            <div class="w-fit mb-1">
                 <h3 class="text-base tracking-tight uppercase text-sky-500 font-medium text-center opacity-40 group-hover:opacity-100 group-hover:scale-105 transition duration-200 ease-in-out">
                     My Portfolio Summary
                 </h3>
@@ -131,7 +131,7 @@ onMounted(async () => {
 
             <div class="flex flex-col items-end">
                 <h3 class="text-xs tracking-widest text-sky-700 font-medium uppercase">
-                    Available $NEXA
+                    Spendable $NEXA
                 </h3>
 
                 <h2 class="text-3xl text-gray-600 font-medium">
@@ -154,7 +154,7 @@ onMounted(async () => {
                     </h3>
 
                     <h2 class="text-base text-gray-600 font-medium">
-                        x2 @ $1,337.88
+                        $1,337.88 <small class="text-sky-400">x2</small>
                     </h2>
                 </div>
 
