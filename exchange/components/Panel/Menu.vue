@@ -69,10 +69,10 @@ curTab.value = 'wallet'
                             <div class="pb-1 sm:pb-6">
 
                                 <div @click="isFullScreen = !isFullScreen" class="hidden lg:block lg:absolute -mt-5" :class="[ isFullScreen ? 'right-[25px]' : 'left-[70px]' ]">
-                                    <svg v-if="!isFullScreen" class="w-8 h-auto cursor-pointer hover:scale-105 hover:text-rose-400 transition duration-200 ease-in-out" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <svg v-if="isFullScreen" class="w-7 h-auto rotate-180 cursor-pointer hover:scale-105 hover:text-rose-400 transition duration-200 ease-in-out" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"></path>
                                     </svg>
-                                    <svg v-if="isFullScreen" class="w-8 h-auto cursor-pointer hover:scale-105 hover:text-rose-400 transition duration-200 ease-in-out" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <svg v-if="!isFullScreen" class="w-7 h-auto rotate-180 cursor-pointer hover:scale-105 hover:text-rose-400 transition duration-200 ease-in-out" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"></path>
                                     </svg>
                                 </div>
@@ -101,7 +101,7 @@ curTab.value = 'wallet'
                                     </div>
                                 </section>
 
-                                <div class="mt-6 px-4 sm:mt-8 sm:flex sm:items-end sm:px-6">
+                                <div class="mt-3 px-3 sm:mt-4">
                                     <MenuProfile v-if="curTab == 'profile'" class="w-full" />
                                     <MenuSettings v-if="curTab == 'settings'" class="w-full" />
                                     <MenuWallet v-if="curTab == 'wallet'" class="w-full" />
