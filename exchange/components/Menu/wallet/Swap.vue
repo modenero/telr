@@ -7,6 +7,8 @@ const System = useSystemStore()
 
 const search = ref(null)
 
+const isSwapping = ref(false)
+
 const makeSwap = async () => {
     const msg = `Are you sure you want to continue with this Swap:
 
@@ -37,35 +39,73 @@ const makeSwap = async () => {
                 I Want ↴
             </h2>
 
-            <div class="w-full h-32 flex justify-center items-center border-2 border-amber-700 rounded-lg shadow bg-gradient-to-b from-amber-500 to-amber-300">
+            <div @click="isSwapping = true" class="w-full h-24 sm:h-32 flex justify-center items-center border-2 border-amber-700 rounded-lg shadow bg-gradient-to-b from-amber-500 to-amber-300">
                 <div class="flex flex-col items-center">
-                    <h2 class="text-3xl text-amber-800 font-extrabold">
+                    <h2 class="text-2xl sm:text-3xl text-amber-800 font-extrabold">
                         Nexa
                     </h2>
 
-                    <h3 class="text-amber-600 font-medium">
+                    <h3 class="text-sm sm:text-base text-amber-600 font-medium">
                         NEXA
                     </h3>
                 </div>
             </div>
 
-            <div class="w-full h-32 flex justify-center items-center border-2 border-lime-800 rounded-lg shadow bg-gradient-to-b from-lime-600 to-lime-400">
+            <div @click="isSwapping = true" class="w-full h-24 sm:h-32 flex justify-center items-center border-2 border-rose-500 rounded-lg shadow bg-gradient-to-b from-rose-400 to-rose-200">
                 <div class="flex flex-col items-center">
-                    <h2 class="text-3xl text-lime-900 font-extrabold">
-                        Tether
+                    <h2 class="text-2xl sm:text-3xl text-rose-900 font-extrabold">
+                        Ava's Cash
                     </h2>
 
-                    <h3 class="text-lime-700 font-medium">
-                        USDT
+                    <h3 class="text-sm sm:text-base text-rose-700 font-medium">
+                        AVAS
                     </h3>
+                </div>
+            </div>
+
+            <div class="col-span-2 w-full grid grid-cols-3 gap-3">
+                <div @click="isSwapping = true" class="w-full h-20 sm:h-24 flex justify-center items-center border-2 border-green-800 rounded-lg shadow bg-gradient-to-b from-green-600 to-green-400">
+                    <div class="flex flex-col items-center">
+                        <h2 class="text-sm sm:text-lg text-green-900 font-extrabold">
+                            Bitcoin Cash
+                        </h2>
+
+                        <h3 class="text-xs sm:text-sm text-green-700 font-medium">
+                            BCH
+                        </h3>
+                    </div>
+                </div>
+
+                <div @click="isSwapping = true" class="w-full h-20 sm:h-24 flex justify-center items-center border-2 border-indigo-500 rounded-lg shadow bg-gradient-to-b from-indigo-400 to-indigo-200">
+                    <div class="flex flex-col items-center">
+                        <h2 class="text-sm sm:text-lg text-indigo-900 font-extrabold">
+                            Dash
+                        </h2>
+
+                        <h3 class="text-xs sm:text-sm text-indigo-700 font-medium">
+                            DASH
+                        </h3>
+                    </div>
+                </div>
+
+                <div @click="isSwapping = true" class="w-full h-20 sm:h-24 flex justify-center items-center border-2 border-lime-500 rounded-lg shadow bg-gradient-to-b from-lime-400 to-lime-200">
+                    <div class="flex flex-col items-center">
+                        <h2 class="text-sm sm:text-lg text-lime-900 font-extrabold">
+                            Tether
+                        </h2>
+
+                        <h3 class="text-xs sm:text-sm text-lime-700 font-medium">
+                            USDT
+                        </h3>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <div class="mx-10 my-3 border-t border-gray-300" />
+        <div v-if="!isSwapping" class="mx-10 my-3 border-t border-gray-300" />
 
-        <section class="-mt-3 flex flex-col gap-3">
-            <p class="px-3 text-sm text-gray-500">
+        <section v-if="!isSwapping" class="-mt-3 flex flex-col gap-3">
+            <p class="px-3 text-xs sm:text-sm text-gray-500">
                 Don't see your asset listed above?
                 Not a problem.
                 Search from <span class="text-indigo-500 font-medium">more than 400+</span> assets below.
@@ -80,11 +120,7 @@ const makeSwap = async () => {
             />
         </section>
 
-        <!-- <div @click="makeSwap" class="px-3 py-3 text-2xl font-medium text-center bg-blue-100 border-2 border-blue-400 rounded-lg shadow hover:bg-blue-200 cursor-pointer">
-            Confirm Swap
-        </div> -->
-
-        <section class="grid grid-cols-2 gap-y-2">
+        <section v-if="isSwapping" class="grid grid-cols-2 gap-y-2">
             <div class="col-span-2 pb-3 flex justify-center">
                 <span class="text-sm text-sky-700 font-medium tracking-widest">
                     1.00 $AVAS = 1,337.88 $NEXA
