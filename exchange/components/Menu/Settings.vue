@@ -15,6 +15,17 @@ const isShowingMnemonic = ref(false)
 const currency = ref(null)
 
 
+const wordList = computed(() => {
+    if (!Wallet.mnemonic) {
+        return null
+    }
+
+    const list = Wallet.mnemonic.split(' ')
+
+    return list
+})
+
+
 const setNEXA = () => {
     if (currency.value !== 'NEXA') {
         currency.value = 'NEXA'
@@ -235,26 +246,30 @@ currency.value = 'USD'
             <div class="mt-3 rounded-md bg-amber-50 p-4">
                 <div class="flex">
                     <div class="flex-shrink-0">
-                        <svg class="h-5 w-5 text-amber-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
+                        <svg class="w-6 h-auto text-red-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m0-10.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.249-8.25-3.286zm0 13.036h.008v.008H12v-.008z"></path>
                         </svg>
                     </div>
 
                     <div class="ml-3">
-                        <h3 class="text-sm font-medium text-amber-800">
+                        <h3 class="text-lg font-medium text-red-700">
                             Mnemonic Seed Phrase
                         </h3>
 
                         <div class="mt-2 text-sm text-amber-700">
                             <div v-if="isShowingMnemonic">
-                                <h3 class="text-xl font-medium">{{Wallet.mnemonic}}</h3>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <h3 v-for="(word, index) of wordList" :key="word" class="text-xl font-medium">
+                                        {{(index + 1).toString().padStart(2, '0')}}: {{word}}
+                                    </h3>
+                                </div>
 
-                                <p class="px-2 py-1 text-gray-500 font-medium">
+                                <p class="mt-2 text-sm text-gray-500 font-medium">
                                     Backup the words shown above to a safe place in order to recovery your Wallet.
                                 </p>
                             </div>
 
-                            <p v-else>... ... ... ... ... ... ... ... ... ... ... ...</p>
+                            <SkeletonMnemonic v-else />
                         </div>
 
                         <div class="mt-4">
