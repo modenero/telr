@@ -123,8 +123,8 @@ onMounted(async () => {
 
     <main v-else class="">
         <section @click="setTab('assets')" class="cursor-pointer group px-5 py-3 bg-gradient-to-b from-sky-100 to-sky-50 border-t border-x border-sky-400 rounded-t-lg rounded-x-lg shadow-md hover:bg-sky-100">
-            <div class="w-fit mb-1">
-                <h3 class="text-base tracking-tight uppercase text-sky-600 font-medium text-center opacity-40 group-hover:opacity-100 group-hover:scale-105 transition duration-200 ease-in-out">
+            <div class="w-fit mb-1" :class="[ isShowingAssets ? 'visible' : 'hidden' ]">
+                <h3 class="text-base tracking-tight uppercase text-sky-600 font-medium text-center opacity-40 group-hover:opacity-100 group-hover:scale-105 duration-300 ease-in-out">
                     My Portfolio Summary
                 </h3>
             </div>
@@ -145,29 +145,31 @@ onMounted(async () => {
                 </div>
             </div>
 
-            <div class="my-2 border-t border-sky-500" />
+            <section :class="[ isShowingAssets ? 'visible' : 'hidden' ]">
+                <div class="my-2 border-t border-sky-500" />
 
-            <div class="grid grid-cols-2 gap-4 text-center">
-                <div>
-                    <h3 class="text-xs tracking-widest text-sky-700 font-medium uppercase">
-                        Tokens
-                    </h3>
+                <div class="grid grid-cols-2 gap-4 text-center">
+                    <div>
+                        <h3 class="text-xs tracking-widest text-sky-700 font-medium uppercase">
+                            Tokens
+                        </h3>
 
-                    <h2 class="text-base text-gray-600 font-medium">
-                        $1,337.88 <small class="text-sky-400">x2</small>
-                    </h2>
+                        <h2 class="text-base text-gray-600 font-medium">
+                            $1,337.88 <small class="text-sky-400">x2</small>
+                        </h2>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xs tracking-widest text-sky-700 font-medium uppercase">
+                            Collectibles
+                        </h3>
+
+                        <h2 class="text-base text-gray-600 font-medium">
+                            none
+                        </h2>
+                    </div>
                 </div>
-
-                <div>
-                    <h3 class="text-xs tracking-widest text-sky-700 font-medium uppercase">
-                        Collectibles
-                    </h3>
-
-                    <h2 class="text-base text-gray-600 font-medium">
-                        none
-                    </h2>
-                </div>
-            </div>
+            </section>
         </section>
 
         <div class="block">
