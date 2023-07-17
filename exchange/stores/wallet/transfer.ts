@@ -21,25 +21,10 @@ export default async function (_receiver, _satoshis) {
     })
     console.log('\n  Coins:', coins)
 
-    /* Calculate the total balance of the unspent outputs. */
-    const unspentSatoshis = coins
-        .reduce(
-            (totalValue, unspentOutput) => (totalValue + unspentOutput.satoshis), 0
-        )
-    console.log('unspentSatoshis' ,unspentSatoshis)
-
-    const balance = this.balance
-    console.log('\n  Address balance:\n', balance)
-
     /* Validate unspent outputs. */
     if (coins.length === 0) {
         return console.error('There are NO coins available.')
     }
-
-    // NOTE: 150b (per input), 35b (per output), 10b (misc)
-    // NOTE: Double the estimate (for safety).
-    const feeEstimate = ((coins.length * 150) + (35 * 2) + 10) * 2
-    // console.log('FEE ESTIMATE', feeEstimate)
 
     /* Initialize receivers. */
     const receivers = []
@@ -50,20 +35,15 @@ export default async function (_receiver, _satoshis) {
         satoshis: _satoshis,
     })
 
-    if ((unspentSatoshis - _satoshis - feeEstimate) > this.DUST_LIMIT) {
-        /* Add (change) value output. */
-        receivers.push({
-            address: this.address,
-            satoshis: (unspentSatoshis - _satoshis - feeEstimate),
-        })
-    }
+    /* Add change address. */
+    receivers.push({
+        address: this.address,
+    })
+
     console.log('\n  Receivers:', receivers)
 
-    /* Set automatic fee (handling) flag. */
-    const autoFee = true
-
     /* Send UTXO request. */
-    const response = await sendCoin(coins, receivers, autoFee)
+    const response = await sendCoin(coins, receivers)
     console.log('Send UTXO (response):', response)
 
     try {

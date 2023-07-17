@@ -18,7 +18,6 @@ import { sha256 } from '@nexajs/crypto'
 import { Wallet } from '@nexajs/wallet'
 
 import _createWallet from './wallet/create.ts'
-import _depositHandler from './wallet/depositHandler.ts'
 import _transfer from './wallet/transfer.ts'
 
 
@@ -157,7 +156,7 @@ export const useWalletStore = defineStore('wallet', {
             }
 
             this._wallet = new Wallet(this.mnemonic)
-            console.log('RE-CREATED WALLET', this._wallet)
+            // console.log('RE-CREATED WALLET', this._wallet)
 
             // FIXME Workaround to solve race condition.
             setTimeout(this.loadCoins, 1000)
@@ -192,10 +191,14 @@ export const useWalletStore = defineStore('wallet', {
             // let satoshis
             let unspent
 
-            if (_isReloading) {
+            /* Validate coin re-loading. */
+            // FIXME: What happens if we re-subscribe??
+            if (_isReloading === false) {
                 /* Start monitoring address. */
-                // await subscribeAddress(this.address, _depositHandler.bind(this))
-                await subscribeAddress(this.address, this.loadCoins.bind(this)(true))
+                await subscribeAddress(
+                    this.address,
+                    () => this.loadCoins.bind(this)(true),
+                )
             }
 
             /* Encode Private Key WIF. */

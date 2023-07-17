@@ -88,8 +88,8 @@ onMounted(async () => {
 
     await Wallet.init()
 
-    let newAddress = Wallet.getAddress(3)
-    console.log('NEW ADDRESS (3)', newAddress)
+    // let newAddress = Wallet.getAddress(3)
+    // console.log('NEW ADDRESS (3)', newAddress)
 })
 
 // onBeforeUnmount(() => {
