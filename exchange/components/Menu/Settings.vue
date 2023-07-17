@@ -240,6 +240,7 @@ currency.value = 'USD'
 
         <h2>Wallet.isReady {{ Wallet.isReady }}</h2>
         <h2>Wallet.mnemonic {{ Wallet.mnemonic }}</h2>
+        <h2>Wallet.entropy {{ Wallet.entropy }}</h2>
 
         <section v-if="Wallet.mnemonic" class="mt-20 mb-5 px-3 py-2 bg-red-300 border-2 border-red-500 rounded-lg shadow">
             <h2 class="text-2xl text-red-900 font-bold">
