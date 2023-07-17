@@ -20,7 +20,6 @@ watch([Profile.$state, System.$state, Wallet.$state], (_state) => {
     localStorage.setItem('wallet', JSON.stringify(_state[2]))
 })
 
-
 const isShowingMenu = ref(false)
 const isShowingHelp = ref(false)
 
@@ -42,6 +41,12 @@ if (process.client) {
         window.location.replace('https://app.nexa.exchange') // NOTE: We have no history added here.
         // FIXME: Be sure to attach the "original" path or hash!!
     }
+
+    /* Initialize Mixpanel analytics. */
+    mixpanel.init(
+        '7ade9eb70fb7783c4f8fa0235e435da1',
+        { debug: true, track_pageview: true, persistence: 'localStorage' }
+    )
 }
 
 const toggleMenu = () => {
