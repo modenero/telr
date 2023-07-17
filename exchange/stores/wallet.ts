@@ -9,6 +9,7 @@ import {
 
 import {
     getAddressBalance,
+    getAddressMempool,
     subscribeAddress,
 } from '@nexajs/rostrum'
 
@@ -59,7 +60,7 @@ export const useWalletStore = defineStore('wallet', {
 
         _spentCoins: null,
 
-        _satoshis: null,
+        // _satoshis: null,
 
     }),
 
@@ -109,21 +110,20 @@ export const useWalletStore = defineStore('wallet', {
         },
 
         balance(_state) {
-            return _state._balance
+            // return _state._balance
         },
 
-        satoshis(_state) {
-            return _state._satoshis
-        },
+        // satoshis(_state) {
+        //     return _state._satoshis
+        // },
 
-        nex(_state) {
-            return _state._satoshis / 100.0
-        },
+        // nex(_state) {
+        //     return _state._satoshis / 100.0
+        // },
 
-        mex(_state) {
-            return _state._satoshis / 100000000.0
-        },
-
+        // mex(_state) {
+        //     return _state._satoshis / 100000000.0
+        // },
     },
 
     actions: {
@@ -178,37 +178,41 @@ export const useWalletStore = defineStore('wallet', {
             /* Encode Private Key WIF. */
             this._wif = encodePrivateKeyWif({ hash: sha256 }, this._wallet.privateKey, 'mainnet')
 
-            this._balance = await getCoinBalance(this.address)
-                .catch(err => console.error(err))
-            console.log('\n  Address balance:\n', this.balance)
+            // this._balance = await getCoinBalance(this.address)
+            //     .catch(err => console.error(err))
+            // console.log('\n  Address balance:\n', this.balance)
 
             /* Validate balance. */
-            if (this.balance) {
-                /* Calculate (total) satoshis. */
-                this._satoshis = satoshis = this.balance
-            }
+            // if (this.balance) {
+            //     /* Calculate (total) satoshis. */
+            //     this._satoshis = satoshis = this.balance
+            // }
 
             let bal
 
             this._balance = bal = await getCoinBalance(this.getAddress(1))
                 .catch(err => console.error(err))
-            console.log('\n  Address balance (1):\n', this.balance, bal)
+            console.log('Address balance (1):', this.balance, bal)
             this._satoshis = satoshis = satoshis + bal
 
-            this._balance = bal = await getCoinBalance(this.getAddress(2))
-                .catch(err => console.error(err))
-            console.log('\n  Address balance (2):\n', this.balance, bal)
-            this._satoshis = satoshis = satoshis + bal
+            // this._balance = bal = await getCoinBalance(this.getAddress(2))
+            //     .catch(err => console.error(err))
+            // console.log('Address balance (2):', this.balance, bal)
+            // this._satoshis = satoshis = satoshis + bal
 
-            this._balance = bal = await getCoinBalance(this.getAddress(3))
-                .catch(err => console.error(err))
-            console.log('\n  Address balance (3):\n', this.balance, bal)
-            this._satoshis = satoshis = satoshis + bal
+            // this._balance = bal = await getCoinBalance(this.getAddress(3))
+            //     .catch(err => console.error(err))
+            // console.log('Address balance (3):', this.balance, bal)
+            // this._satoshis = satoshis = satoshis + bal
 
             // Fetch all unspent transaction outputs for the temporary in-browser wallet.
             unspent = await listUnspent(this.address)
                 .catch(err => console.error(err))
-            console.log('\n  Unspent outputs:\n', unspent)
+            console.log('UNSPENT', unspent)
+
+            const mempool = await getAddressMempool(this.address)
+                .catch(err => console.error(err))
+            console.log('MEMPOOL', mempool)
 
             /* Validate unspent outputs. */
             if (unspent.length === 0) {
@@ -220,7 +224,6 @@ export const useWalletStore = defineStore('wallet', {
                 .filter(_u => _u.isToken === false)
                 .filter(_u => this._spentCoins.includes(_u.outpoint) === false)
                 .map(_unspent => {
-                    console.log('UNSPENT COINS **DEBUG**', _unspent)
                     const outpoint = _unspent.outpoint
                     const satoshis = _unspent.satoshis
 
@@ -237,7 +240,6 @@ export const useWalletStore = defineStore('wallet', {
                 .filter(_u => _u.isToken === true)
                 .filter(_u => this._spentCoins.includes(_u.outpoint) === false)
                 .map(_unspent => {
-                    console.log('UNSPENT TOKENS **DEBUG**', _unspent)
                     const outpoint = _unspent.outpoint
                     const satoshis = _unspent.satoshis
                     const tokenid = _unspent.tokenid

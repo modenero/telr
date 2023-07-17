@@ -1,6 +1,6 @@
 /* Import modules. */
 import { encodePrivateKeyWif } from '@nexajs/hdnode'
-import { getAddressBalance } from '@nexajs/rostrum'
+import { getAddressBalance, getAddressMempool } from '@nexajs/rostrum'
 import { listUnspent } from '@nexajs/address'
 import { sha256 } from '@nexajs/crypto'
 
@@ -16,6 +16,10 @@ export default async function (_updatedInfo) {
 
     this._satoshis = await getAddressBalance(this.address)
     console.log('\n  Address balance:\n', this.satoshis)
+
+    const mempool = await getAddressMempool(this.address)
+        .catch(err => console.error(err))
+    console.log('MEMPOOL (depositHandler):', mempool)
 
     /* Filter out ANY tokens. */
     // FIXME We should probably do something better than this, lol.

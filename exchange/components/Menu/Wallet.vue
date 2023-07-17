@@ -18,12 +18,16 @@ const isShowingHistory = ref(false)
 const isShowingSwap = ref(false)
 
 const displayBalance = computed(() => {
-    if (!Wallet.satoshis) {
+    if (!Wallet.coins) {
         return '0.00'
     }
 
+    const satoshis = Wallet.coins.reduce(
+        (totalSatoshis, coin) => (totalSatoshis + coin.satoshis), 0
+    )
+
     /* Calculate (NEX) total. */
-    const nex = (Wallet.satoshis / 100.0)
+    const nex = (satoshis / 100.0)
 
     /* Return formatted value. */
     return numeral(nex).format('0,0.00')

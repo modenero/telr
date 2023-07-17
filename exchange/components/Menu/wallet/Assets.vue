@@ -2,7 +2,9 @@
 import numeral from 'numeral'
 
 /* Initialize stores. */
+import { useWalletStore } from '@/stores/wallet'
 import { useSystemStore } from '@/stores/system'
+const Wallet = useWalletStore()
 const System = useSystemStore()
 
 // onMounted(() => {
@@ -46,10 +48,15 @@ const System = useSystemStore()
             Assets
         </h2>
 
-        <ol class="pl-10 list-disc">
-            <li>Transaction history</li>
-            <li>Data exporting</li>
-        </ol>
+        <div v-for="token of Wallet.tokens" :key="token.tokenid">
+            <h3 class="truncate">
+                {{token.tokenid}}
+            </h3>
+
+            <h3 v-if="token.tokens">
+                {{numeral(token.tokens).format('0,0')}}
+            </h3>
+        </div>
 
     </main>
 </template>
