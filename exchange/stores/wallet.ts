@@ -66,7 +66,17 @@ export const useWalletStore = defineStore('wallet', {
 
     getters: {
         isReady(_state) {
-            return _state._entropy ? true : false
+            /* Validate entropy. */
+            if (
+                !this._entropy ||
+                typeof this._entropy !== 'string' ||
+                (this._entropy.length !== 32 && this._entropy.length !== 64)
+            ) {
+                return false
+            }
+
+            /* Wallet is ready. */
+            return true
         },
 
         address(_state) {
@@ -154,6 +164,13 @@ export const useWalletStore = defineStore('wallet', {
         },
 
         createWallet(_entropy) {
+            /* Validate entropy. */
+            // NOTE: Expect HEX value to be 32 or 64 characters.
+            if (_entropy.length !== 32 && _entropy.length !== 64) {
+                console.error(_entropy, 'is NOT valid entropy.')
+
+                _entropy = null
+            }
             _createWallet.bind(this)(_entropy)
 
             this._wallet = new Wallet(this.mnemonic)
@@ -165,18 +182,21 @@ export const useWalletStore = defineStore('wallet', {
          *
          * Retrieves all spendable UTXOs.
          */
-        async loadCoins() {
+        async loadCoins(_isReloading = false) {
             console.info('Wallet address:', this.address)
-            console.info('Wallet address (1):', this.getAddress(1))
-            console.info('Wallet address (2):', this.getAddress(2))
-            console.info('Wallet address (3):', this.getAddress(3))
+            // console.info('Wallet address (1):', this.getAddress(1))
+            // console.info('Wallet address (2):', this.getAddress(2))
+            // console.info('Wallet address (3):', this.getAddress(3))
 
             /* Initialize locals. */
-            let satoshis
+            // let satoshis
             let unspent
 
-            /* Start monitoring address. */
-            await subscribeAddress(this.address, _depositHandler.bind(this))
+            if (_isReloading) {
+                /* Start monitoring address. */
+                // await subscribeAddress(this.address, _depositHandler.bind(this))
+                await subscribeAddress(this.address, this.loadCoins.bind(this)(true))
+            }
 
             /* Encode Private Key WIF. */
             this._wif = encodePrivateKeyWif({ hash: sha256 }, this._wallet.privateKey, 'mainnet')
@@ -191,12 +211,12 @@ export const useWalletStore = defineStore('wallet', {
             //     this._satoshis = satoshis = this.balance
             // }
 
-            let bal
+            // let bal
 
-            this._balance = bal = await getCoinBalance(this.getAddress(1))
-                .catch(err => console.error(err))
-            console.log('Address balance (1):', this.balance, bal)
-            this._satoshis = satoshis = satoshis + bal
+            // this._balance = bal = await getCoinBalance(this.getAddress(1))
+            //     .catch(err => console.error(err))
+            // console.log('Address balance (1):', this.balance, bal)
+            // this._satoshis = satoshis = satoshis + bal
 
             // this._balance = bal = await getCoinBalance(this.getAddress(2))
             //     .catch(err => console.error(err))
