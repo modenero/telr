@@ -188,7 +188,7 @@ const makeSwap = async () => {
                 </svg>
             </h4>
             <h4 class="w-fit pl-3 py-1 flex place-self-end items-center justify-end gap-1 text-xs sm:text-sm cursor-default">
-                {{ isShowingAvas ? '0.1% - 1.0%' : '' }}
+                {{ isShowingAvas ? '0.01% - 1.0%' : '' }}
                 {{ isShowingNexa ? '2.9%' : '' }}
             </h4>
 

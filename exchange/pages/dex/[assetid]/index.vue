@@ -2,7 +2,7 @@
 useHead({
     title: 'DEX — Nexa Exchange',
     meta: [
-        { name: 'description', content: 'Nexa Exchange makes building your next BIG idea effortless.' }
+        { name: 'description', content: 'Nexa Exchange makes trading your assets effortless.' }
     ],
 })
 
