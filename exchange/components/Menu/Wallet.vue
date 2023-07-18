@@ -1,15 +1,19 @@
 <script setup>
 /* Import modules. */
 import numeral from 'numeral'
-import { reverseHex } from '@nexajs/utils'
 
 /* Initialize stores. */
 import { useProfileStore } from '@/stores/profile'
 import { useWalletStore } from '@/stores/wallet'
+import { useSystemStore } from '@/stores/system'
 const Profile = useProfileStore()
 const Wallet = useWalletStore()
+const System = useSystemStore()
+
+const AVAS = 'nexa:tptlgmqhvmwqppajq7kduxenwt5ljzcccln8ysn9wdzde540vcqqqcra40x0x'
 
 const mnemonic = ref(null)
+const tokens = ref(null)
 
 const isShowingAssets = ref(false)
 const isShowingDeposit = ref(false)
@@ -33,6 +37,24 @@ const displayBalance = computed(() => {
     return numeral(nex).format('0,0.00')
 })
 
+const displayBalanceUsd = computed(() => {
+    if (!Wallet.coins) {
+        return '0.00'
+    }
+
+    const satoshis = Wallet.coins.reduce(
+        (totalSatoshis, coin) => (totalSatoshis + coin.satoshis), 0
+    )
+
+    /* Calculate (NEX) total. */
+    const mex = (satoshis / 10**8)
+
+    const mexUsd = mex * System.usd
+
+    /* Return formatted value. */
+    return numeral(mexUsd).format('$0,0.00')
+})
+
 const pendingBalance = computed(() => {
     if (!Wallet.satoshis) {
         return '0.00 NEXA'
@@ -43,6 +65,36 @@ const pendingBalance = computed(() => {
 
     /* Return formatted value. */
     return numeral(nex).format('0,0.00') + ' NEXA'
+})
+
+const tokensBalanceUsd = computed(() => {
+    let totalTokens = 0
+    let totalUsd = 0
+
+    let decimals
+    let fiat
+    let tokenUsd
+
+    Object.keys(tokens.value).forEach(_tokenid => {
+        if (_tokenid === AVAS) {
+            decimals = 8 // FOR DEV PURPOSES ONLY
+            tokenUsd = 0.33 // FOR DEV PURPOSES ONLY
+
+            /* Set total tokens. */
+            totalTokens += tokens.value[_tokenid]
+
+            /* Calculate decimal value. */
+            totalTokens = (totalTokens / 10**decimals)
+
+            fiat = (totalTokens * tokenUsd)
+
+            /* Add (fiat) value. */
+            totalUsd += fiat
+        }
+    })
+
+    /* Return (fiat) value. */
+    return '~' + numeral(totalUsd).format('$0,0.00')
 })
 
 const importWallet = () => {
@@ -84,9 +136,24 @@ const setTab = (_tab) => {
 }
 
 onMounted(async () => {
+    /* Set (default) tab. */
     setTab('assets')
 
+    /* Initialize wallet. */
     await Wallet.init()
+
+    /* Initialize tokens. */
+    tokens.value = {}
+
+    /* Handle tokens. */
+    Wallet.tokens.forEach(_token => {
+        if (!tokens.value[_token.tokenid]) {
+            tokens.value[_token.tokenid] = 0
+        }
+
+        /* Add tokens to total. */
+        tokens.value[_token.tokenid] += _token.tokens
+    })
 
     // let newAddress = Wallet.getAddress(3)
     // console.log('NEW ADDRESS (3)', newAddress)
@@ -142,11 +209,15 @@ onMounted(async () => {
                     {{displayBalance}}
                 </h2>
 
-                <div v-if="satoshis?.unconfirmed > 0" class="mx-10 my-5 px-10 py-3 text-sm bg-sky-500 border-2 border-sky-700 rounded-lg shadow">
+                <h3 class="text-xl text-gray-500 font-medium">
+                    {{displayBalanceUsd}}
+                </h3>
+
+                <!-- <div v-if="satoshis?.unconfirmed > 0" class="mx-10 my-5 px-10 py-3 text-sm bg-sky-500 border-2 border-sky-700 rounded-lg shadow">
                     including
                     <h2 class="text-base font-bold inline">{{pendingBalance}}</h2>
                     pending confirmation
-                </div>
+                </div> -->
             </div>
 
             <section :class="[ isShowingAssets ? 'visible' : 'hidden' ]">
@@ -158,8 +229,11 @@ onMounted(async () => {
                             Tokens
                         </h3>
 
-                        <h2 class="text-base text-gray-600 font-medium">
-                            $1,337.88 <small class="text-sky-400">x2</small>
+                        <h2 v-if="tokens" class="text-base text-gray-600 font-medium">
+                            {{tokensBalanceUsd}} <small class="text-sky-400">x{{Object.keys(tokens).length}}</small>
+                        </h2>
+                        <h2 v-else class="text-base text-gray-600 font-medium">
+                            none
                         </h2>
                     </div>
 

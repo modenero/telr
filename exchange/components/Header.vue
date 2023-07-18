@@ -2,6 +2,12 @@
 /* Import modules. */
 import numeral from 'numeral'
 
+/* Initialize stores. */
+import { useSystemStore } from '@/stores/system'
+
+/* Initialize System. */
+const System = useSystemStore()
+
 const usd = ref(null)
 
 /* Initialize flags.*/
@@ -11,17 +17,12 @@ const isShowingMobileMenu = ref(false)
 const emit = defineEmits(['toggleMenu', 'toggleHelp'])
 
 const usdDisplay = computed(() => {
-    if (!usd.value) {
+    if (!System.usd) {
         return '$0.00'
     }
 
-    return numeral(usd.value).format('$0,00.00')
+    return numeral(System.usd).format('$0,00.00')
 })
-
-const updateTicker = async () => {
-    usd.value = await $fetch('https://nexa.exchange/mex')
-    console.log('USD', usd.value)
-}
 
 const openMenu = () => {
     emit('toggleMenu')
@@ -32,15 +33,13 @@ const openHelp = () => {
 }
 
 onMounted(() => {
-    updateTicker()
+    // updateTicker()
 })
 
 // onBeforeUnmount(() => {
 //     console.log('Before Unmount!')
 //     // Now is the time to perform all cleanup operations.
 // })
-
-
 </script>
 
 <template>

@@ -61,6 +61,14 @@ const toggleHelp = () => {
     isShowingHelp.value = !isShowingHelp.value
 }
 
+onMounted(() => {
+    System.init()
+})
+
+// onBeforeUnmount(() => {
+//     console.log('Before Unmount!')
+//     // Now is the time to perform all cleanup operations.
+// })
 </script>
 
 <template>

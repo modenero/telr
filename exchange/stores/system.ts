@@ -69,7 +69,22 @@ export const useSystemStore = defineStore('system', {
     }),
 
     getters: {
-        // TODO
+        nex() {
+            if (!this._tickers?.NEXA) {
+                return null
+            }
+
+            return this._tickers.NEXA.quote.USD.price
+        },
+
+        usd() {
+            if (!this.nex) {
+                return null
+            }
+
+            return this.nex * 10**6
+        },
+
     },
 
     actions: {
@@ -78,8 +93,26 @@ export const useSystemStore = defineStore('system', {
          *
          * Performs startup activities.
          */
-        initApp() {
+        init() {
             this._appStarts++
+
+            if (!this._tickers) {
+                this._tickers = {}
+            }
+
+            setInterval(this.updateTicker, 30000)
+
+            this.updateTicker()
         },
+
+        async updateTicker () {
+            if (!this._tickers.NEXA) {
+                this._tickers.NEXA = {}
+            }
+
+            this._tickers.NEXA = await $fetch('https://nexa.exchange/ticker')
+            console.log('TICKERS', this._tickers)
+        }
+
     },
 })

@@ -1,5 +1,6 @@
 <script setup>
 import numeral from 'numeral'
+import { getAddressTokenHistory } from '@nexajs/rostrum'
 
 /* Initialize stores. */
 import { useWalletStore } from '@/stores/wallet'
@@ -7,16 +8,57 @@ import { useSystemStore } from '@/stores/system'
 const Wallet = useWalletStore()
 const System = useSystemStore()
 
-// onMounted(() => {
-//     console.log('Mounted!')
-//     // Now it's safe to perform setup operations.
-// })
+const AVAS = 'nexa:tptlgmqhvmwqppajq7kduxenwt5ljzcccln8ysn9wdzde540vcqqqcra40x0x'
+
+
+const tokenHistory = ref()
+
+const displayTokenName = (_token) => {
+    if (_token.tokenid === AVAS) {
+        return `Ava's Cash`
+    } else {
+        _token.tokenid
+    }
+}
+
+const displayTokenAmount = (_token) => {
+    let totalTokens = 0
+    let totalUsd = 0
+
+    let decimals
+    let fiat
+    let tokenUsd
+
+    if (_token.tokenid === AVAS) {
+        decimals = 8 // FOR DEV PURPOSES ONLY
+        tokenUsd = 0.33 // FOR DEV PURPOSES ONLY
+
+        /* Calculate decimal value. */
+        totalTokens = (_token.tokens / 10**decimals)
+
+        fiat = (totalTokens * tokenUsd)
+
+        return numeral(totalTokens).format('0,0.00[000000]') + ' ( ' + numeral(fiat).format('$0,0.00') + ' )'
+    } else {
+        return numeral(_token.tokens).format('0,0')
+    }
+}
+
+
+const init = async () => {
+    tokenHistory.value = await getAddressTokenHistory(Wallet.address)
+        .catch(err => console.error(err))
+    console.log('HISTORY', tokenHistory.value)
+}
+
+onMounted(() => {
+    init()
+})
 
 // onBeforeUnmount(() => {
 //     console.log('Before Unmount!')
 //     // Now is the time to perform all cleanup operations.
 // })
-
 </script>
 
 <template>
@@ -43,20 +85,21 @@ const System = useSystemStore()
             </nav>
         </div>
 
+        <pre>{{ tokenHistory }}</pre>
 
         <h2 class="text-2xl font-medium">
             Assets
         </h2>
 
-        <div v-for="token of Wallet.tokens" :key="token.tokenid">
+        <!-- <div v-for="token of Wallet.tokens.reverse()" :key="token.tokenid" class="px-3 py-1 bg-amber-100 border-2 border-amber-300 rounded-lg shadow hover:bg-amber-200 cursor-pointer">
             <h3 class="truncate">
-                {{token.tokenid}}
+                {{displayTokenName(token)}}
             </h3>
 
             <h3 v-if="token.tokens">
-                {{numeral(token.tokens).format('0,0')}}
+                {{displayTokenAmount(token)}}
             </h3>
-        </div>
+        </div> -->
 
     </main>
 </template>
