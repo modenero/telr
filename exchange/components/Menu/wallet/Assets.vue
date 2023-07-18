@@ -10,8 +10,8 @@ const System = useSystemStore()
 
 const AVAS = 'nexa:tptlgmqhvmwqppajq7kduxenwt5ljzcccln8ysn9wdzde540vcqqqcra40x0x'
 
-
-const tokenHistory = ref()
+const tokens = ref(null)
+const tokenHistory = ref(null)
 
 const displayTokenName = (_token) => {
     if (_token.tokenid === AVAS) {
@@ -46,9 +46,23 @@ const displayTokenAmount = (_token) => {
 
 
 const init = async () => {
+    console.log('ASSETS INIT')
     tokenHistory.value = await getAddressTokenHistory(Wallet.address)
         .catch(err => console.error(err))
     console.log('HISTORY', tokenHistory.value)
+
+    /* Initialize tokens. */
+    tokens.value = {}
+
+    /* Handle tokens. */
+    Wallet.tokens.forEach(_token => {
+        if (!tokens.value[_token.tokenid]) {
+            tokens.value[_token.tokenid] = 0
+        }
+
+        /* Add tokens to total. */
+        tokens.value[_token.tokenid] += _token.tokens
+    })
 }
 
 onMounted(() => {
@@ -69,7 +83,7 @@ onMounted(() => {
                     Tokens
 
                     <span class="bg-indigo-100 text-indigo-600 ml-1 sm:ml-3 rounded-full py-0.5 px-2.5 text-xs font-medium">
-                        2
+                        {{tokens ? Object.keys(tokens).length : 0}}
                     </span>
                 </a>
 
@@ -85,21 +99,27 @@ onMounted(() => {
             </nav>
         </div>
 
-        <pre>{{ tokenHistory }}</pre>
-
         <h2 class="text-2xl font-medium">
             Assets
         </h2>
 
-        <!-- <div v-for="token of Wallet.tokens.reverse()" :key="token.tokenid" class="px-3 py-1 bg-amber-100 border-2 border-amber-300 rounded-lg shadow hover:bg-amber-200 cursor-pointer">
-            <h3 class="truncate">
+        <div v-if="tokenHistory" v-for="tx of tokenHistory.transactions.reverse()" :key="tx.tx_hash" class="px-3 py-1 bg-amber-100 border-2 border-amber-300 rounded-lg shadow hover:bg-amber-200 cursor-pointer">
+            <!-- <h3 class="truncate">
                 {{displayTokenName(token)}}
+            </h3> -->
+
+            <h3 class="">
+                {{tx.height}}
             </h3>
 
-            <h3 v-if="token.tokens">
-                {{displayTokenAmount(token)}}
+            <h3 class="truncate">
+                {{tx.tx_hash}}
             </h3>
-        </div> -->
+
+            <!-- <h3 v-if="token.tokens">
+                {{displayTokenAmount(token)}}
+            </h3> -->
+        </div>
 
     </main>
 </template>

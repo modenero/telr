@@ -142,18 +142,18 @@ onMounted(async () => {
     /* Initialize wallet. */
     await Wallet.init()
 
-    /* Initialize tokens. */
-    tokens.value = {}
+    // /* Initialize tokens. */
+    // tokens.value = {}
 
-    /* Handle tokens. */
-    Wallet.tokens.forEach(_token => {
-        if (!tokens.value[_token.tokenid]) {
-            tokens.value[_token.tokenid] = 0
-        }
+    // /* Handle tokens. */
+    // Wallet.tokens.forEach(_token => {
+    //     if (!tokens.value[_token.tokenid]) {
+    //         tokens.value[_token.tokenid] = 0
+    //     }
 
-        /* Add tokens to total. */
-        tokens.value[_token.tokenid] += _token.tokens
-    })
+    //     /* Add tokens to total. */
+    //     tokens.value[_token.tokenid] += _token.tokens
+    // })
 
     // let newAddress = Wallet.getAddress(3)
     // console.log('NEW ADDRESS (3)', newAddress)
