@@ -13,8 +13,8 @@ const yesterday = computed(() => {
 </script>
 
 <template>
-    <main class="my-2 px-2 py-1 bg-gradient-to-b from-gray-900 to-gray-700 border-2 border-gray-500 rounded-lg">
-        <h2 class="text-lg text-yellow-500 font-medium">
+    <main class="px-2 py-1 bg-gradient-to-b from-gray-900 to-gray-700 border-2 border-gray-500 rounded-lg">
+        <h2 class="text-sm text-yellow-500 font-medium uppercase tracking-widest">
             Trades &amp; Volume
         </h2>
 

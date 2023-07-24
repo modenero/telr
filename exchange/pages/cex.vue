@@ -25,9 +25,9 @@ const System = useSystemStore()
 </script>
 
 <template>
-    <main class="main-body px-1 grid grid-cols-1 sm:grid-cols-2 gap-1 sm:overflow-y-hidden">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-2">
-            <div class="py-2 w-full flex flex-col gap-2">
+    <main class="main-body h-full px-1 py-1 grid grid-cols-1 sm:grid-cols-2 gap-1 sm:overflow-y-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-1">
+            <div class="w-full flex flex-col gap-1">
                 <CEXMarket class="h-[250px]" />
                 <CEXMarketMaker class="flex-1" />
             </div>
@@ -35,15 +35,15 @@ const System = useSystemStore()
             <CEXOrderBook class="w-full" />
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2">
-            <div class="w-full">
-                <PriceChart class="mx-1 my-1 h-[250px]" />
-                <Transactions class="mx-1 my-1 flex-1" />
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-1">
+            <div class="w-full flex flex-col gap-1">
+                <PriceChart class="h-[250px]" />
+                <Transactions class="flex-1" />
             </div>
 
-            <div class="w-full">
+            <div class="w-full flex flex-col gap-1">
                 <TradesVolume class="flex-1" />
-                <Notices class="mx-1 my-1 h-[300px]" />
+                <Notices class="h-[300px]" />
             </div>
         </div>
     </main>

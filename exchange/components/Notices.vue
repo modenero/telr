@@ -1,5 +1,5 @@
 <template>
-    <main class="my-2 px-2 py-1 bg-gradient-to-b from-gray-900 to-gray-700 border-2 border-gray-500 rounded-lg">
+    <main class="px-2 py-1 bg-gradient-to-b from-gray-900 to-gray-700 border-2 border-gray-500 rounded-lg">
         <h2 class="text-lg text-yellow-500 font-medium">
             Notices
         </h2>

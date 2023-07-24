@@ -4,7 +4,7 @@ import { getTokenInfo } from '@nexajs/rostrum'
 
 const isShowingDeposit = ref(true)
 const isShowingWithdraw = ref(false)
-const isShowingStaking = ref(false)
+const isShowingStaking = ref(true)
 
 const assetid = ref(null)
 const assetName = ref(null)
@@ -47,8 +47,8 @@ onMounted(() => {
 
 <template>
     <main class="px-2 py-1 bg-gradient-to-b from-gray-900 to-gray-700 border-2 border-gray-500 rounded-lg">
-        <div class="text-lg text-yellow-500 font-medium">
-            My {{assetName}} Positions
+        <div class="text-sm text-yellow-500 font-medium uppercase tracking-widest">
+            My <span class="text-xl text-yellow-300">{{assetName}}</span> Positions
         </div>
 
         <!-- <h2 class="flex text-base gap-1">
@@ -61,19 +61,19 @@ onMounted(() => {
             <ul class="flex justify-between text-sm text-gray-200 border-b border-gray-500" role="tablist">
                 <li class="">
                     <a class="active" aria-controls="deposit" aria-selected="true">
-                        Deposit
+                        Active
                     </a>
                 </li>
 
                 <li class="">
                     <a class="" aria-controls="withdraw" aria-selected="false">
-                        Withdraw
+                        Strategies
                     </a>
                 </li>
 
                 <li class="">
                     <a class="" aria-controls="staking" aria-selected="false">
-                        Staking/Pools
+                        History
                     </a>
                 </li>
             </ul>
@@ -121,7 +121,27 @@ onMounted(() => {
                     </table>
                 </div>
 
-                <div v-if="isShowingStaking" role="tabpanel" class="tab-pane fade" id="staking">
+                <div v-if="isShowingStaking" class="flex flex-col gap-2">
+                    <section>
+                        <h3 class="text-gray-200 text-4xl font-medium tracking-tighter">
+                            0.048
+                        </h3>
+
+                        <h4 class="text-gray-400 text-sm font-medium">
+                            ~$15.00 (i)
+                        </h4>
+                    </section>
+
+                    <section>
+                        <h4 class="text-gray-400 text-xs font-medium uppercase tracking-widest">
+                            Today's Profit (i)
+                        </h4>
+
+                        <h3 class="text-gray-200 text-lg font-medium tracking-tighter">
+                            +$0.88 / +$0.32%
+                        </h3>
+                    </section>
+
                     <table class="table table-borderless table-balances">
                         <thead>
                             <tr>
