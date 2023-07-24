@@ -1,79 +1,35 @@
 <script setup lang="ts">
 /* Import modules. */
-import { getTokenInfo } from '@nexajs/rostrum'
+import { ref } from 'vue'
 
 const isShowingDeposit = ref(true)
 const isShowingWithdraw = ref(false)
 const isShowingStaking = ref(false)
-
-const assetid = ref(null)
-const assetName = ref(null)
-
-/* Initialize route. */
-const route = useRoute()
-// console.log('ROUTE', route)
-console.log('PARAMS', route.params)
-
-/* Set (route) path. */
-assetid.value = route.params.assetid
-console.log('assetid', assetid.value)
-
-
-const init = async () => {
-    let info
-
-    if (assetid.value.length > 6) {
-        info = await getTokenInfo(assetid.value)
-        console.log('TOKEN INFO', info)
-    } else {
-        assetName.value = `Ava's Cash`
-    }
-
-    if (info) {
-        assetName.value = info.name
-    }
-}
-
-onMounted(() => {
-    init()
-})
-
-// onBeforeUnmount(() => {
-//     console.log('Before Unmount!')
-//     // Now is the time to perform all cleanup operations.
-// })
-
 </script>
 
 <template>
     <main class="px-2 py-1 bg-gradient-to-b from-gray-900 to-gray-700 border-2 border-gray-500 rounded-lg">
         <div class="text-lg text-yellow-500 font-medium">
-            Instant Buy {{assetName}}
+            My CEX Summary
         </div>
-
-        <h2 class="flex text-base gap-1">
-            <span class="text-purple-400">Nexa</span>
-            <span class="text-yellow-400">Exchange</span>
-            <span class="text-gray-200">Balance</span>
-        </h2>
 
         <div class="mt-2">
             <ul class="flex justify-between text-sm text-gray-200 border-b border-gray-500" role="tablist">
                 <li class="">
                     <a class="active" aria-controls="deposit" aria-selected="true">
-                        Deposit
+                        MEXC
                     </a>
                 </li>
 
                 <li class="">
                     <a class="" aria-controls="withdraw" aria-selected="false">
-                        Withdraw
+                        CoinEx
                     </a>
                 </li>
 
                 <li class="">
                     <a class="" aria-controls="staking" aria-selected="false">
-                        Staking/Pools
+                        Txbit
                     </a>
                 </li>
             </ul>
