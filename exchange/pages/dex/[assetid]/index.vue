@@ -36,7 +36,7 @@ console.log('ASSET ID', assetid)
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-1">
             <div class="w-full flex flex-col gap-1">
                 <DEXPositions class="flex-1" />
-                <DEXLiquidity class="h-[380px]" />
+                <DEXLiquidity class="h-[400px]" />
             </div>
 
             <DEXPools class="w-full" />

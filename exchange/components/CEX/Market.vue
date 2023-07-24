@@ -9,12 +9,12 @@ const isShowingStaking = ref(false)
 
 <template>
     <main class="px-2 py-1 bg-gradient-to-b from-gray-900 to-gray-700 border-2 border-gray-500 rounded-lg">
-        <div class="text-lg text-yellow-500 font-medium">
+        <div class="text-sm text-yellow-500 font-medium uppercase tracking-widest">
             My CEX Summary
         </div>
 
         <div class="mt-2">
-            <ul class="flex justify-between text-sm text-gray-200 border-b border-gray-500" role="tablist">
+            <ul class="flex justify-around text-sm text-gray-200 border-b border-gray-500" role="tablist">
                 <li class="">
                     <a class="active" aria-controls="deposit" aria-selected="true">
                         MEXC

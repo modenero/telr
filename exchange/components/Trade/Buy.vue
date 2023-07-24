@@ -57,12 +57,12 @@ token.value.symbol = 'AVAS'
             <div class="relative">
                 <input
                     type="number"
-                    class="w-full flex pl-2 pr-12 py-1 bg-gray-900 border border-gray-200 text-gray-200 text-sm rounded placeholder:text-gray-200"
+                    class="w-full flex pl-2 pr-12 py-2 bg-gray-900 border border-gray-200 text-gray-200 text-sm rounded placeholder:text-gray-200"
                     placeholder="Amount"
                     v-model="buyAmount"
                 />
 
-                <div class="-mt-7 mx-2 w-fit absolute right-0">
+                <div class="-mt-8 mx-2 w-fit absolute right-0">
                     <span class="text-gray-400 text-sm">
                         {{tokenSymbol}}
                     </span>
@@ -78,12 +78,12 @@ token.value.symbol = 'AVAS'
             <div class="relative">
                 <input
                     type="number"
-                    class="w-full flex pl-2 pr-12 py-1 bg-gray-900 border border-gray-200 text-gray-200 text-sm rounded placeholder:text-gray-200"
+                    class="w-full flex pl-2 pr-12 py-2 bg-gray-900 border border-gray-200 text-gray-200 text-sm rounded placeholder:text-gray-200"
                     placeholder="Amount"
                     v-model="updateBuyTotal"
                 />
 
-                <div class="-mt-7 mx-2 w-fit absolute right-0">
+                <div class="-mt-8 mx-2 w-fit absolute right-0">
                     <span class="text-gray-400 text-sm">
                         USDT
                     </span>
@@ -99,12 +99,12 @@ token.value.symbol = 'AVAS'
             <div class="relative">
                 <input
                     type="number"
-                    class="w-full flex pl-2 pr-12 py-1 bg-gray-900 border border-gray-200 text-gray-200 text-sm rounded placeholder:text-gray-200"
+                    class="w-full flex pl-2 pr-12 py-2 bg-gray-900 border border-gray-200 text-gray-200 text-sm rounded placeholder:text-gray-200"
                     placeholder="Amount"
                     v-model="updateBuyPrice"
                 />
 
-                <div class="-mt-7 mx-2 w-fit absolute right-0">
+                <div class="-mt-8 mx-2 w-fit absolute right-0">
                     <span class="text-gray-400 text-sm">
                         USDT
                     </span>
@@ -120,12 +120,12 @@ token.value.symbol = 'AVAS'
             <div class="relative">
                 <input
                     type="number"
-                    class="w-full flex pl-2 pr-12 py-1 bg-gray-900 border border-gray-200 text-gray-200 text-sm rounded placeholder:text-gray-200"
+                    class="w-full flex pl-2 pr-12 py-2 bg-gray-900 border border-gray-200 text-gray-200 text-sm rounded placeholder:text-gray-200"
                     placeholder="Amount"
                     :value="expirationTime" readonly
                 />
 
-                <div class="-mt-7 mx-2 w-fit absolute right-0">
+                <div class="-mt-8 mx-2 w-fit absolute right-0">
                     <span class="text-gray-400 text-sm">
                         {{expirationMeasure}}
                     </span>
@@ -134,7 +134,7 @@ token.value.symbol = 'AVAS'
         </div>
 
         <button
-            class="group mt-5 mb-2 py-1 w-full flex justify-center border border-green-500 rounded hover:bg-green-500"
+            class="group mt-5 mb-2 py-2 w-full flex justify-center border border-green-500 rounded hover:bg-green-500"
             @click="buyOrder"
         >
             <span class="text-base text-gray-200 font-medium group-hover:text-green-900">

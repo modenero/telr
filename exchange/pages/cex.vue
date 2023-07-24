@@ -29,7 +29,7 @@ const System = useSystemStore()
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-1">
             <div class="w-full flex flex-col gap-1">
                 <CEXMarket class="flex-1" />
-                <CEXMarketMaker class="h-[370px]" />
+                <CEXMarketMaker class="h-[400px]" />
             </div>
 
             <CEXOrderBook class="w-full" />
