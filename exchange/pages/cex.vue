@@ -28,8 +28,8 @@ const System = useSystemStore()
     <main class="main-body h-full px-1 py-1 grid grid-cols-1 sm:grid-cols-2 gap-1 sm:overflow-y-hidden">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-1">
             <div class="w-full flex flex-col gap-1">
-                <CEXMarket class="h-[250px]" />
-                <CEXMarketMaker class="flex-1" />
+                <CEXMarket class="flex-1" />
+                <CEXMarketMaker class="h-[370px]" />
             </div>
 
             <CEXOrderBook class="w-full" />

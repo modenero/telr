@@ -2,7 +2,7 @@
 /* Import modules. */
 import { getTokenInfo } from '@nexajs/rostrum'
 
-const isShowingDeposit = ref(true)
+const isShowingDeposit = ref(false)
 const isShowingWithdraw = ref(false)
 const isShowingStaking = ref(true)
 
@@ -58,7 +58,7 @@ onMounted(() => {
         </h2> -->
 
         <div class="mt-2">
-            <ul class="flex justify-between text-sm text-gray-200 border-b border-gray-500" role="tablist">
+            <ul class="flex justify-around text-sm text-gray-200 border-b border-gray-500" role="tablist">
                 <li class="">
                     <a class="active" aria-controls="deposit" aria-selected="true">
                         Active
@@ -78,48 +78,8 @@ onMounted(() => {
                 </li>
             </ul>
 
-            <section class="mt-3">
+            <section class="mt-3 flex flex-col gap-2">
                 <BalanceDeposit v-if="isShowingDeposit" />
-
-                <div v-if="isShowingWithdraw" role="tabpanel" class="tab-pane fade" id="withdraw">
-                    <table class="table table-borderless table-balances">
-                        <thead>
-                            <tr>
-                                <th style="width:50%">Token name</th>
-                                <th style="width:25%" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="This is the balance in your personal Ethereum wallet, which you have connected to Nexa Exchange in the account dropdown (upper right).">Wallet</th>
-                                <th style="width:25%" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="This is the balance you have deposited from your personal Ethereum wallet to the Nexa Exchange smart contract.">Exchange</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <a href="javascript://" class="nowrap">{{tokenName}}<span class="d-md-none"> ({{tokenSymbol}})</span></a>
-                                </td>
-                                <td>
-                                    <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">0.0000</span>
-                                </td>
-                                <td>
-                                    <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">0.0000</span>
-                                </td>
-                            </tr>
-
-                            <tr class="">
-                                <td>
-                                    <div class="form-group">
-                                        <input type="number" class="form-control form-control-sm" id="cacheInBaseToken" placeholder="Amount" />
-                                    </div>
-                                </td>
-
-                                <td colspan="2">
-                                    <button type="button" class="btn btn-info btn-sm btn-block" @click="withdraw">
-                                        Withdraw
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
 
                 <div v-if="isShowingStaking" class="flex flex-col gap-2">
                     <section>
@@ -141,73 +101,20 @@ onMounted(() => {
                             +$0.88 / +$0.32%
                         </h3>
                     </section>
+                </div>
 
-                    <table class="table table-borderless table-balances">
-                        <thead>
-                            <tr>
-                                <th style="width:50%">Token name</th>
-                                <th style="width:25%" data-toggle="tooltip" data-placement="bottom" title="">Wallet</th>
-                                <th style="width:25%" data-toggle="tooltip" data-placement="bottom" title="">Exchange</th>
-                            </tr>
-                        </thead>
+                <div class="flex flex-row justify-around text-sm text-amber-900 font-light">
+                    <button class="px-3 py-1 bg-amber-300 rounded shadow">
+                        Deposit
+                    </button>
 
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <a href="javascript://" class="nowrap">{{tokenName}}
-                                        <span class="d-md-none">
-                                            ({{tokenSymbol}})
-                                        </span>
-                                    </a>
-                                </td>
+                    <button class="px-3 py-1 bg-amber-300 rounded shadow">
+                        Withdraw
+                    </button>
 
-                                <td>
-                                    <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">
-                                        0.0000
-                                    </span>
-                                </td>
-
-                                <td>
-                                    <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">
-                                        0.0000
-                                    </span>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td colspan="3">
-                                    <div class="form-row balance-inline-form">
-                                        <div class="col-sm-4 form-group">
-                                            <input
-                                                type="number"
-                                                class="form-control form-control-sm"
-                                                id="validationDefault01"
-                                                value=""
-                                                placeholder="Amt"
-                                            >
-                                        </div>
-
-                                        <div class="col-sm-5 form-group">
-                                            <input
-                                                type="text"
-                                                class="form-control form-control-sm"
-                                                id="validationDefault02"
-                                                value=""
-                                                placeholder="Addr"
-                                            >
-                                        </div>
-
-                                        <div class="col-sm-3">
-                                            <button class="btn btn-info btn-sm btn-block">
-                                                Stake
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
+                    <button class="px-3 py-1 bg-amber-300 rounded shadow">
+                        Transfer
+                    </button>
                 </div>
 
             </section>

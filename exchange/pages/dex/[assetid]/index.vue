@@ -35,8 +35,8 @@ console.log('ASSET ID', assetid)
     <main class="main-body h-full px-1 py-1 grid grid-cols-1 sm:grid-cols-2 gap-1 sm:overflow-y-hidden">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-1">
             <div class="w-full flex flex-col gap-1">
-                <DEXPositions class="h-[250px]" />
-                <DEXLiquidity class="flex-1" />
+                <DEXPositions class="flex-1" />
+                <DEXLiquidity class="h-[380px]" />
             </div>
 
             <DEXPools class="w-full" />
