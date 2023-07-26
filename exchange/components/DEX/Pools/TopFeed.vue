@@ -52,13 +52,19 @@ onMounted(() => {
             v-for="pool of pools"
             :key="pool.name"
             :to="'/dex/' + (pool.slug || pool.tokenid)"
-            class="px-3 py-1 bg-indigo-400 rounded-lg"
+            class="px-3 py-1 bg-amber-100 border border-amber-600 rounded-lg"
         >
-            <h2>{{pool.name}}</h2>
+            <h2 class="text-base font-extrabold">
+                {{pool.name}}
+            </h2>
 
-            <p>{{pool.summary}}</p>
+            <p class="text-sm">
+                {{pool.summary}}
+            </p>
 
-            <h3>{{pool.price}}</h3>
+            <h3 class="text-sm font-medium">
+                {{pool.price}}
+            </h3>
         </NuxtLink>
 
     </main>

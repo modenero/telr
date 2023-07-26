@@ -11,7 +11,7 @@ const orders = ref([])
             Pools
         </h2>
 
-        <header class="flex justify-between">
+        <header class="flex text-sm justify-between tracking-widest">
             <div>
                 <h3 class="text-gray-100">
                     2 Assets

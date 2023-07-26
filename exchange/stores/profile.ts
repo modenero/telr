@@ -81,5 +81,4 @@ export const useProfileStore = defineStore('profile', {
             console.log('SET API KEY', this._apiKeys)
         },
     },
-    persist: true,
 })
