@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@bitauth/libauth": "1.19.1",
     "@nexajs/address": "23.7.22",
     "@nexajs/crypto": "23.5.22",
     "@nexajs/hdnode": "23.7.20",
@@ -20,7 +21,6 @@
     "@nexajs/wallet": "23.5.17",
     "@pinia/nuxt": "0.4.7",
     "crypto-js": "4.1.1",
-    "ethers": "6.0.8",
     "moment": "2.29.4",
     "numeral": "2.0.6",
     "nuxt": "3.0.0",

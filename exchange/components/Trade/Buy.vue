@@ -1,7 +1,4 @@
 <script setup lang="ts">
-/* Import modules. */
-import { ref } from 'vue'
-
 const buyAmount = ref(null)
 const buyPrice = ref(null)
 const buyTotal = ref(null)
@@ -38,6 +35,11 @@ const tokenSymbol = computed(() => {
 
     return token.value.symbol
 })
+
+
+const buyOrder = () => {
+    console.log('BUY ORDER')
+}
 
 /* Retrieve current token. */
 // token.value = await getToken('0x505A442B3E3E9AEDF06D54572a295F8D64f8F582')

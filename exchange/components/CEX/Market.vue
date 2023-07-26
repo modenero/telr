@@ -35,8 +35,6 @@ const isShowingStaking = ref(false)
             </ul>
 
             <section class="mt-3">
-                <BalanceDeposit v-if="isShowingDeposit" />
-
                 <div v-if="isShowingWithdraw" role="tabpanel" class="tab-pane fade" id="withdraw">
                     <table class="table table-borderless table-balances">
                         <thead>

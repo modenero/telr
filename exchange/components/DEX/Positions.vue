@@ -79,8 +79,6 @@ onMounted(() => {
             </ul>
 
             <section class="mt-3 flex flex-col gap-2">
-                <BalanceDeposit v-if="isShowingDeposit" />
-
                 <div v-if="isShowingStaking" class="flex flex-col gap-2">
                     <section>
                         <h3 class="text-gray-200 text-4xl font-medium tracking-tighter">

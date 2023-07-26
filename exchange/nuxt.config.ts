@@ -31,14 +31,14 @@ export default defineNuxtConfig({
     vite: {
         optimizeDeps: {
             esbuildOptions: {
-                target: 'esnext',
+                target: 'es2020',
                 supported: {
                     bigint: true
                 },
             }
         },
         build: {
-            target: ['esnext'],
+            target: ['es2020'],
         },
     },
 
