@@ -28,6 +28,20 @@ export default defineNuxtConfig({
         '@pinia/nuxt',
     ],
 
+    vite: {
+        optimizeDeps: {
+            esbuildOptions: {
+                target: 'esnext',
+                supported: {
+                    bigint: true
+                },
+            }
+        },
+        build: {
+            target: ['esnext'],
+        },
+    },
+
     runtimeConfig: {
         public: {
             mexcApiKey: process.env.MEXC_API_KEY,
