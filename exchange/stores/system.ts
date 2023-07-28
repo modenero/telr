@@ -111,7 +111,7 @@ export const useSystemStore = defineStore('system', {
             }
 
             this._tickers.NEXA = await $fetch('https://nexa.exchange/ticker')
-            console.log('TICKERS', this._tickers)
+            // console.log('TICKERS', this._tickers)
         }
 
     },

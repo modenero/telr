@@ -34,6 +34,12 @@ const init = async () => {
     }
 }
 
+
+const deposit = () => {
+    console.log('DEPOSIT', deposit)
+}
+
+
 onMounted(() => {
     init()
 })
@@ -102,7 +108,7 @@ onMounted(() => {
                 </div>
 
                 <div class="flex flex-row justify-around text-sm text-amber-900 font-light">
-                    <button class="px-3 py-1 bg-amber-300 rounded shadow">
+                    <button @click="deposit" class="px-3 py-1 bg-amber-300 rounded shadow">
                         Deposit
                     </button>
 

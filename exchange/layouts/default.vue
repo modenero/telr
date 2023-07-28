@@ -26,15 +26,15 @@ const isShowingHelp = ref(false)
 if (process.client) {
     /* Verify the URL (location), for security reasons. */
     const myLocation = document.location
-    console.log('MY LOCATION', myLocation)
+    // console.log('MY LOCATION', myLocation)
 
     /* Set location hash. */
     const hash = myLocation.hash // #/3f080076-d30b-4d32-b51a-120ae63f6905
-    console.log('HASH', hash)
+    // console.log('HASH', hash)
 
     /* Set location hostname. */
     const hostname = myLocation.hostname // localhost
-    console.log('HOSTNAME', hostname)
+    // console.log('HOSTNAME', hostname)
 
     /* Detect all mirrors. */
     if (hostname === 'nexaexchange.com') {

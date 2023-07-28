@@ -8,7 +8,6 @@ import {
 } from '@nexajs/hdnode'
 
 import {
-    getAddressBalance,
     getAddressMempool,
     subscribeAddress,
 } from '@nexajs/rostrum'
@@ -42,9 +41,6 @@ const getCoinBalance = async (_address) => {
  */
 export const useWalletStore = defineStore('wallet', {
     state: () => ({
-        MAX_OPRETURN_DATA_BYTES: 220,
-        DUST_LIMIT: 546,
-
         /* Initialize entropy (used for HD wallet). */
         // NOTE: This is a cryptographically-secure "random" 32-byte (256-bit) value. */
         _entropy: null,
@@ -124,18 +120,6 @@ export const useWalletStore = defineStore('wallet', {
         balance(_state) {
             // return _state._balance
         },
-
-        // satoshis(_state) {
-        //     return _state._satoshis
-        // },
-
-        // nex(_state) {
-        //     return _state._satoshis / 100.0
-        // },
-
-        // mex(_state) {
-        //     return _state._satoshis / 100000000.0
-        // },
     },
 
     actions: {

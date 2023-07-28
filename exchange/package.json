@@ -1,6 +1,6 @@
 {
   "name": "telr-exchange",
-  "version": "23.7.26",
+  "version": "23.7.27",
   "license": "MIT",
   "scripts": {
     "build": "nuxt build",
@@ -13,12 +13,10 @@
     "@bitauth/libauth": "1.19.1",
     "@nexajs/address": "23.7.22",
     "@nexajs/crypto": "23.5.22",
-    "@nexajs/hdnode": "23.7.20",
-    "@nexajs/purse": "23.7.25",
+    "@nexajs/hdnode": "23.7.26",
     "@nexajs/rostrum": "23.7.20",
-    "@nexajs/token": "23.7.25",
     "@nexajs/utils": "23.7.22",
-    "@nexajs/wallet": "23.5.17",
+    "@nexajs/wallet": "23.7.29",
     "@pinia/nuxt": "0.4.7",
     "crypto-js": "4.1.1",
     "moment": "2.29.4",
