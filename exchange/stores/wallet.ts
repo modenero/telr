@@ -17,7 +17,7 @@ import { sha256 } from '@nexajs/crypto'
 import { Wallet } from '@nexajs/wallet'
 
 import _createWallet from './wallet/create.ts'
-import _transfer from './wallet/transfer.ts'
+// import _transfer from './wallet/transfer.ts'
 
 
 const getCoinBalance = async (_address) => {
@@ -54,9 +54,6 @@ export const useWalletStore = defineStore('wallet', {
         _tokens: null,
 
         _spentCoins: null,
-
-        // _satoshis: null,
-
     }),
 
     getters: {
@@ -277,7 +274,8 @@ export const useWalletStore = defineStore('wallet', {
         },
 
         async transfer(_receiver, _satoshis) {
-            return await _transfer.bind(this)(_receiver, _satoshis)
+            return await this.wallet.send(_receiver, _satoshis)
+            // return await _transfer.bind(this)(_receiver, _satoshis)
         },
 
         setEntropy(_entropy) {

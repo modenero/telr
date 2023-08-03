@@ -22,10 +22,7 @@ const isShowingVideoPreview = ref('hidden')
 
 
 watch(() => amount.value, (_amount) => {
-    // console.log('AMOUNT CHANGED', _amount)
-
     /* Convert to satoshis. */
-    // satoshis.value = parseInt(_amount / System._ticker.quote?.USD?.price * 100)
     satoshis.value = parseInt(_amount * 100)
 })
 
@@ -35,13 +32,8 @@ const openScanner = () => {
 }
 
 const setReceiver = (_result) => {
-    // console.log('SET RECEIVER', _result)
-
     /* Set (local) receiver. */
     receiver.value = _result
-
-    /* Set (Wallet) receiver. */
-    // Wallet.setReceiver(_result)
 
     /* Hide video preview. */
     isShowingVideoPreview.value = 'hidden'
@@ -122,17 +114,23 @@ const send = async () => {
         return alert('Enter an amount to send.')
     }
 
-    const txidem = await Wallet.transfer(receiver.value, satoshis.value)
-    console.log('TXIDEM', txidem)
+    if (confirm(`Are you sure you want to send ${numeral(amount.value).format('0,0.00')} NEXA to ${receiver.value}?`)) {
+        console.log(`Starting transfer of ${amount.value} NEXA to ${receiver.value}...`)
 
-    /* Validate transaction idem. */
-    if (txidem) {
-        /* Reset user inputs. */
-        amount.value = null
-        receiver.value = null
+        const response = await Wallet.transfer(receiver.value, BigInt(satoshis.value))
+        console.log('TXIDEM', response)
 
-        // TODO Add "proper" notification system.
-        alert(`Transaction sent successfully!\n\n${txidem}`)
+        /* Validate transaction idem. */
+        if (response) {
+            /* Reset user inputs. */
+            amount.value = null
+            receiver.value = null
+
+            // TODO Add "proper" notification system.
+            alert(`Transaction sent successfully!\n\n${response.result}`)
+        } else {
+            alert(JSON.stringify(response, null, 2))
+        }
     }
 }
 
@@ -197,7 +195,7 @@ const send = async () => {
 
     <div
         @click="send"
-        class="cursor-pointer my-5 block px-3 py-1 text-2xl font-medium bg-blue-200 border-2 border-blue-400 rounded-md shadow hover:bg-blue-300"
+        class="w-fit cursor-pointer my-5 block px-5 py-2 text-2xl font-medium bg-blue-200 border-2 border-blue-400 rounded-md shadow hover:bg-blue-300"
     >
         Send NEXA
     </div>

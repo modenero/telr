@@ -1,0 +1,63 @@
+pragma cashscript ^0.8.0;
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
+ * Copyright (c) 2023 Modenero DAO
+ * Released under the MIT License.
+ * SPDX-License-Identifier: MIT
+ *
+ * LIQUIDITY PROVIDER
+ *
+ * Sets parameters for the Automated Market Maker (AMM) trading UTXO.
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
+ * Version     : 01
+ * Fingerprint : 0x00000000
+ * Namespace   : TELRPOS01
+ *
+ * owner    : The end-user of the wallet.
+ * platform : The service hosting the wallet.
+ * telr     : Primary guardian, responsible for safe-guarding a platform and
+ *            its users against malicious transactions.
+ * timeout  : A future timestamp that unlocks privileged transfer options.
+ *
+ * NOTE: A minimum valid block is required to ensure the oracle's price
+ *       signatures will invalidate each day, after the payout is made
+ *       and a new UTXO is generated.
+ *
+ * For more information, please visit the following resources:
+ *   - https://telr.io
+ *   - https://modenero.com
+ *
+ */
+contract LiquidityProvider(pubkey owner, pubkey platform, pubkey telr, int fee) {
+    /**
+     * Trade
+     *
+     * Send asset(s) from a UTXO to a recipient.
+     *
+     * NOTE: There is NO timeout required.
+     *
+     * @param ownerSig
+     * @param platformSig
+     * @param telrSig
+     */
+    function trade(sig platformSig, sig telrSig) {
+        require(checkSig(platformSig, platform));
+
+        require(checkSig(telrSig, telr));
+    }
+
+    /**
+     * Withdraw
+     *
+     * Primary recovery function.
+     *
+     * @param ownerSig
+     * @param platformSig
+     */
+    function withdraw(sig ownerSig) {
+        require(checkSig(ownerSig, owner));
+    }
+}
