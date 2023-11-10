@@ -1,12 +1,12 @@
 <template>
-    <footer class="mt-20 py-5 max-w-7xl mx-auto">
+    <footer class="w-full mt-20 py-5 max-w-7xl mx-auto">
         <div class="inset-0 flex items-center" aria-hidden="true">
-            <div class="w-full border-t border-gray-300"></div>
+            <div class="w-full border-t border-gray-400"></div>
         </div>
 
-        <div class="-mt-5 relative flex justify-center">
-            <span class="bg-white px-3 text-gray-500">
-                <img src="~/assets/nexa.svg" class="w-8 h-8" />
+        <div class="-mt-4 relative flex justify-center">
+            <span class="px-3 text-gray-500">
+                <img src="~/assets/logo.svg" class="w-8 h-8" />
             </span>
         </div>
 

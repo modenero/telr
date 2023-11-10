@@ -6,6 +6,10 @@ useHead({
     ],
 })
 
+definePageMeta({
+    layout: 'dashboard',
+})
+
 /* Initialize stores. */
 import { useSystemStore } from '@/stores/system'
 
