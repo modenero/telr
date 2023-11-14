@@ -61,8 +61,15 @@ const toggleHelp = () => {
     isShowingHelp.value = !isShowingHelp.value
 }
 
-onMounted(() => {
+onMounted(async () => {
+    /* Initailize system. */
     System.init()
+
+    /* Initialize profile. */
+    await Profile.init()
+
+    /* Initialize wallet. */
+    Wallet.init()
 })
 
 // onBeforeUnmount(() => {
