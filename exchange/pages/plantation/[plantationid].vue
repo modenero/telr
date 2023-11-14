@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-    title: `Provider — Nexa Exchange`,
+    title: `Plantation Manager — Nexa Exchange`,
     meta: [
         { name: 'description', content: `Nexa Studio makes building your next BIG idea effortless.` }
     ],
@@ -111,9 +111,29 @@ const closeout = async () => {
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
                 <div class="mx-auto mt-3 max-w-2xl rounded-3xl ring-1 ring-gray-200 lg:mx-0 lg:flex lg:max-w-none">
                     <div class="p-8 sm:p-10 lg:flex-auto">
-                        <h3 class="text-2xl font-bold tracking-tight text-gray-900">
-                            Manage Liquidity Pools
+                        <h3 class="text-4xl font-bold tracking-tight text-gray-900">
+                            Plantation Manager
                         </h3>
+
+                        <section class="mt-5">
+                            <h4 class="text-base font-medium tracking-wider text-gray-500 uppercase">
+                                Nexa Exchange Minting Authority
+                            </h4>
+
+                            <NuxtLink to="https://explorer.nexa.org/address/nexa:nqtsq5g5jv5fgqmz62dneqkcqe2vdq27h4nemq5gz2r4cc7c" target="_blank" class="text-2xl font-bold tracking-tight text-blue-500 hover:text-blue-400">
+                                nexa:nqtsq5g5jv5fgqmz62dneqkcqe2vdq27h4nemq5gz2r4cc7c
+                            </NuxtLink>
+                        </section>
+
+                        <section class="mt-5">
+                            <h4 class="text-base font-medium tracking-wider text-gray-500 uppercase">
+                                Nexa Exchange Melting Authority
+                            </h4>
+
+                            <NuxtLink to="https://explorer.nexa.org/address/nexa:nqtsq5g5clp5gggsy3m72gyyaslchuyucf52pmr20dwvaf9e" target="_blank" class="text-2xl font-bold tracking-tight text-blue-500 hover:text-blue-400">
+                                nexa:nqtsq5g5clp5gggsy3m72gyyaslchuyucf52pmr20dwvaf9e
+                            </NuxtLink>
+                        </section>
 
                         <p class="mt-6 text-base leading-7 text-gray-600">
                             <span class="font-medium">
