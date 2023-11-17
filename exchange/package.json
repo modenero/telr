@@ -1,6 +1,6 @@
 {
   "name": "telr-exchange",
-  "version": "23.11.10",
+  "version": "23.11.16",
   "license": "MIT",
   "scripts": {
     "build": "nuxt build",
@@ -14,7 +14,7 @@
     "@pinia/nuxt": "0.4.7",
     "crypto-js": "4.1.1",
     "moment": "2.29.4",
-    "nexajs": "23.11.2",
+    "nexajs": "23.11.14",
     "numeral": "2.0.6",
     "nuxt": "3.0.0",
     "pinia": "2.0.32",

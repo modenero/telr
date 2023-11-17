@@ -12,7 +12,14 @@ import { useSystemStore } from '@/stores/system'
 const Wallet = useWalletStore()
 const System = useSystemStore()
 
-const PRO_BASE_RATE = 50
+/* Initialize route. */
+const route = useRoute()
+
+/* Set plantation id. */
+const plantationid = route.params.plantationid
+console.log('PLANTATION ID', plantationid)
+
+const LEASE_BASE_RATE = 150
 
 const stakeline = ref('0')
 const isShowingRecovery = ref(true)
@@ -31,19 +38,19 @@ const displayMonths = computed(() => {
 
 const displayProRate = computed(() => {
     if (stakeline.value === '0') {
-        return PRO_BASE_RATE * 10
+        return LEASE_BASE_RATE * 10
     }
     else if (stakeline.value === '3') {
-        return PRO_BASE_RATE * 7.5
+        return LEASE_BASE_RATE * 7.5
     }
     else if (stakeline.value === '6') {
-        return PRO_BASE_RATE * 5
+        return LEASE_BASE_RATE * 5
     }
     else if (stakeline.value === '9') {
-        return PRO_BASE_RATE * 2.5
+        return LEASE_BASE_RATE * 2.5
     }
     else if (stakeline.value === '12') {
-        return PRO_BASE_RATE
+        return LEASE_BASE_RATE
     }
 })
 
@@ -111,8 +118,12 @@ const closeout = async () => {
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
                 <div class="mx-auto mt-3 max-w-2xl rounded-3xl ring-1 ring-gray-200 lg:mx-0 lg:flex lg:max-w-none">
                     <div class="p-8 sm:p-10 lg:flex-auto">
-                        <h3 class="text-4xl font-bold tracking-tight text-gray-900">
+                        <h2 class="text-4xl font-bold tracking-tight text-gray-900">
                             Plantation Manager
+                        </h2>
+
+                        <h3 class="mt-1 text-xs text-gray-300 font-medium font-mono tracking-widest">
+                            {{plantationid}}
                         </h3>
 
                         <section class="mt-5">
@@ -120,7 +131,7 @@ const closeout = async () => {
                                 Nexa Exchange Minting Authority
                             </h4>
 
-                            <NuxtLink to="https://explorer.nexa.org/address/nexa:nqtsq5g5jv5fgqmz62dneqkcqe2vdq27h4nemq5gz2r4cc7c" target="_blank" class="text-2xl font-bold tracking-tight text-blue-500 hover:text-blue-400">
+                            <NuxtLink to="https://explorer.nexa.org/address/nexa:nqtsq5g5jv5fgqmz62dneqkcqe2vdq27h4nemq5gz2r4cc7c" target="_blank" class="text-xl truncate font-bold font-mono tracking-tight text-blue-500 hover:text-blue-400">
                                 nexa:nqtsq5g5jv5fgqmz62dneqkcqe2vdq27h4nemq5gz2r4cc7c
                             </NuxtLink>
                         </section>
@@ -130,17 +141,17 @@ const closeout = async () => {
                                 Nexa Exchange Melting Authority
                             </h4>
 
-                            <NuxtLink to="https://explorer.nexa.org/address/nexa:nqtsq5g5clp5gggsy3m72gyyaslchuyucf52pmr20dwvaf9e" target="_blank" class="text-2xl font-bold tracking-tight text-blue-500 hover:text-blue-400">
+                            <NuxtLink to="https://explorer.nexa.org/address/nexa:nqtsq5g5clp5gggsy3m72gyyaslchuyucf52pmr20dwvaf9e" target="_blank" class="text-xl truncate font-bold font-mono tracking-tight text-blue-500 hover:text-blue-400">
                                 nexa:nqtsq5g5clp5gggsy3m72gyyaslchuyucf52pmr20dwvaf9e
                             </NuxtLink>
                         </section>
 
                         <p class="mt-6 text-base leading-7 text-gray-600">
                             <span class="font-medium">
-                                Studio PRO is 100% FREE Forever!
+                                Plantation ownership is 100% FREE Forever!
                             </span>
 
-                            Just stake your assets for the time that you want access to PRO benefits and daily rewards.
+                            Just stake your assets for the time that you want to lease the Plantation property.
                         </p>
 
                         <section class="max-w-2xl w-full mt-10">
@@ -165,14 +176,14 @@ const closeout = async () => {
 
                             <div class="pl-5 text-sm text-rose-500 italic tracking-wider">
                                 <h4 class="text-center">
-                                    NOTE: The <span class="font-medium">LONGER</span> your stakeline, the <span class="font-medium">LESS</span> assets required for PRO activation.
+                                    NOTE: The <span class="font-medium">LONGER</span> your stakeline, the <span class="font-medium">LESS</span> assets required for LEASE activation.
                                 </h4>
                             </div>
                         </section>
 
                         <div class="mt-10 flex items-center gap-x-4">
                             <h4 class="flex-none text-xl font-semibold leading-6 tracking-wider text-sky-600">
-                                What’s included in PRO
+                                What’s included in a Plantation
                             </h4>
                             <div class="h-px flex-auto bg-gray-100"></div>
                         </div>
@@ -255,7 +266,8 @@ const closeout = async () => {
                                 </p>
 
                                 <p class="text-lg font-bold tracking-widest text-rose-400">
-                                    Go PRO for {{displayMonths}}
+                                    Stake x1 Plantation
+                                    <br />for {{displayMonths}}
                                 </p>
 
                                 <button
