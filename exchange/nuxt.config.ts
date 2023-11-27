@@ -51,7 +51,7 @@ export default defineNuxtConfig({
         '@pinia/nuxt',
 
         /* Internationalization for Nuxt */
-        '@nuxtjs/i18n',
+        // '@nuxtjs/i18n',
 
         /* Progressive Web Application */
         '@kevinmarrec/nuxt-pwa',
