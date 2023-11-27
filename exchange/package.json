@@ -1,6 +1,6 @@
 {
   "name": "telr-exchange",
-  "version": "23.11.16",
+  "version": "23.11.27",
   "license": "MIT",
   "scripts": {
     "build": "nuxt build",
@@ -18,12 +18,14 @@
     "numeral": "2.0.6",
     "nuxt": "3.0.0",
     "pinia": "2.0.32",
-    "pouchdb": "^8.0.1",
+    "pouchdb": "8.0.1",
     "qr-scanner": "1.4.2",
     "qrcode": "1.5.1",
     "uuid": "9.0.0"
   },
   "devDependencies": {
+    "@kevinmarrec/nuxt-pwa": "0.17.0",
+    "@nuxtjs/i18n": "7.3.1",
     "@nuxtjs/tailwindcss": "6.4.1"
   }
 }
