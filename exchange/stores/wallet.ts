@@ -10,9 +10,6 @@ import _setEntropy from './wallet/setEntropy.ts'
 
 import _authSession from './profile/authSession.ts'
 
-/* Set ($STUDIO) token id. */
-const STUDIO_TOKENID = '9732745682001b06e332b6a4a0dd0fffc4837c707567f8cbfe0f6a9b12080000'
-
 /**
  * Wallet Store
  */

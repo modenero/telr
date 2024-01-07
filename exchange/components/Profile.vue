@@ -13,14 +13,6 @@ const isLoading = ref(false)
 import { useProfileStore } from '@/stores/profile'
 const Profile = useProfileStore()
 
-onBeforeMount(() => {
-    Profile.$state = JSON.parse(localStorage.getItem('profile'))
-})
-
-watch(Profile.$state, (_state) => {
-    localStorage.setItem('profile', JSON.stringify(_state))
-})
-
 /**
  * Save API Key
  */
