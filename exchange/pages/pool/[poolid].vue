@@ -7,9 +7,9 @@ useHead({
 })
 
 /* Initialize stores. */
-import { useWalletStore } from '@/stores/wallet'
+import { usePoolStore } from '@/stores/pool'
 import { useSystemStore } from '@/stores/system'
-const Wallet = useWalletStore()
+const Pool = usePoolStore()
 const System = useSystemStore()
 
 /* Initialize route. */
@@ -55,38 +55,15 @@ const displayProRate = computed(() => {
     }
 })
 
-const activate = async () => {
+const rebalance = async () => {
     /* Confirm request. */
-    if (confirm(`Are you sure you want to Activate this Stakeline?`)) {
+    if (confirm(`Are you sure you want to re-balance this pool?`)) {
 
         // TODO Calculate amount
-        const amount = BigInt(1)
+        // const amount = BigInt(1)
 
         /* Activate stakeline. */
-        const result = await Wallet.activateStakeline(amount)
-            .catch(err => {
-                console.error(err.message)
-                alert(err.message)
-            })
-        console.log('RESULT', result)
-
-        /* Validate result. */
-        if (result) {
-            alert(JSON.stringify(result))
-        }
-
-    }
-}
-
-const closeout = async () => {
-    /* Confirm request. */
-    if (confirm(`Are you sure you want to CLOSEOUT this Stakeline?`)) {
-
-        // FOR DEV PURPOSES ONLY
-        const outpoint = 'fca0ce43c76800c363f9272c1fef87798120241d4e7c725070cde859a93cba4b'
-
-        /* Activate stakeline. */
-        const result = await Wallet.closeout({ outpoint })
+        const result = await Pool.rebalance()
             .catch(err => {
                 console.error(err.message)
                 alert(err.message)
@@ -253,10 +230,10 @@ const closeout = async () => {
                                 </p>
 
                                 <button
-                                    @click="activate"
+                                    @click="rebalance"
                                     class="mt-10 block w-full rounded-lg bg-indigo-600 px-3 py-5 text-center text-2xl font-semibold text-white shadow hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                 >
-                                    Activate Stakeline
+                                    Re-balance to 10M
                                 </button>
 
                                 <p class="mt-6 text-base leading-5 text-gray-600">
