@@ -32,7 +32,7 @@ const Wallet = useWalletStore()
 
 // const TOKEN_ID_HEX = '57f46c1766dc0087b207acde1b3372e9f90b18c7e67242657344dcd2af660000' // AVAS
 const TOKEN_ID_HEX = '9732745682001b06e332b6a4a0dd0fffc4837c707567f8cbfe0f6a9b12080000' // STUDIO
-const WISERSWAP_HEX = '6c6c6c6c6c6c6c5779009c63c076cd01217f517f7c817f775279c701217f517f7c817f77537a7b888876c678c7517f7c76010087636d00677f77517f7c76010087636d00677f758168689578cc7bcd517f7c76010087636d00677f77517f7c76010087636d00677f758168686e95537aa269c4c353939d02220202102752535a79547aa403005114597a7e56795a7a95557996765379a4c4557a9476cd547a88cca16903005114577a7e5679587a95557a9676547aa4c4557a9476cd547a88cca16972965479009e63765579a169685579009e63765679a269686d6d6d7567577a519d5779827758797ea988577a577aad6d6d6d68'
+const WISERSWAP_HEX = '6c6c6c6c6c5579009c63c076cd01217f517f7c817f775279c701217f517f7c817f77537a7b888876c678c7517f7c76010087636d00677f77517f7c76010087636d00677f75816868787c955279cc537acd517f7c76010087636d00677f77517f7c76010087636d00677f7581686878547a94905279527995547aa269c4c353939d02220202102752530164030051145b7a7e56797b95547996765679a4c4547a9476cd547a88cca16903005114587a7e557a587a95547a9676557aa4c4557a9476cd547a88cca16972965379009e63765479a169685479009e63765579a269686d6d6d67557a519d5579827756797ea98871ad6d6d68'
 const SATOSHIS = BigInt(1000000000)
 const TOKENS = BigInt(10000000)
 const DUST_VALUE = 546
@@ -111,18 +111,19 @@ export default async function (_baseQuantity) {
     // rate = hexToBin('03e8') // 1,000 10.00%
     // rate = hexToBin('01f4') // 500 5.00%
     // rate = hexToBin('0190') // 400 4.00%
-    // rate = hexToBin('012c') // 300 3.00%
-    rate = hexToBin('0100') // 256 (2.56%)
+    rate = hexToBin('012c') // 300 3.00%
+    // rate = hexToBin('0100') // 256 (2.56%)
     // rate = hexToBin('c8') // 200 2.00%
     rate.reverse()
     rate = encodeDataPush(rate)
     // rate = new Uint8Array([ OP.ONE ]) // 1 (1 satoshi per 1 token)
 
     // fee = hexToBin('012c') // 300 (3.00%)
-    fee = hexToBin('0100') // 256 (2.56%)
+    // fee = hexToBin('0100') // 256 (2.56%)
     // fee = hexToBin('fa') // 250 (2.50%)
-    fee.reverse()
-    fee = encodeDataPush(fee)
+    // fee.reverse()
+    // fee = encodeDataPush(fee)
+    fee = new Uint8Array([ OP.ONE ])
     // fee = new Uint8Array([ OP.ZERO ])
 
     // baseServiceFee = DUST_VALUE.toString(16)
@@ -152,8 +153,8 @@ export default async function (_baseQuantity) {
         ...encodeDataPush(PROVIDER_PKH), // The Provider's public key hash.
         ...rate, // The rate of exchange, charged by the Provider. (measured in <satoshis> per <asset>)
         ...encodeDataPush(ADMIN_PKH), // An optional 3rd-party (specified by the Seller) used to facilitate the tranaction.
-        ...fee, // An optional amount charged by the Provider. (measured in <basis points> (bp), eg. 5.25% = 525bp)
-        ...baseServiceFee, // The base service fee. (specified in satoshis)
+        // ...fee, // An optional amount charged by the Provider. (measured in <basis points> (bp), eg. 5.25% = 525bp)
+        // ...baseServiceFee, // The base service fee. (specified in satoshis)
         ...tradeCeiling, // An optional (trade) ceiling set by the Provider. (measured in <satoshis> per <asset>)
         ...tradeFloor, // An optional (trade) floor set by the Provider. (measured in <satoshis> per <asset>)
     ])
