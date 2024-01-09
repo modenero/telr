@@ -1,4 +1,14 @@
 <script setup lang="ts">
+/* Import modules. */
+import {
+    encodeAddress,
+    listUnspent,
+} from '@nexajs/address'
+
+import { hexToBin } from '@nexajs/utils'
+
+import numeral from 'numeral'
+
 useHead({
     title: `Pool Manager — Nexa Exchange`,
     meta: [
@@ -19,9 +29,13 @@ const route = useRoute()
 const poolid = route.params.poolid
 console.log('POOL ID', poolid)
 
+// TEMP USE FOR DEV PURPOSES ONLY
+// ALWAYS DECODE FROM CONTRACT ADDRESS
+const DEV_SCRIPT_PUBKEY = hexToBin('0014d77c5faaf175ada810c45660eacbd54ac8bdcb240014b2912c4cc61f1b8cbe5c77ebd5eeea2641645f10022c011445f5b9d41dd723141f721c727715c690fedbbbd60000')
 
 const LP_BASE_RATE = 50
 
+const activePool = ref()
 const stakeline = ref('0')
 const isShowingRecovery = ref(true)
 
@@ -55,6 +69,44 @@ const displayProRate = computed(() => {
     }
 })
 
+const displayPoolPrice = computed(() => {
+    if (!activePool.value) {
+        return '0.00'
+    }
+
+    let poolPrice
+    let tokensQty
+    let satoshisQty
+
+    tokensQty = parseFloat(activePool.value.tokens / BigInt(100)) // reduce by ??
+
+    satoshisQty = parseFloat(activePool.value.satoshis / BigInt(10000)) // reduce by ?? + decimals
+
+    poolPrice = numeral(tokensQty / satoshisQty).format('0,0.00[0000]')
+    console.log('POOL PRICE', poolPrice)
+
+    return poolPrice
+})
+
+const displayPoolFiat = computed(() => {
+    if (!activePool.value) {
+        return '0.00'
+    }
+
+    let poolFiat
+    let tokensQty
+    let satoshisQty
+
+    tokensQty = parseFloat(activePool.value.tokens / BigInt(100)) // reduce by ??
+
+    satoshisQty = parseFloat(activePool.value.satoshis / BigInt(10000)) // reduce by ?? + decimals
+
+    poolFiat = numeral((satoshisQty / tokensQty) * System.usd).format('$0,0.00[0000]')
+    console.log('POOL FIAT', poolFiat)
+
+    return poolFiat
+})
+
 const rebalance = async () => {
     /* Confirm request. */
     if (confirm(`Are you sure you want to re-balance this pool?`)) {
@@ -79,10 +131,40 @@ const rebalance = async () => {
 }
 
 
-// onMounted(() => {
-//     console.log('Mounted!')
-//     // Now it's safe to perform setup operations.
-// })
+const init = async () => {
+    let contractAddress
+    let contractUnspent
+
+    /* Encode the public key hash into a P2PKH nexa address. */
+    contractAddress = encodeAddress(
+        'nexa',
+        'TEMPLATE',
+        DEV_SCRIPT_PUBKEY,
+    )
+    console.info('\nCONTRACT ADDRESS', contractAddress)
+
+    /* Request unspent assets. */
+    contractUnspent = await listUnspent(contractAddress)
+        .catch(err => console.error(err))
+
+    /* Filter tokens. */
+    contractUnspent = contractUnspent.filter(_unspent => {
+        return _unspent.hasToken
+    })
+
+    // FOR DEV PURPOSES ONLY -- take the LARGEST input
+    contractUnspent = [contractUnspent.sort((a, b) => Number(b.tokens) - Number(a.tokens))[0]]
+    // FOR DEV PURPOSES ONLY -- add scripts
+    console.log('\nCONTRACT UNSPENT', contractUnspent)
+
+    activePool.value = contractUnspent[0]
+    console.log('ACTIVE POOL', activePool.value)
+
+}
+
+onMounted(() => {
+    init()
+})
 
 // onBeforeUnmount(() => {
 //     console.log('Before Unmount!')
@@ -212,6 +294,23 @@ const rebalance = async () => {
                                 <h3 class="text-xl font-semibold text-sky-800">
                                     Stake As Long As You Want
                                 </h3>
+
+                                <section v-if="activePool" class="grid grid-cols-2 gap-4">
+                                    <h3>NEXA Balance</h3>
+                                    <h3>{{numeral(activePool.amount).format('0,0.00')}}</h3>
+
+                                    <h3>STUDIO Balance</h3>
+                                    <h3>{{numeral(activePool.tokens).format('0,0.[000000]')}}</h3>
+
+                                    <h3>NEXA/STUDIO</h3>
+                                    <h3>{{displayPoolPrice}}</h3>
+
+                                    <h3 v-if="System.usd">mNEXA/USD</h3>
+                                    <h3 v-if="System.usd">{{numeral(System.usd).format('$0,0.00[0000]')}}</h3>
+
+                                    <h3>mSTUDIO/USD</h3>
+                                    <h3>{{displayPoolFiat}}</h3>
+                                </section>
 
                                 <p class="mt-6 flex items-baseline justify-center gap-x-2">
                                     <span class="text-8xl font-bold tracking-wide text-sky-900 italic">

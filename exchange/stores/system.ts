@@ -66,7 +66,7 @@ export const useSystemStore = defineStore('system', {
 
     getters: {
         nex() {
-            if (!this._tickers?.NEXA) {
+            if (!this._tickers?.NEXA?.quote) {
                 return null
             }
 
