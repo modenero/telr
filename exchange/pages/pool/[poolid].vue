@@ -605,9 +605,9 @@ onMounted(() => {
         </div>
     </main>
 
-    <main class="max-w-6xl mx-auto px-3 py-5 flex flex-col gap-5">
+    <!-- <main class="max-w-6xl mx-auto px-3 py-5 flex flex-col gap-5">
         <Settings />
-    </main>
+    </main> -->
 
     <Footer />
 </template>

@@ -31,67 +31,40 @@ import { useWalletStore } from '@/stores/wallet'
 const Wallet = useWalletStore()
 
 // const TOKEN_ID_HEX = '57f46c1766dc0087b207acde1b3372e9f90b18c7e67242657344dcd2af660000' // AVAS
-const TOKEN_ID_HEX = '9732745682001b06e332b6a4a0dd0fffc4837c707567f8cbfe0f6a9b12080000' // STUDIO
+// const TOKEN_ID_HEX = '9732745682001b06e332b6a4a0dd0fffc4837c707567f8cbfe0f6a9b12080000' // STUDIO
+const TOKEN_ID_HEX = 'a15c9e7e68170259fd31bc26610b542625c57e13fdccb5f3e1cb7fb03a420000' // NXL
 const WISERSWAP_HEX = '6c6c6c6c6c5579009c63c076cd01217f517f7c817f775279c701217f517f7c817f77537a7b888876c678c7517f7c76010087636d00677f77517f7c76010087636d00677f75816868787c955279cc537acd517f7c76010087636d00677f77517f7c76010087636d00677f7581686878547a94905279527995547aa269c4c353939d02220202102752530164030051145b7a7e56797b95547996765679a4c4547a9476cd547a88cca16903005114587a7e557a587a95547a9676557aa4c4557a9476cd547a88cca16972965379009e63765479a169685479009e63765579a269686d6d6d67557a519d5579827756797ea98871ad6d6d68'
-const SATOSHIS = BigInt(1000000000)
-const TOKENS = BigInt(10000000)
+const SATOSHIS = BigInt(1000000000) // 10M NEXA
+const TOKENS = BigInt(700000) // 7 NXL
 const DUST_VALUE = 546
 const ADMIN_PKH = hexToBin('45f5b9d41dd723141f721c727715c690fedbbbd6')
 const PROVIDER_PKH = hexToBin('b2912c4cc61f1b8cbe5c77ebd5eeea2641645f10')
 
-/* Initialize globals. */
-let adminAddress
-let adminPkh
-let coins
-let contractAddress
-let contractCoins
-let contractTokens
-let nullData
-let parsed
-let adminWif
-let publicKey
-let publicKeyHash
-let prefix
-let primaryAddress
-let primaryWif
-let providerAddress
-let providerPkh
-let providerWif
-let receivers
-let response
-let tokenid
-let tokenidHex
-let tokens
-let txResult
-
 export default async function (_baseQuantity) {
     /* Initialize locals. */
-    let allCoins
     let allTokens
-    let argsData
     let baseServiceFee
-    let blockHeight
-    let blockHeightScript
+    let coins
     let contractAddress
-    let contractCoins
-    let constraintData
-    let constraintHash
+    let contractTokens
 
     let fee
     let lockingScript
-    let lockTime
+    let nullData
 
     let prefix
-    let providerPubKeyHash
 
     let rate
+    let receivers
+    let response
 
-    let scriptData
     let scriptHash
     let scriptPubKey
-    let sellerPubKeyHash
+
+    let tokens
     let tradeCeiling
     let tradeFloor
+    let txResult
 
     let unlockingScript
     let unspentTokens
@@ -186,9 +159,19 @@ export default async function (_baseQuantity) {
     contractTokens = await getTokens(Wallet.wallet.wif, scriptPubKey)
         .catch(err => console.error(err))
 
+    /* Validate (unspent) tokens. */
+    if (contractTokens.length) {
+        /* Filter by "active" token. */
+        contractTokens = contractTokens.filter(_unspent => {
+            return _unspent.tokenidHex === TOKEN_ID_HEX
+        })
+    }
+
+    /* Validate (unspent) tokens. */
     if (contractTokens.length) {
         // FOR DEV PURPOSES ONLY -- take the LARGEST input
         contractTokens = [contractTokens.sort((a, b) => Number(b.tokens) - Number(a.tokens))[0]]
+
         // FOR DEV PURPOSES ONLY -- add scripts
         contractTokens[0].locking = lockingScript
         contractTokens[0].unlocking = unlockingScript
