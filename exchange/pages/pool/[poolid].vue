@@ -31,7 +31,12 @@ console.log('POOL ID', poolid)
 
 // TEMP USE FOR DEV PURPOSES ONLY
 // ALWAYS DECODE FROM CONTRACT ADDRESS
+// nexa:nprqq9xh03064ut44k5pp3zkvr4vh422ez7ukfqqzjefztzvcc03hr97t3m7h40wagnyzezlzqpzcqg5gh6mn4qa6u33g8mjr3e8w9wxjrldhw7kqqqq47nsfsmf
 const DEV_SCRIPT_PUBKEY = hexToBin('0014d77c5faaf175ada810c45660eacbd54ac8bdcb240014b2912c4cc61f1b8cbe5c77ebd5eeea2641645f10022c011445f5b9d41dd723141f721c727715c690fedbbbd60000')
+
+// FOR DEV PURPOSES ONLY
+// const TOKEN_ID_HEX = '9732745682001b06e332b6a4a0dd0fffc4837c707567f8cbfe0f6a9b12080000' // STUDIO
+const TOKEN_ID_HEX = 'a15c9e7e68170259fd31bc26610b542625c57e13fdccb5f3e1cb7fb03a420000' // NXL
 
 const LP_BASE_RATE = 50
 
@@ -78,11 +83,13 @@ const displayPoolPrice = computed(() => {
     let tokensQty
     let satoshisQty
 
-    tokensQty = parseFloat(activePool.value.tokens / BigInt(100)) // reduce by ??
+    // tokensQty = parseFloat(activePool.value.tokens / BigInt(100)) // reduce by ??
+    tokensQty = parseFloat(activePool.value.tokens / BigInt(10000)) // reduce by # decimals
 
-    satoshisQty = parseFloat(activePool.value.satoshis / BigInt(10000)) // reduce by ?? + decimals
+    // satoshisQty = parseFloat(activePool.value.satoshis / BigInt(10000)) // reduce by ?? + decimals
+    satoshisQty = parseFloat(activePool.value.satoshis / BigInt(100)) // reduce by # decimals
 
-    poolPrice = numeral(tokensQty / satoshisQty).format('0,0.00[0000]')
+    poolPrice = numeral((tokensQty / satoshisQty) * 1e6).format('0,0.00[0000]')
     console.log('POOL PRICE', poolPrice)
 
     return poolPrice
@@ -97,11 +104,13 @@ const displayPoolFiat = computed(() => {
     let tokensQty
     let satoshisQty
 
-    tokensQty = parseFloat(activePool.value.tokens / BigInt(100)) // reduce by ??
+    // tokensQty = parseFloat(activePool.value.tokens / BigInt(100)) // reduce by ??
+    tokensQty = parseFloat(activePool.value.tokens / BigInt(10000)) // reduce by # decimals
 
-    satoshisQty = parseFloat(activePool.value.satoshis / BigInt(10000)) // reduce by ?? + decimals
+    // satoshisQty = parseFloat(activePool.value.satoshis / BigInt(10000)) // reduce by ?? + decimals
+    satoshisQty = parseFloat(activePool.value.satoshis / BigInt(100)) // reduce by # decimals
 
-    poolFiat = numeral((satoshisQty / tokensQty) * System.usd).format('$0,0.00[0000]')
+    poolFiat = numeral(System.usd / ((tokensQty / satoshisQty) * 1e6)).format('$0,0.00[0000]')
     console.log('POOL FIAT', poolFiat)
 
     return poolFiat
@@ -150,6 +159,11 @@ const init = async () => {
     /* Filter tokens. */
     contractUnspent = contractUnspent.filter(_unspent => {
         return _unspent.hasToken
+    })
+
+    /* Filter by "active" token. */
+    contractUnspent = contractUnspent.filter(_unspent => {
+        return _unspent.tokenidHex === TOKEN_ID_HEX
     })
 
     // FOR DEV PURPOSES ONLY -- take the LARGEST input
@@ -230,7 +244,7 @@ onMounted(() => {
 
                     <div class="flex items-baseline flex-wrap justify-between gap-y-2 gap-x-4 border-t border-gray-900/5 px-4 py-10 sm:px-6 lg:border-t-0 xl:px-8 lg:border-l">
                         <dt class="text-sm font-medium leading-6 text-gray-500">
-                            $NEXA / $STUDIO
+                            mNEXA / NXL
                         </dt>
 
                         <dd class="text-xs font-medium text-gray-700">
