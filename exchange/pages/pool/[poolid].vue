@@ -89,7 +89,8 @@ const displayPoolPrice = computed(() => {
     // satoshisQty = parseFloat(activePool.value.satoshis / BigInt(10000)) // reduce by ?? + decimals
     satoshisQty = parseFloat(activePool.value.satoshis / BigInt(100)) // reduce by # decimals
 
-    poolPrice = numeral((tokensQty / satoshisQty) * 1e6).format('0,0.00[0000]')
+    // poolPrice = numeral((tokensQty / satoshisQty) * 1e6).format('0,0.00[0000]')
+    poolPrice = numeral(tokensQty / satoshisQty).format('0,0.00[000000]')
     console.log('POOL PRICE', poolPrice)
 
     return poolPrice
@@ -110,7 +111,7 @@ const displayPoolFiat = computed(() => {
     // satoshisQty = parseFloat(activePool.value.satoshis / BigInt(10000)) // reduce by ?? + decimals
     satoshisQty = parseFloat(activePool.value.satoshis / BigInt(100)) // reduce by # decimals
 
-    poolFiat = numeral(System.usd / ((tokensQty / satoshisQty) * 1e6)).format('$0,0.00[0000]')
+    poolFiat = numeral(System.nex / (tokensQty / satoshisQty)).format('$0,0.00[0000]')
     console.log('POOL FIAT', poolFiat)
 
     return poolFiat
@@ -230,7 +231,7 @@ onMounted(() => {
 
                     <div class="flex items-baseline flex-wrap justify-between gap-y-2 gap-x-4 border-t border-gray-900/5 px-4 py-10 sm:px-6 lg:border-t-0 xl:px-8 sm:border-l">
                         <dt class="text-sm font-medium leading-6 text-gray-500">
-                            $STUDIO Balance
+                            $NXL Balance
                         </dt>
 
                         <dd class="text-xs font-medium text-rose-600">
@@ -238,13 +239,13 @@ onMounted(() => {
                         </dd>
 
                         <dd class="w-full flex-none text-3xl font-medium leading-10 tracking-tight text-gray-900">
-                            {{numeral(activePool.tokens).format('0,0.[000000]')}}
+                            {{numeral(Number(activePool.tokens) / 1e4).format('0,0.[000000]')}}
                         </dd>
                     </div>
 
                     <div class="flex items-baseline flex-wrap justify-between gap-y-2 gap-x-4 border-t border-gray-900/5 px-4 py-10 sm:px-6 lg:border-t-0 xl:px-8 lg:border-l">
                         <dt class="text-sm font-medium leading-6 text-gray-500">
-                            mNEXA / NXL
+                            NEXA / NXL
                         </dt>
 
                         <dd class="text-xs font-medium text-gray-700">
@@ -258,7 +259,7 @@ onMounted(() => {
 
                     <div class="flex items-baseline flex-wrap justify-between gap-y-2 gap-x-4 border-t border-gray-900/5 px-4 py-10 sm:px-6 lg:border-t-0 xl:px-8 sm:border-l">
                         <dt class="text-sm font-medium leading-6 text-gray-500">
-                            mSTUDIO / USD
+                            NXL / USD
                         </dt>
 
                         <dd class="text-xs font-medium text-rose-600">
