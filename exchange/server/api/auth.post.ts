@@ -11,9 +11,9 @@ import {
 import { instantiateSecp256k1 } from '@bitauth/libauth'
 
 /* Initialize databases. */
-const logsDb = new PouchDB(`http://${process.env.COUCHDB_USER}:${process.env.COUCHDB_PASSWORD}@127.0.0.1:5984/logs`)
-const profilesDb = new PouchDB(`http://${process.env.COUCHDB_USER}:${process.env.COUCHDB_PASSWORD}@127.0.0.1:5984/profiles`)
-const sessionsDb = new PouchDB(`http://${process.env.COUCHDB_USER}:${process.env.COUCHDB_PASSWORD}@127.0.0.1:5984/sessions`)
+const logsDb = new PouchDB(`db/logs`)
+const profilesDb = new PouchDB(`db/profiles`)
+const sessionsDb = new PouchDB(`db/sessions`)
 
 /**
  * Get Profile
