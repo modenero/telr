@@ -9,7 +9,7 @@ import {
 import { instantiateSecp256k1 } from '@bitauth/libauth'
 
 /* Initialize stores. */
-// import { useProfileStore } from '@/stores/profile'
+import { useProfileStore } from '@/stores/profile'
 
 export default async function () {
     console.log('WALLET', this.wallet)
@@ -25,7 +25,7 @@ export default async function () {
     let signature
     let unitSeparator
 
-// const Profile = useProfileStore()
+    const Profile = useProfileStore()
 
     // Instantiate the Secp256k1 interface.
     secp256k1 = await instantiateSecp256k1()
