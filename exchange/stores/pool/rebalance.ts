@@ -17,6 +17,7 @@ import {
 } from '@nexajs/script'
 
 import {
+    buildTokens,
     getTokens,
     sendTokens,
 } from '@nexajs/token'
@@ -28,17 +29,26 @@ import {
 
 /* Initialize stores. */
 import { useWalletStore } from '@/stores/wallet'
-const Wallet = useWalletStore()
+
+/* Set WiserSwap (v1) contract (HEX) bytecode. */
+const WISERSWAP_V1_HEX = '6c6c6c6c6c5579009c63c076cd01217f517f7c817f775279c701217f517f7c817f77537a7b888876c678c7517f7c76010087636d00677f77517f7c76010087636d00677f75816868787c955279cc537acd517f7c76010087636d00677f77517f7c76010087636d00677f7581686878547a94905279527995547aa269c4c353939d02220202102752530164030051145b7a7e56797b95547996765679a4c4547a9476cd547a88cca16903005114587a7e557a587a95547a9676557aa4c4557a9476cd547a88cca16972965379009e63765479a169685479009e63765579a269686d6d6d67557a519d5579827756797ea98871ad6d6d68'
+
+/* Set dust value. */
+const DUST_VALUE = 546
+
+/* Set (platform) Administrator. */
+const ADMIN_PKH = hexToBin('45f5b9d41dd723141f721c727715c690fedbbbd6') // nexa:???
+
+/* Set (pool) Provider. */
+const PROVIDER_PKH = hexToBin('b2912c4cc61f1b8cbe5c77ebd5eeea2641645f10') // nexa:???
 
 // const TOKEN_ID_HEX = '57f46c1766dc0087b207acde1b3372e9f90b18c7e67242657344dcd2af660000' // AVAS
 // const TOKEN_ID_HEX = '9732745682001b06e332b6a4a0dd0fffc4837c707567f8cbfe0f6a9b12080000' // STUDIO
-const TOKEN_ID_HEX = 'a15c9e7e68170259fd31bc26610b542625c57e13fdccb5f3e1cb7fb03a420000' // NXL
-const WISERSWAP_HEX = '6c6c6c6c6c5579009c63c076cd01217f517f7c817f775279c701217f517f7c817f77537a7b888876c678c7517f7c76010087636d00677f77517f7c76010087636d00677f75816868787c955279cc537acd517f7c76010087636d00677f77517f7c76010087636d00677f7581686878547a94905279527995547aa269c4c353939d02220202102752530164030051145b7a7e56797b95547996765679a4c4547a9476cd547a88cca16903005114587a7e557a587a95547a9676557aa4c4557a9476cd547a88cca16972965379009e63765479a169685479009e63765579a269686d6d6d67557a519d5579827756797ea98871ad6d6d68'
+// const TOKEN_ID_HEX = 'a15c9e7e68170259fd31bc26610b542625c57e13fdccb5f3e1cb7fb03a420000' // NXL
+const TOKEN_ID_HEX = '5f2456fa44a88c4a831a4b7d1b1f34176a29a3f28845af639eb9b1c88dd40000' // NXY
+
 const SATOSHIS = BigInt(1000000000) // 10M NEXA
-const TOKENS = BigInt(700000) // 7 NXL
-const DUST_VALUE = 546
-const ADMIN_PKH = hexToBin('45f5b9d41dd723141f721c727715c690fedbbbd6')
-const PROVIDER_PKH = hexToBin('b2912c4cc61f1b8cbe5c77ebd5eeea2641645f10')
+const TOKENS = BigInt(100000000000) // 1B NXY
 
 export default async function (_baseQuantity) {
     /* Initialize locals. */
@@ -75,11 +85,11 @@ export default async function (_baseQuantity) {
     prefix = 'nexa'
 
     /* Set locking script. */
-    lockingScript = hexToBin(WISERSWAP_HEX)
-    console.info('\nCONTRACT TEMPLATE', binToHex(lockingScript))
+    lockingScript = hexToBin(WISERSWAP_V1_HEX)
+    // console.info('\nCONTRACT TEMPLATE', binToHex(lockingScript))
 
     scriptHash = ripemd160(sha256(lockingScript))
-    console.log('\nTEMPLATE HASH', binToHex(scriptHash))
+    // console.log('\nTEMPLATE HASH', binToHex(scriptHash))
 
     // rate = hexToBin('03e8') // 1,000 10.00%
     // rate = hexToBin('01f4') // 500 5.00%
@@ -131,7 +141,7 @@ export default async function (_baseQuantity) {
         ...tradeCeiling, // An optional (trade) ceiling set by the Provider. (measured in <satoshis> per <asset>)
         ...tradeFloor, // An optional (trade) floor set by the Provider. (measured in <satoshis> per <asset>)
     ])
-    console.info('\nSCRIPT PUBLIC KEY', binToHex(scriptPubKey))
+    // console.info('\nSCRIPT PUBLIC KEY', binToHex(scriptPubKey))
 
     /* Encode the public key hash into a P2PKH nexa address. */
     contractAddress = encodeAddress(
@@ -140,6 +150,8 @@ export default async function (_baseQuantity) {
         scriptPubKey,
     )
     console.info('\n(CONTRACT) ADDRESS', contractAddress)
+
+    const Wallet = useWalletStore() // FIXME https://github.com/vuejs/pinia/discussions/806
 
     const providerPk = (
         await parseWif(Wallet.wallet.wif, prefix)).publicKey
@@ -233,13 +245,14 @@ export default async function (_baseQuantity) {
     console.log('\n  Receivers:', receivers)
 
     /* Send UTXO request. */
-    response = await sendTokens({
+    // response = await sendTokens({
+    response = await buildTokens({
         coins,
         tokens: allTokens,
         receivers,
     })
     console.log('Send UTXO (response):', response)
-
+return response
     try {
         txResult = JSON.parse(response)
         console.log('TX RESULT', txResult)

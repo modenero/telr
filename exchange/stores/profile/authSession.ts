@@ -9,14 +9,13 @@ import {
 import { instantiateSecp256k1 } from '@bitauth/libauth'
 
 /* Initialize stores. */
-import { useProfileStore } from '@/stores/profile'
-const Profile = useProfileStore()
+// import { useProfileStore } from '@/stores/profile'
 
 export default async function () {
     console.log('WALLET', this.wallet)
     console.log('ADDRESS', this.address)
     console.log('PUBLIC KEY', this.wallet.publicKey)
-    console.log('PROFILE SESSION', Profile.session)
+    // console.log('PROFILE SESSION', Profile.session)
 
     /* Initialize locals. */
     let messageHash
@@ -25,6 +24,8 @@ export default async function () {
     let secp256k1
     let signature
     let unitSeparator
+
+// const Profile = useProfileStore()
 
     // Instantiate the Secp256k1 interface.
     secp256k1 = await instantiateSecp256k1()
