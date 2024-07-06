@@ -36,7 +36,7 @@ const System = useSystemStore()
                 <CEXMarketMaker class="h-[400px]" />
             </div>
 
-            <CEXOrderBook class="w-full" />
+            <FarmsDirectory class="w-full" />
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-1">
