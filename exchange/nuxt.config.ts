@@ -76,5 +76,8 @@ export default defineNuxtConfig({
             mexcApiKey: process.env.MEXC_API_KEY,
             mexcApiSecret: process.env.MEXC_API_SECRET,
         },
-    }
+    },
+
+    /* Set compatibility date. */
+    compatibilityDate: '2024-07-04',
 })

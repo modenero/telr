@@ -1,8 +1,8 @@
 services:
   app:
     build: .
-    image: telr-exchange
-    container_name: telr-exchange
+    image: exchange
+    container_name: exchange
     restart: unless-stopped
     ports:
       - '127.0.0.1:3000:3000'
