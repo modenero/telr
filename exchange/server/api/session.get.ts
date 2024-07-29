@@ -2,7 +2,7 @@
 import PouchDB from 'pouchdb'
 
 /* Initialize databases. */
-const sessionsDb = new PouchDB(`db/sessions`)
+const sessionsDb = new PouchDB(`https://${process.env.COUCHDB_USER}:${process.env.COUCHDB_PASSWORD}@db.telr.exchange/sessions`)
 
 /**
  * Get Session

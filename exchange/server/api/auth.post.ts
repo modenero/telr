@@ -11,9 +11,9 @@ import {
 import { instantiateSecp256k1 } from '@bitauth/libauth'
 
 /* Initialize databases. */
-const logsDb = new PouchDB(`db/logs`)
-const profilesDb = new PouchDB(`db/profiles`)
-const sessionsDb = new PouchDB(`db/sessions`)
+const logsDb = new PouchDB(`https://${process.env.COUCHDB_USER}:${process.env.COUCHDB_PASSWORD}@db.telr.exchange/logs`)
+const profilesDb = new PouchDB(`https://${process.env.COUCHDB_USER}:${process.env.COUCHDB_PASSWORD}@db.telr.exchange/profiles`)
+const sessionsDb = new PouchDB(`https://${process.env.COUCHDB_USER}:${process.env.COUCHDB_PASSWORD}@db.telr.exchange/sessions`)
 
 /**
  * Get Profile
