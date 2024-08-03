@@ -1,11 +1,7 @@
 /* Import modules. */
 import moment from 'moment'
 import { sha256 } from '@nexajs/crypto'
-import PouchDB from 'pouchdb'
 import { v4 as uuidv4 } from 'uuid'
-
-/* Initialize databases. */
-const sessionsDb = new PouchDB(`https://${process.env.COUCHDB_USER}:${process.env.COUCHDB_PASSWORD}@db.telr.exchange/sessions`)
 
 /**
  * Create Session
