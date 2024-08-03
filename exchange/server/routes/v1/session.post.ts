@@ -73,13 +73,16 @@ export default defineEventHandler(async (event) => {
 
     /* Set session id. */
     sessionid = body?.sessionid
-    // console.log('SESSION ID', sessionid)
+    console.log('SESSION ID', sessionid)
+
+    if (typeof sessionid === 'undefined' || sessionid === null) {
+        return console.error('NO SESSION ID')
+    }
 
     /* Request session (if available). */
-    session = await sessionsDb
-        .get(sessionid)
+    session = await $fetch(`/v1/session/${sessionid}`)
         .catch(err => console.error(err))
-    // console.log('SESSION (api):', session)
+    console.log('SESSION (api):', session)
 
     /* Validate session. */
     if (!session?.isActive) {
@@ -96,16 +99,21 @@ export default defineEventHandler(async (event) => {
         }
 
         /* Save (updated) session. */
-        success = await sessionsDb
-            .put(session)
-            .catch(err => console.error(err))
+        success = await $fetch('/api/session', {
+            method: 'POST',
+            body: session,
+        })
+        .catch(err => console.error(err))
+        console.log('SAVE/UPDATE SESSION (api):', success)
     }
     console.log('SESSION (api):', session)
 
     /* Save session to database. */
-    response = await sessionsDb
-        .put(session)
-        .catch(err => console.error(err))
+    response = await $fetch('/api/session', {
+        method: 'POST',
+        body: session,
+    })
+    .catch(err => console.error(err))
     console.log('SAVE/UPDATE SESSION (api):', response)
 
     /* Update session. */
