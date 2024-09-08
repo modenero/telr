@@ -62,9 +62,9 @@ const getProfile = async (
     publicKey = hexToBin(publicKey)
     signature = hexToBin(signature)
 
-    response = await logsDb
-        .put(logPkg)
-        .catch(err => console.error(err))
+    // response = await logsDb
+    //     .put(logPkg)
+    //     .catch(err => console.error(err))
     // console.log('RESPONSE', response)
 
     /* Validate session Id. */

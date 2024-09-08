@@ -6,9 +6,9 @@ export default defineNuxtConfig({
         head: {
             charset: 'utf-8',
             viewport: 'width=device-width, initial-scale=1',
-            title: 'Nexa Exchange — Trustless Free Trade',
+            title: 'Nexa Exchange — Moving Your Crypto Safu',
             meta: [
-                { name: 'description', content: 'Trade Your Crypto' },
+                { name: 'description', content: 'Enjoy the experience of Trustless & Free trade of your precious assets.' },
             ],
             link: [
                 { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -22,18 +22,18 @@ export default defineNuxtConfig({
     /* Progressive Web Application Settings */
     pwa: {
         manifest: {
-            name: 'Nexa Exchange — Trustless Free Trade',
-            short_name: 'Nexa Exchange',
-            description: `Trade Your Crypto.`,
+            name: 'Nexa Exchange — Moving Your Crypto Safu',
+            short_name: 'Exchange',
+            description: `Enjoy the experience of Trustless & Free trade of your precious assets.`,
             lang: 'en',
             theme_color: '#494454',
             background_color: '#494454',
             // useWebmanifestExtension: false,
         },
         meta: {
-            name: 'Exchange — Trustless Free Trade',
-            description: `Trade Your Crypto.`,
-            author: `Nexa Exchange DAO`,
+            name: 'Exchange — Moving Your Crypto Safu',
+            description: `Enjoy the experience of Trustless & Free trade of your precious assets.`,
+            author: `TΞLR Exchange`,
         },
         // icon: false, // disables the icon module
         workbox: {
@@ -57,19 +57,19 @@ export default defineNuxtConfig({
         '@kevinmarrec/nuxt-pwa',
     ],
 
-    vite: {
-        optimizeDeps: {
-            esbuildOptions: {
-                target: 'es2020',
-                supported: {
-                    bigint: true
-                },
-            }
-        },
-        build: {
-            target: ['es2020'],
-        },
-    },
+    // vite: {
+    //     optimizeDeps: {
+    //         esbuildOptions: {
+    //             target: 'es2020',
+    //             supported: {
+    //                 bigint: true
+    //             },
+    //         }
+    //     },
+    //     build: {
+    //         target: ['es2020'],
+    //     },
+    // },
 
     runtimeConfig: {
         public: {
@@ -78,6 +78,19 @@ export default defineNuxtConfig({
         },
     },
 
+    /* Route Rules */
+    routeRules: {
+        /* Add CORS headers to root. */
+        // NOTE: We need this to make <token>.json available to web apps.
+        // '/**': { cors: true },
+
+        /* Disable server-side rendering for ALL areas. */
+        '/**': { ssr: false },
+
+        /* Disable server-side rendering for Admin area. */
+        // '/admin/**': { ssr: false },
+    },
+
     /* Set compatibility date. */
-    compatibilityDate: '2024-07-04',
+    compatibilityDate: '2024-09-08',
 })

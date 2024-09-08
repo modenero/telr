@@ -1,27 +1,21 @@
 /* Import modules. */
 import { encodeAddress } from '@nexajs/address'
-
 import {
     ripemd160,
     sha256,
 } from '@nexajs/crypto'
-
 import { parseWif } from '@nexajs/hdnode'
-
 import { getCoins } from '@nexajs/purse'
-
 import {
     encodeDataPush,
     encodeNullData,
     OP,
 } from '@nexajs/script'
-
 import {
     buildTokens,
     getTokens,
     sendTokens,
 } from '@nexajs/token'
-
 import {
     binToHex,
     hexToBin,
