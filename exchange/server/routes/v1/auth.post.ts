@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
 
     /* Set (request) body. */
     requestBody = await readBody(event)
-    // console.log('REQUEST BODY (_reg_/auto)', requestBody)
+    console.log('REQUEST BODY (_reg_/auto)', requestBody)
 
     postBody = {
         id: uuidv4(),
