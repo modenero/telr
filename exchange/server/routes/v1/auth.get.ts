@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
 
     /* Set parameters. */
     params = event.context.params
-    console.log('PARAMS', params)
+    console.log('AUTH PARAMS', params)
 
     return params
 })
