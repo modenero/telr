@@ -14,3 +14,5 @@ services:
         max-size: '10m'
     environment:
       - AUTH_KEY=${AUTH_KEY}
+      - AUTH_ENDPOINT=${AUTH_ENDPOINT}
+      - SESSION_ENDPOINT=${SESSION_ENDPOINT}
