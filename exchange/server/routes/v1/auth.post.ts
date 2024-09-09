@@ -4,8 +4,9 @@ import { v4 as uuidv4 } from 'uuid'
 export default defineEventHandler(async (event) => {
     /* Initailize locals. */
     let body
-    let requestBody
     let postBody
+    let requestBody
+    let response
 
     /* Set (request) body. */
     requestBody = await readBody(event)
@@ -21,9 +22,10 @@ export default defineEventHandler(async (event) => {
     body = JSON.stringify(postBody.params)
     console.log('BODY', body)
 
-    return await $fetch(process.env.AUTH_ENDPOINT, {
+    response = await $fetch(process.env.AUTH_ENDPOINT, {
         method: 'POST',
         body,
     })
     .catch(err => console.error(err))
+    console.log('RESPONSE', response)
 })
