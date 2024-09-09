@@ -21,6 +21,8 @@ export default defineEventHandler(async (event) => {
 
     body = JSON.stringify(postBody.params)
     console.log('BODY', body)
+    console.log('AUTH ENDPOINT', process.env.AUTH_ENDPOINT)
+    console.log('SESSION ENDPOINT', process.env.SESSION_ENDPOINT)
 
     response = await $fetch(process.env.AUTH_ENDPOINT, {
         method: 'POST',
