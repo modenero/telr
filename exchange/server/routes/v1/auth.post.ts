@@ -2,6 +2,8 @@
 import { v4 as uuidv4 } from 'uuid'
 
 export default defineEventHandler(async (event) => {
+    /* Initailize locals. */
+    let body
     let requestBody
     let postBody
 
@@ -16,9 +18,12 @@ export default defineEventHandler(async (event) => {
         params: requestBody,
     }
 
+    body = JSON.stringify(postBody.params)
+    console.log('BODY', body)
+
     return await $fetch(process.env.AUTH_ENDPOINT, {
         method: 'POST',
-        body: postBody.params, // FIXME Update required!
+        body,
     })
     .catch(err => console.error(err))
 })
