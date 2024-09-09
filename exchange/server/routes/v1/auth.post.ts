@@ -1,33 +1,17 @@
-/* Import modules .*/
-import { v4 as uuidv4 } from 'uuid'
-
 export default defineEventHandler(async (event) => {
     /* Initailize locals. */
     let body
-    let postBody
-    let requestBody
-    let response
 
     /* Set (request) body. */
-    requestBody = await readBody(event)
-    console.log('REQUEST BODY (_reg_/auto)', requestBody)
+    body = await readBody(event)
+    // console.log('BODY', body)
 
-    postBody = {
-        id: uuidv4(),
-        jsonrpc: '2.0',
-        method: 'auth',
-        params: requestBody,
-    }
+    /* Set (string) body. */
+    body = JSON.stringify(body)
 
-    body = JSON.stringify(postBody.params)
-    console.log('BODY', body)
-    console.log('AUTH ENDPOINT', process.env.AUTH_ENDPOINT)
-    console.log('SESSION ENDPOINT', process.env.SESSION_ENDPOINT)
-
-    response = await $fetch(process.env.AUTH_ENDPOINT, {
+    /* Return response. */
+    return await $fetch(process.env.AUTH_ENDPOINT, {
         method: 'POST',
         body,
-    })
-    .catch(err => console.error(err))
-    console.log('RESPONSE', response)
+    }).catch(err => console.error(err))
 })
