@@ -1,20 +1,28 @@
 /* Import modules. */
 import { defineStore } from 'pinia'
-
 import { mnemonicToEntropy } from '@nexajs/hdnode'
+import {
+    Wallet,
+    WalletStatus,
+} from '@nexajs/wallet'
 
-import { Wallet } from '@nexajs/wallet'
-
+/* Import (local) modules. */
+import _authSession from './profile/authSession.ts'
 import _broadcast from './wallet/broadcast.ts'
 import _setEntropy from './wallet/setEntropy.ts'
-
-import _authSession from './profile/authSession.ts'
 
 /**
  * Wallet Store
  */
 export const useWalletStore = defineStore('wallet', {
     state: () => ({
+        /**
+         * Assets
+         *
+         * Will hold ALL assets that the wallet manages.
+         */
+        _assets: null,
+
         /**
          * Entropy
          * (DEPRECATED -- MUST REMAIN SUPPORTED INDEFINITELY)
@@ -60,19 +68,22 @@ export const useWalletStore = defineStore('wallet', {
     }),
 
     getters: {
-        /* Return NexaJS wallet instance. */
-        wallet(_state) {
-            return _state._wallet
-        },
+        /* Return (abbreviated) wallet status. */
+        abbr(_state) {
+            if (!_state._wallet) {
+                return null
+            }
 
-        /* Return wallet status. */
-        isReady(_state) {
-            return _state.wallet?.isReady
+            return _state._wallet.abbr
         },
 
         /* Return wallet status. */
         address(_state) {
-            return _state.wallet?.address
+            if (!_state._wallet) {
+                return null
+            }
+
+            return _state._wallet.address
         },
 
         asset(_state) {
@@ -83,13 +94,47 @@ export const useWalletStore = defineStore('wallet', {
             return this.assets[this.wallet.assetid]
         },
 
-        /* Return wallet status. */
         assets(_state) {
-            if (!_state.wallet) {
-                return []
+            if (_state._assets) {
+                return _state._assets
             }
 
-            return _state.wallet.assets
+            if (!_state._wallet) {
+                return null
+            }
+
+            return _state._wallet.assets
+        },
+
+        /* Return wallet status. */
+        isLoading(_state) {
+            if (!_state._wallet) {
+                return true
+            }
+
+            return _state._wallet.isLoading
+        },
+
+        /* Return wallet status. */
+        isReady(_state) {
+            if (!_state._wallet) {
+                return false
+            }
+
+            if (_state._wallet._entropy) {
+                return true
+            }
+
+            return _state._wallet.isReady
+        },
+
+        /* Return NEXA.js wallet instance. */
+        wallet(_state) {
+            return _state._wallet
+        },
+
+        WalletStatus() {
+            return WalletStatus
         },
     },
 
@@ -106,15 +151,26 @@ export const useWalletStore = defineStore('wallet', {
             console.info('Initializing wallet...')
 
             if (this._entropy === null) {
-                throw new Error('Missing wallet entropy.')
+                this._wallet = 'NEW' // FIXME TEMP NEW WALLET FLAG
+                // throw new Error('Missing wallet entropy.')
+                return console.error('Missing wallet entropy.')
             }
 
             /* Request a wallet instance (by mnemonic). */
             this._wallet = await Wallet.init(this._entropy, true)
-            console.log('(Initialized) wallet', this._wallet)
+            console.info('(Initialized) wallet', this.wallet)
 
             /* Set (default) asset. */
             this.wallet.setAsset('0')
+
+            /* Handle balance updates. */
+            this.wallet.on('balances', async (_assets) => {
+                // console.log('Wallet Balances (onChanges):', _assets)
+
+                /* Close asset locally. */
+// FIXME Read ASSETS directly from library (getter).
+                this._assets = { ..._assets }
+            })
 
             /* Authorize session. */
             // setTimeout(_authSession.bind(this), 100)

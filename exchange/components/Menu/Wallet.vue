@@ -35,35 +35,22 @@ const displayBalance = computed(() => {
     if (Wallet.asset.group === '0') {
         decimalValue = Wallet.asset.satoshis * BigInt(1e4)
     } else {
+        /* Validate amount type. */
+        if (typeof Wallet.asset.amount !== 'bigint') {
+            decimalValue = BigInt(0)
+        } else {
+            decimalValue = Wallet.asset.amount * BigInt(1e4)
+        }
         decimalValue = Wallet.asset.amount * BigInt(1e4)
     }
 
-    if (Wallet.asset.decimal_places > 0) {
+    if (Wallet.asset?.decimal_places > 0) {
         bigIntValue = decimalValue / BigInt(10**Wallet.asset.decimal_places)
     } else {
         bigIntValue = decimalValue
     }
 
     return numeral(parseFloat(bigIntValue) / 1e4).format('0,0[.]00[0000]')
-
-    /* Initialize locals. */
-    // let amount
-    // let balance
-
-//     if (Wallet.asset?.decimal_places > 0 && Wallet.asset?.group !== '0') {
-//         /* Adjust for decimals. */
-// // FIXME: Preserve decimal precision/accuracy.
-//         amount = Wallet.asset.amount / BigInt(10**Wallet.asset.decimal_places)
-
-//         /* Set balance. */
-//         balance = amount || 0.00
-//     } else {
-//         /* Set balance. */
-//         balance = Wallet.asset.amount || 0.00
-//     }
-
-//     /* Return (formatted) balance. */
-//     return numeral(balance).format('0,0[.]00[0000]') + '*'
 })
 
 const displayBalanceUsd = computed(() => {

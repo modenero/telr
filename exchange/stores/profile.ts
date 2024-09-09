@@ -35,7 +35,7 @@ export const useProfileStore = defineStore('profile', {
          *
          * TODO: Allow this data to be stored on-chain using:
          *       1. Bitcoin Files Protocol (BFP) (https://bitcoinfiles.com/)
-         *       2. Telr Locker (https://locker.telr.io)
+         *       2. TΞLR Locker (https://locker.telr.io)
          */
         _meta: null,
 
@@ -92,7 +92,7 @@ export const useProfileStore = defineStore('profile', {
             }
 
             /* Manage session. */
-            session = await $fetch('/api/session', {
+            session = await $fetch('/v1/session', {
                 method: 'POST',
                 body: { sessionid: this.sessionid },
             })
