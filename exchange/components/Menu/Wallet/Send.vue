@@ -1,6 +1,12 @@
 <script setup>
 import numeral from 'numeral'
+import moment from 'moment'
 import QrScanner from 'qr-scanner'
+import {
+    getAddressBalance,
+    getAddressFirstUse,
+    getTransaction,
+} from '@nexajs/rostrum'
 
 /* Initialize stores. */
 import { useSystemStore } from '@/stores/system'
@@ -15,6 +21,11 @@ const currency = ref(null)
 const satoshis = ref(null)
 const txidem = ref(null)
 const error = ref(null)
+
+const addressBalance = ref(null)
+const addressFirstUse = ref(null)
+const firstTx = ref(null)
+const consolidation = ref(null)
 
 const video = ref(null)
 const scanner = ref(null)
@@ -132,22 +143,76 @@ const send = async () => {
 
             /* Set transaction idem. */
             txidem.value = response.txidem
-
-            // TODO Add "proper" notification system.
-            // alert(`Transaction sent successfully!\n\n${response.result}`)
         } else if (response?.error) {
             /* Set error. */
             error.value = response?.error?.message || JSON.stringify(response?.error)
-
-            // alert(JSON.stringify(response, null, 2))
         }
     }
 }
 
-// onMounted(() => {
-//     console.log('Mounted!')
-//     // Now it's safe to perform setup operations.
-// })
+const consolidate = async () => {
+    if (confirm(`Are you sure you want to consolidate ${consolidation.value.coins} coin inputs to ${Wallet.address}?`)) {
+        /* Start wallet consolidation. */
+        const response = await Wallet.consolidate()
+        // console.log('RESPONSE', response)
+
+        let json
+
+        try {
+            json = JSON.parse(response)
+        } catch (err) {
+            return alert(JSON.stringify(err))
+        }
+
+        /* Validate transaction idem. */
+        if (json?.result) {
+            /* Reset user inputs. */
+            amount.value = null
+            receiver.value = null
+
+            /* Set transaction idem. */
+            txidem.value = json.result
+        } else if (json?.error) {
+            /* Set error. */
+            error.value = json?.error?.message || JSON.stringify(json?.error)
+        }
+    }
+}
+
+const updateAddressDetails = async () => {
+    console.log('RECEIVER', receiver.value)
+
+    addressBalance.value = await getAddressBalance(receiver.value)
+        .catch(err => console.error(err))
+    console.log('ADDRESS BALANCE', addressBalance.value)
+
+    addressFirstUse.value = await getAddressFirstUse(receiver.value)
+        .catch(err => console.error(err))
+    console.log('ADDRESS FIRST USE', addressFirstUse.value)
+
+    firstTx.value = await getTransaction(addressFirstUse.value.tx_hash)
+        .catch(err => console.error(err))
+    console.log('FIRST TX', firstTx.value)
+}
+
+const init = async () => {
+    const coins = Wallet.wallet?.coins
+    // console.log('COINS', coins)
+
+    const tokens = Wallet.wallet?.tokens
+    // console.log('TOKENS', tokens)
+
+    if (typeof coins !== 'undefined' && typeof tokens !== 'undefined') {
+        consolidation.value = {
+            coins: coins.length,
+            tokens: tokens.length,
+        }
+    }
+}
+
+onMounted(() => {
+    init()
+})
 
 // onBeforeUnmount(() => {
 //     console.log('Before Unmount!')
@@ -157,13 +222,15 @@ const send = async () => {
 </script>
 
 <template>
-    <main class="grid grid-cols-1 lg:grid-cols-7 gap-8">
+    <main class="grid grid-cols-1 lg:grid-cols-7 gap-8 lg:divide-x-2 divide-solid divide-sky-200">
+
         <div class="col-span-4">
             <section class="mt-5 flex flex-row gap-1">
                 <input
                     class="w-full px-3 py-1 text-xl sm:text-2xl bg-yellow-200 border-2 border-yellow-400 rounded-md shadow"
                     type="text"
                     v-model="receiver"
+                    v-on:keyup="updateAddressDetails"
                     placeholder="Enter a Crypto address"
                 />
 
@@ -205,12 +272,12 @@ const send = async () => {
                 </h4> -->
             </section>
 
-            <div
+            <button
                 @click="send"
                 class="w-fit cursor-pointer my-5 block px-5 py-2 text-2xl font-medium bg-blue-200 border-2 border-blue-400 rounded-md shadow hover:bg-blue-300"
             >
                 Send {{Wallet.asset?.ticker}}
-            </div>
+            </button>
 
             <section v-if="txidem" class="my-10">
                 <div>
@@ -229,12 +296,77 @@ const send = async () => {
                     <pre>{{JSON.stringify(error, null, 2)}}</pre>
                 </div>
             </section>
+
+            <div class="flex flex-col gap-6">
+                <section v-if="addressBalance">
+                    <h2 class="text-xl font-medium tracking-widest">
+                        Address Balance
+                    </h2>
+
+                    <h3>
+                        Confirmed: {{addressBalance?.confirmed}}
+                    </h3>
+
+                    <h3>
+                        Unconfirmed: {{addressBalance?.unconfirmed}}
+                    </h3>
+                </section>
+
+                <!-- <section v-if="addressFirstUse">
+                    <h2 class="text-xl font-medium tracking-widest">
+                        Address First Use
+                    </h2>
+
+                    <pre>{{addressFirstUse}}</pre>
+                </section> -->
+
+                <section v-if="firstTx">
+                    <h2 class="text-xl font-medium tracking-widest">
+                        First Transaction
+                    </h2>
+
+                    <h3>
+                        Block Time: {{firstTx?.blocktime}}
+                        <span class="block text-rose-500 font-bold">
+                            {{moment.unix(firstTx?.blocktime).format('llll')}}
+                            <span class="italic text-rose-400">{{moment.unix(firstTx?.blocktime).fromNow()}}</span>
+                        </span>
+                    </h3>
+
+                    <!-- <pre>{{firstTx}}</pre> -->
+                </section>
+            </div>
         </div>
 
-        <section class="col-span-3">
-            <h1 class="text-2xl font-medium">
-                Send Assets
-            </h1>
+        <section class="pl-0 lg:pl-5 col-span-3 flex flex-col gap-6">
+            <div>
+                <h1 class="text-2xl font-medium">
+                    Manage Assets
+                </h1>
+
+                <section>
+                    <button
+                        @click="consolidate"
+                        class="w-fit cursor-pointer my-5 block px-5 py-2 text-2xl font-medium bg-blue-200 border-2 border-blue-400 rounded-md shadow hover:bg-blue-300"
+                    >
+                        Consolidate Wallet
+                    </button>
+
+                    <div class="-mt-3 pl-3">
+                        <span class="block text-sm"># of coin inputs: {{consolidation ? consolidation.coins : 'n/a'}}</span>
+                        <span class="block text-sm"># of token inputs: {{consolidation ? consolidation.tokens : 'n/a'}}</span>
+                    </div>
+                </section>
+
+            </div>
+
+            <div>
+                <h1 class="text-2xl font-medium">
+                    Advanced Options
+                </h1>
+
+                TBD...
+            </div>
         </section>
     </main>
 </template>

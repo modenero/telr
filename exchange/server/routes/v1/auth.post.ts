@@ -5,7 +5,6 @@ export default defineEventHandler(async (event) => {
     /* Set (request) body. */
     body = await readBody(event)
     console.log('AUTH BODY', body)
-    return 'wip'
 
     /* Set (string) body. */
     body = JSON.stringify(body)
