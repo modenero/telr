@@ -1,9 +1,9 @@
 /* Import modules. */
-import PouchDB from 'pouchdb'
+// import PouchDB from 'pouchdb'
 import { getTip } from '@nexajs/rostrum'
 
 /* Initialize databases. */
-const tvlDb = new PouchDB(`http://${process.env.COUCHDB_USER}:${process.env.COUCHDB_PASSWORD}@127.0.0.1:5984/tvl`)
+// const tvlDb = new PouchDB(`http://${process.env.COUCHDB_USER}:${process.env.COUCHDB_PASSWORD}@127.0.0.1:5984/tvl`)
 
 const SAMPLE_TVL = [
     {
@@ -59,13 +59,13 @@ export default defineEventHandler(async (event) => {
     console.log('TIMESTAMP', timestamp)
 
     /* Request ticker. */
-    response = await tvlDb
-        .allDocs({
-            include_docs: true,
-            limit: 1,
-            descending: true,
-        })
-        .catch(err => console.error(err))
+    // response = await tvlDb
+    //     .allDocs({
+    //         include_docs: true,
+    //         limit: 1,
+    //         descending: true,
+    //     })
+    //     .catch(err => console.error(err))
     console.log('RESPONSE (tvl):', response)
 
     /* Validate response. */

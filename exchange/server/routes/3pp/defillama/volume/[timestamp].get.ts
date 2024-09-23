@@ -1,9 +1,9 @@
 /* Import modules. */
-import PouchDB from 'pouchdb'
+// import PouchDB from 'pouchdb'
 import { getTip } from '@nexajs/rostrum'
 
 /* Initialize databases. */
-const volumeDb = new PouchDB(`http://${process.env.COUCHDB_USER}:${process.env.COUCHDB_PASSWORD}@127.0.0.1:5984/volume`)
+// const volumeDb = new PouchDB(`http://${process.env.COUCHDB_USER}:${process.env.COUCHDB_PASSWORD}@127.0.0.1:5984/volume`)
 
 const SAMPLE_VOLUME = [
     {
@@ -222,13 +222,13 @@ export default defineEventHandler(async (event) => {
     console.log('TIMESTAMP', timestamp)
 
     /* Request ticker. */
-    response = await volumeDb
-        .allDocs({
-            include_docs: true,
-            limit: 1,
-            descending: true,
-        })
-        .catch(err => console.error(err))
+    // response = await volumeDb
+    //     .allDocs({
+    //         include_docs: true,
+    //         limit: 1,
+    //         descending: true,
+    //     })
+    //     .catch(err => console.error(err))
     console.log('RESPONSE (volume):', response)
 
 
