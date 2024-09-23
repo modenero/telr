@@ -1,34 +1,25 @@
+/* Import modules .*/
+import { v4 as uuidv4 } from 'uuid'
+
 export default defineEventHandler(async (event) => {
-    /* Initialize locals. */
-    let body
-    let session
-    let sessionid
+    /* Initialize locals.*/
+    let requestBody
+    let postBody
 
     /* Set (request) body. */
-    body = await readBody(event)
-    // console.log('SESSIONS.POST (body):', body)
+    requestBody = await readBody(event)
+    // console.log('REQUEST BODY (_reg_/auto)', requestBody)
 
-    /* Set session id. */
-    sessionid = body?.sessionid
-    // console.log('SESSION ID', sessionid)
-
-    /* Validate session id. */
-    if (typeof sessionid === 'undefined' || sessionid === null || sessionid === '') {
-        console.error('NO SESSION ID')
-
-        /* Request NEW session. */
-        session = await $fetch(process.env.SESSION_ENDPOINT, {
-            method: 'POST',
-            body: { action: 'new' },
-        }).catch(err => console.error(err))
-        // console.log('NEW SESSION', session)
-    } else {
-        /* Request session (if available). */
-        session = await $fetch(`/v1/session/${sessionid}`)
-            .catch(err => console.error(err))
-        // console.log('SESSION (api):', session)
+    postBody = {
+        id: uuidv4(),
+        jsonrpc: '2.0',
+        method: 'session',
+        params: requestBody,
     }
 
-    /* Return session. */
-    return session
+    return await $fetch(process.env.TELR_API_ENDPOINT + 'exchange/session', {
+        method: 'POST',
+        body: postBody.params, // FIXME Update required!
+    })
+    .catch(err => console.error(err))
 })

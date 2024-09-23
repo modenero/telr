@@ -5,6 +5,7 @@ import {
     sha256,
 } from '@nexajs/crypto'
 import { parseWif } from '@nexajs/hdnode'
+import { broadcast } from '@nexajs/provider'
 import { getCoins } from '@nexajs/purse'
 import {
     encodeDataPush,
@@ -31,18 +32,19 @@ const WISERSWAP_V1_HEX = '6c6c6c6c6c5579009c63c076cd01217f517f7c817f775279c70121
 const DUST_VALUE = 546
 
 /* Set (platform) Administrator. */
-const ADMIN_PKH = hexToBin('45f5b9d41dd723141f721c727715c690fedbbbd6') // nexa:???
+const ADMIN_PKH = hexToBin('45f5b9d41dd723141f721c727715c690fedbbbd6') // nexa:nqtsq5g5gh6mn4qa6u33g8mjr3e8w9wxjrldhw7kvymc38lp
 
 /* Set (pool) Provider. */
-const PROVIDER_PKH = hexToBin('b2912c4cc61f1b8cbe5c77ebd5eeea2641645f10') // nexa:???
+const PROVIDER_PKH = hexToBin('b2912c4cc61f1b8cbe5c77ebd5eeea2641645f10') // nexa:nqtsq5g5k2gjcnxxrudce0juwl4atmh2yeqkghcs46snrqug
 
 // const TOKEN_ID_HEX = '57f46c1766dc0087b207acde1b3372e9f90b18c7e67242657344dcd2af660000' // AVAS
 // const TOKEN_ID_HEX = '9732745682001b06e332b6a4a0dd0fffc4837c707567f8cbfe0f6a9b12080000' // STUDIO
 // const TOKEN_ID_HEX = 'a15c9e7e68170259fd31bc26610b542625c57e13fdccb5f3e1cb7fb03a420000' // NXL
-const TOKEN_ID_HEX = '5f2456fa44a88c4a831a4b7d1b1f34176a29a3f28845af639eb9b1c88dd40000' // NXY
+// const TOKEN_ID_HEX = '5f2456fa44a88c4a831a4b7d1b1f34176a29a3f28845af639eb9b1c88dd40000' // NXY
+const TOKEN_ID_HEX = 'a535ef8ceae8135121ad7bc70712e02d56d8c2a3964877f5cc5dbdf16f390000' // AGNAR
 
-const SATOSHIS = BigInt(1000000000) // 10M NEXA
-const TOKENS = BigInt(100000000000) // 1B NXY
+const SATOSHIS = BigInt(100000000) // 1M NEXA
+const TOKENS = BigInt(90000) // # TOKENS
 
 export default async function (_baseQuantity) {
     /* Initialize locals. */
@@ -68,6 +70,7 @@ export default async function (_baseQuantity) {
     let tokens
     let tradeCeiling
     let tradeFloor
+    let transaction
     let txResult
 
     let unlockingScript
@@ -160,10 +163,11 @@ export default async function (_baseQuantity) {
 
     coins = await getCoins(Wallet.wallet.wif)
         .catch(err => console.error(err))
-    console.log('\nWALLET COINS', coins)
+    console.log('WALLET COINS', coins)
 
     contractTokens = await getTokens(Wallet.wallet.wif, scriptPubKey)
         .catch(err => console.error(err))
+    console.log('CONTRACT TOKENS', contractTokens)
 
     /* Validate (unspent) tokens. */
     if (contractTokens.length) {
@@ -190,7 +194,7 @@ export default async function (_baseQuantity) {
 
     /* Filter ONLY contract tokens. */
     tokens = tokens.filter(_token => {
-        return _token.tokenidHex === contractTokens[0].tokenidHex
+        return _token.tokenidHex === TOKEN_ID_HEX
     })
     console.log('\nWALLET TOKENS', tokens)
 
@@ -240,23 +244,26 @@ export default async function (_baseQuantity) {
 
     /* Send UTXO request. */
     // response = await sendTokens({
-    response = await buildTokens({
+    transaction = await buildTokens({
         coins,
         tokens: allTokens,
         receivers,
     })
-    console.log('Send UTXO (response):', response)
+    console.log('TRANSACTION', transaction.raw)
+return transaction
+    response = await broadcast(transaction.raw)
+    console.log('BROADCAST (response):', response)
 return response
-    try {
-        txResult = JSON.parse(response)
-        console.log('TX RESULT', txResult)
+    // try {
+    //     txResult = JSON.parse(response)
+    //     console.log('TX RESULT', txResult)
 
-        if (txResult.error) {
-            console.error(txResult.error)
-        }
-    } catch (err) {
-        console.error(err)
-    }
+    //     if (txResult.error) {
+    //         console.error(txResult.error)
+    //     }
+    // } catch (err) {
+    //     console.error(err)
+    // }
 
-    return txResult
+    // return txResult
 }
